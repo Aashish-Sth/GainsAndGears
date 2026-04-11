@@ -16,12 +16,12 @@
                 <img src="../assets/gngLogo.png" alt="GNG Logo">
             </div>
             <p class="footer-desc">
-                To the dreamers, the grinders, and the future leaders of Nepal: your ambition 
-                deserves the best quality. We're here to fuel your journey from the first rep to the 
-                final win. 
+                To the dreamers, the grinders, and the future leaders of Nepal: your ambition
+                deserves the best quality. We're here to fuel your journey from the first rep to the
+                final win.
             </p>
             <p class="footer-tags">#EmpoweringYouth #NepaliiFitness</p>
-            <div class="footer-logo">
+            <div class="footer-social">
                 <a href=""><i class="fa-brands fa-facebook" style="color: #000000;"></i></a>
                 <a href=""><i class="fa-brands fa-instagram" style="color: #000000;"></i></a>
                 <a href=""><i class="fa-brands fa-youtube" style="color: #000000;"></i></a>
@@ -65,7 +65,6 @@
     <div class="footer-bottom">
         <p>© 2026 | GNG Limited | All Rights Reserved.</p>
     </div>
-    
-<script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
 </body>
 </html>
