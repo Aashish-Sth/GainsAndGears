@@ -15,6 +15,7 @@
     />
   </head>
   <body>
+  <jsp:include page="navbar.jsp" />
     <div class="mainContainer">
       <div class="mainIamgeContainer">
         <div class="imageSideBar">
@@ -76,6 +77,48 @@
         </div>
       </div>
     </div>
+    <div class="card">
+        <div class="card-item">
+            <img src="../assets/product1.jpg" alt="Product 1">
+            <p>Gymshark - Element Sleeve</p>
+            <div class="info">
+                <span class="price">Rs 3500.00</span>
+                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <img src="../assets/product2.jpg" alt="Product 2">
+            <p>Gymshark - Compression T-Shirt</p>
+            <div class="info">
+                <span class="price">Rs 3000.00</span>
+                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="product">
+                <img src="../assets/product3.jpg" alt="Product 3">
+                <p>Gymshark - Graphic T-Shirt</p>
+            </div>
+            <div class="info">
+                <span class="price">Rs 1500.00</span>
+                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <img src="../assets/product4.jpg" alt="Product 4">
+            <p>Gymshark - Oversized T-Shirt</p>
+            <div class="info">
+                <span class="price">Rs 1500.00</span>
+                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
+            </div>
+        </div>
+
+    </div>
+
+   <jsp:include page="footer.jsp" />
     <script
       src="https://kit.fontawesome.com/b4de01d1c5.js"
       crossorigin="anonymous"

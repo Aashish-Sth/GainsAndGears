@@ -194,6 +194,128 @@
   }
 }
 
+.card {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 30px;
+        margin: 60px 50px 0 50px;
+        padding: 0;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 249 / 375;
+        object-fit: cover;
+    }
+
+    .card-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 249px;
+        justify-self: center;
+    }
+
+    .product {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .card-item p {
+        margin: 10px 0 5px 0;
+        font-size: 17px;
+        font-weight: 400;
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .price {
+        color: #000;
+        font-size: 15px;
+        font-weight: 400;
+    }
+
+    .rating {
+        font-size: 14px;
+        font-weight: 400;
+        color: #000;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .rating i {
+        font-size: 11px;
+    }
+
+    .all-btn {
+        width: fit-content;
+        margin: 60px auto 80px auto;
+        padding: 12px 36px;
+        background-color: #000;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .all-btn:hover {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid #000;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 1024px) {
+        .card {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            gap: 20px;
+            margin: 30px 20px 60px 20px;
+        }
+
+        .card-item p {
+            font-size: 13px;
+        }
+
+        .price {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .card {
+            grid-template-columns: 1fr;
+            margin: 30px 16px 60px 16px;
+        }
+
+        .card-item {
+            justify-content: center;
+            padding-bottom: 30px;
+        }
+
+        .all-btn {
+            margin: 30px auto 60px auto;
+        }
+    }
+
 @media (max-width: 1100px) {
   .mainContainer {
     width: min(1000px, 94vw);
