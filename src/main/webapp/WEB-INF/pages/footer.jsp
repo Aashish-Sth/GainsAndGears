@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Gains and Gears</title>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/footer.css">
 </head>
 <body>

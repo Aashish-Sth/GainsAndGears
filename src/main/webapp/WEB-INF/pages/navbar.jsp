@@ -46,7 +46,9 @@
 
         <!-- Logo -->
         <div class="logo">
-            <img src="../assets/gngLogo.png" alt="Logo">
+
+            <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="Logo">
+
         </div>
 
         <!-- Search Bar (desktop) -->

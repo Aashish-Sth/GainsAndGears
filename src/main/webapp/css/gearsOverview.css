@@ -1,0 +1,239 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #fff;
+}
+
+/* ── Banner section (main-container-2) ── */
+.main-container-2 {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-container-2 img {
+    width: 1600px;
+    height: 328px;
+    display: block;
+}
+
+.main-container-2 .text {
+    position: absolute;
+    left: 120px;
+    bottom: 40px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.main-container-2 .text p {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    line-height: normal;
+    letter-spacing: 2.88px;
+}
+
+/* ── Brand header ── */
+.brandHeader {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    padding: 40px 0 24px 0;
+}
+
+.brandName {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: #aaa;
+    text-decoration: none;
+    padding-bottom: 6px;
+    transition: color 0.2s ease;
+}
+
+.brandName.active {
+    color: #111;
+    border-bottom: 2px solid #111;
+}
+
+.brandName:hover {
+    color: #111;
+}
+
+/* ── Filter tabs ── */
+.filterTabs {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 8px 0 32px 0;
+}
+
+.filterBtn {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #aaa;
+    text-decoration: none;
+    padding-bottom: 6px;
+    transition: color 0.2s ease;
+}
+
+.filterBtn.active {
+    color: #111;
+    border-bottom: 2px solid #111;
+}
+
+.filterBtn:hover {
+    color: #111;
+}
+
+/* ── Product grid ── */
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin: 60px 50px 60px 50px;
+    padding: 0;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 249 / 375;
+    object-fit: cover;
+    display: block;
+    transition: outline 0.15s ease;
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 249px;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.card-item:hover img {
+    outline: 1px solid #0833f3;
+}
+
+.card-item p {
+    margin: 10px 0 5px 0;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    padding-top: 0;
+}
+
+.price {
+    color: #000;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.rating {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating i {
+    font-size: 11px;
+}
+
+
+
+@media (max-width: 1024px) {
+    .card {
+        margin: 50px 35px 50px 35px;
+        gap: 28px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .brandHeader {
+        gap: 32px;
+    }
+    .filterTabs {
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brandHeader,
+    .filterTabs {
+        gap: 22px;
+        padding: 30px 16px 26px;
+    }
+    .card {
+        margin: 45px 24px 45px 24px;
+        gap: 24px;
+    }
+    .card-item {
+        align-items: center;
+        text-align: center;
+    }
+    .info {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .brandHeader,
+    .filterTabs {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+        padding: 24px 14px 22px;
+    }
+    .card {
+        grid-template-columns: 1fr;
+        margin: 30px 14px 60px 14px;
+    }
+    .card-item {
+        align-items: center;
+    }
+    .main-container-2 .text {
+        position: static;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        padding: 18px 0 0 0;
+        text-align: center;
+        align-items: center;
+    }
+    .main-container-2 .text p {
+        font-size: 20px;
+    }
+}
