@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Navbar</title>
+<title>Gains and Gears</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/navbar.css">
 </head>
 <body>
@@ -44,7 +44,7 @@
 
         <!-- Logo -->
         <div class="logo">
-            <img src="../../assets/gngLogo.png" alt="Logo">
+            <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="Logo">
         </div>
 
         <!-- Search Bar -->
