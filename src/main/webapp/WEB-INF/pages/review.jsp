@@ -23,7 +23,9 @@
 
         <!-- Sort dropdown -->
         <select class="sortDropdown">
-            <option>Newest</option>
+            <option>Newest
+            </option>
+            
             <option>Oldest</option>
             <option>Highest Rated</option>
             <option>Lowest Rated</option>
