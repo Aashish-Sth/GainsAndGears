@@ -86,7 +86,7 @@ body {
     margin: 0;
 }
 
-
+/* Responsiveness */
 
 @media (max-width: 1024px) {
     .footer {
