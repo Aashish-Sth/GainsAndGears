@@ -13,10 +13,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    <jsp:include page="navbar.jsp" />
+    
 </head>
 
 <body>
+	<jsp:include page="navbar.jsp" />
     <!-- Main Section -->
     <div class="main-container">
         <img src="../assets/homebg.png" alt="Homepage">
@@ -24,7 +25,7 @@
     </div>
 
     <ul class="pages">
-        <li style="text-decoration: underline;"><a href="">FOR HIM</a></li>
+        <li><a href="" class="active">FOR HIM</a></li>
         <li><a href="">FOR HER</a></li>
     </ul>
 
@@ -188,7 +189,8 @@
 
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
+    <jsp:include page="footer.jsp" />
 </body>
 
-<jsp:include page="footer.jsp" />
+
 </html>
