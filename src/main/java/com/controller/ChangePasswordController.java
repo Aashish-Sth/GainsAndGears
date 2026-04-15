@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class ChangePasswordController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/ChangePasswordController" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/ChangePassword" })
 public class ChangePasswordController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -14,11 +14,11 @@
           <i class="fa-regular fa-user nav-icon"></i>
           <span>Profile Settings</span>
         </a>
-        <a href="<%=request.getContextPath()%>/ChangePasswordController" class="nav-item">
+        <a href="<%=request.getContextPath()%>/ChangePassword" class="nav-item">
           <i class="fa-solid fa-lock nav-icon"></i>
           <span>Password</span>
         </a>
-        <a href="<%=request.getContextPath()%>/OrderHistoryController" class="nav-item">
+        <a href="<%=request.getContextPath()%>/OrderHistory" class="nav-item">
           <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
           <span>Order History</span>
         </a>
