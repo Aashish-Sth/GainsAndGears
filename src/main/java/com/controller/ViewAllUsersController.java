@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class ViewAllUsers
+ * Servlet implementation class ViewAllUsersController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "admin/allUsers" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/admin/users" })
 public class ViewAllUsersController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class ViewAllUsersController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/viewAllUsers.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
 	}
 
 	/**

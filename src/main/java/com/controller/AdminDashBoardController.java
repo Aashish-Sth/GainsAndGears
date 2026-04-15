@@ -8,16 +8,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class AdminSidebBar
+ * Servlet implementation class AdminDashBoardController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/adminSidebBar" })
-public class AdminSidebBarController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/admin/DashBoard" })
+public class AdminDashBoardController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSidebBarController() {
+    public AdminDashBoardController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class AdminSidebBarController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/adminSideBar.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/pages/adminDashBoard.jsp").forward(request, response);
 	}
 
 	/**

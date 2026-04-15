@@ -25,7 +25,7 @@
             <i class="fa-regular fa-user"></i>
         </div>
 
-        <h1 class="page-title">Users</h1>
+        <h1 class="page-title">Orders</h1>
 
         <div class="main-card">
             <div class="card">

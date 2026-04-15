@@ -16,15 +16,14 @@
   </head>
 
   <body>
-    hello
     <div class="left-bar" id="left-bar">
       <div class="logo">
         <img src="../assets/gngLogo.png" alt="" />
       </div>
       <nav class="left-nav">
-        <a href=""><i class="fa-solid fa-chart-line"></i>Dashboard</a>
-        <a href=""><i class="fa-solid fa-bag-shopping"></i>Orders</a>
-        <a href=""><i class="fa-solid fa-users"></i>Users</a>
+        <a href="<%=request.getContextPath()%>/admin/DashBoard"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+        <a href="<%=request.getContextPath()%>/admin/orders"><i class="fa-solid fa-bag-shopping"></i>Orders</a>
+        <a href="<%=request.getContextPath()%>/admin/users"><i class="fa-solid fa-users"></i>Users</a>
         <a href=""><i class="fa-solid fa-box-open"></i>Products</a>
       </nav>
     </div>

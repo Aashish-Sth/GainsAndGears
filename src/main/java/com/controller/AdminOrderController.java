@@ -8,9 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class AdminOrder
+ * Servlet implementation class AdminOrderController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/allOrders" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/admin/orders" })
 public class AdminOrderController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
