@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class ExploreController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/exploreController" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/explore" })
 public class ExploreController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

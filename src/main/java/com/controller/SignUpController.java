@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class SignUpController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/signUpController" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/signUp" })
 public class SignUpController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -15,8 +15,8 @@
 
     <!-- Brand header -->
     <div class="brandHeader">
-        <a href="<%=request.getContextPath()%>/gainsOverview" class="brandName active">GAINS</a>
-    	<a href="<%=request.getContextPath()%>/gearsOverview" class="brandName">GEARS</a>
+        <a href="<%=request.getContextPath()%>/gains" class="brandName active">GAINS</a>
+    	<a href="<%=request.getContextPath()%>/gears" class="brandName">GEARS</a>
     </div>
 
     <!-- All gains products -->

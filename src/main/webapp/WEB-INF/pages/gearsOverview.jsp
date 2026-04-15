@@ -15,8 +15,8 @@
 
     <!-- Brand header -->
     <div class="brandHeader">
-        <a href="<%=request.getContextPath()%>/gainsOverview" class="brandName">GAINS</a>
-    	<a href="<%=request.getContextPath()%>/gearsOverview" class="brandName active">GEARS</a>
+        <a href="<%=request.getContextPath()%>/gains" class="brandName">GAINS</a>
+    	<a href="<%=request.getContextPath()%>/gears" class="brandName active">GEARS</a>
     </div>
 
     <!-- Filter tabs -->

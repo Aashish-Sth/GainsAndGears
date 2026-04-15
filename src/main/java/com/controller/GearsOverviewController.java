@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class GearsOverviewController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/gearsOverview" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/gears" })
 public class GearsOverviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

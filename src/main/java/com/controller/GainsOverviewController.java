@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class GainsOverviewController
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/gainsOverview" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/gains" })
 public class GainsOverviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

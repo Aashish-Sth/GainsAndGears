@@ -7,6 +7,12 @@ body {
     font-family: 'poppins', sans-serif;
 }
 
+
+a {
+	text-decoration:none !important;
+	color:black !important;
+}
+
 .nav-bar {
     display: grid;
     grid-template-columns: auto 1fr auto auto;

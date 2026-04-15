@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class navbarController
  */
-@WebServlet("/navbarController")
+@WebServlet("/navbar")
 public class NavbarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

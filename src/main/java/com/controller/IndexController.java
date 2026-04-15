@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class IndexController
  */
-@WebServlet("/IndexController")
+@WebServlet("/home")
 public class IndexController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

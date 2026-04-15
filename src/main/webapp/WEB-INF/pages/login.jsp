@@ -26,7 +26,7 @@
             <h1>Welcome back</h1>
             <p>Please enter your details.</p>
         </div>
-        <p><i class="fa-solid fa-xmark cross"></i></p>
+        <a href="<%=request.getContextPath()%>/home"><i class="fa-solid fa-xmark cross"></i></a>
       
         <div class="login-form">
              
@@ -41,7 +41,7 @@
                 
 
                 <button class="submitBtn" type="submit">Submit</button>
-                <p>Don't have an account? <a href="<%= request.getContextPath() %>/s ignUpController">Register Now </a></p>
+                <p>Don't have an account? <a href="<%= request.getContextPath() %>/signUp">Register Now </a></p>
             </form>
         </div>
 

@@ -23,7 +23,7 @@
       <div class="signUpForm">
         <img class="logo" src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="" />
         <p class="head">Please enter your details.</p>
-        <p><i class="fa-solid fa-xmark cross"></i></p>
+       <a href="<%=request.getContextPath()%>/home"><i class="fa-solid fa-xmark cross"></i></a>
         
         <c:choose>
         <c:when test="${ empty param.step or param.step == 'first'}">
@@ -128,7 +128,7 @@
         </c:choose>
         <p class="loginRedirectText">
             Already have an account?
-            <a href="<%= request.getContextPath() %>/loginController" style="color: black">Login Now</a>
+            <a href="<%= request.getContextPath() %>/login" style="color: black">Login Now</a>
           </p>
       </div>
     </div>
