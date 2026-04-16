@@ -48,7 +48,7 @@ public class SignUpController extends HttpServlet {
 		}
 		else
 		{
-			response.sendRedirect(request.getContextPath() + "/signUpController");
+			response.sendRedirect(request.getContextPath() + "/signUp");
 		}
 	}
 	
@@ -91,7 +91,7 @@ public class SignUpController extends HttpServlet {
         session.setAttribute("gender", gender);
 		
         //Using query parameter to set value of step variable in jsp file.
-        response.sendRedirect(request.getContextPath() + "/signUpController?step=second");
+        response.sendRedirect(request.getContextPath() + "/signUp?step=second");
         
 	}
 	
@@ -133,6 +133,6 @@ public class SignUpController extends HttpServlet {
         
         session.invalidate();
         // Redirect to login
-        response.sendRedirect(request.getContextPath() + "/LoginController");
+        response.sendRedirect(request.getContextPath() + "/login");
 	}
 }

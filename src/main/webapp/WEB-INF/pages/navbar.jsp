@@ -21,7 +21,7 @@
             <a href="<%=request.getContextPath()%>/explore" class="desktop-hidden"><i class="fa-solid fa-bag-shopping"></i>Explore</a>
             <a href="<%=request.getContextPath()%>/about"><i class="fa-solid fa-circle-info"></i>About us</a>
             <a href="<%=request.getContextPath()%>/contact"><i class="fa-regular fa-envelope"></i>Contact Us</a>
-            <a href="<%=request.getContextPath()%>/signUp"><i class="fa-regular fa-circle-user"></i>My Profile</a>
+            <a href="<%=request.getContextPath()%>/login"><i class="fa-regular fa-circle-user"></i>My Profile</a>
         </nav>
         <button class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</button>
     </div>
@@ -62,7 +62,7 @@
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a ><i class="fa-solid fa-bag-shopping"></i></a>
             <a><i class="fa-regular fa-heart"></i></a>
-            <a href="<%=request.getContextPath()%>/signUp" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+            <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
         </div>
 
     </nav>

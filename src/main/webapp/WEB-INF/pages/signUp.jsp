@@ -27,7 +27,7 @@
         
         <c:choose>
         <c:when test="${ empty param.step or param.step == 'first'}">
-          <form class="inputForm" action="${pageContext.request.contextPath}/signUpController" method="post">
+          <form class="inputForm" action="${pageContext.request.contextPath}/signUp" method="post">
           <input type="hidden" name="step" value="first">
             <label class="inputLable">First Name</label>
             <input
@@ -96,7 +96,7 @@
         
         
         <c:when test="${param.step == 'second'}">
-         <form class="inputForm" action="${pageContext.request.contextPath}/signUpController" method="post">
+         <form class="inputForm" action="${pageContext.request.contextPath}/signUp" method="post">
          	<input type="hidden" name="step" value="second" />
             <label class="inputLable">Password</label>
             <input
