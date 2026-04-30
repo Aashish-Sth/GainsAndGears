@@ -67,35 +67,35 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><img src="../assets/user1.jpg" class="user-photo"></td>
+                        <td><img src="<%=request.getContextPath()%>/assets/user1.jpg" class="user-photo"></td>
                         <td>Aarshnav KC</td>
                         <td>9869750231</td>
                         <td>aarshnav@gmail.com</td>
                         <td><span class="badge active-badge">Active</span></td>
                     </tr>
                     <tr>
-                        <td><img src="../assets/user2.jpg" class="user-photo"></td>
+                        <td><img src="<%=request.getContextPath()%>/assets/user2.jpg" class="user-photo"></td>
                         <td>Dilip Shrestha</td>
                         <td>9876754546</td>
                         <td>dilipstha@gmail.com</td>
                         <td><span class="badge inactive-badge">Inactive</span></td>
                     </tr>
                     <tr>
-                        <td><img src="../assets/user3.jpg" class="user-photo"></td>
+                        <td><img src="<%=request.getContextPath()%>/assets/user3.jpg" class="user-photo"></td>
                         <td>Asheesh Shrestha</td>
                         <td>9869750231</td>
                         <td>ashishstha@gmail.com</td>
                         <td><span class="badge active-badge">Active</span></td>
                     </tr>
                     <tr>
-                        <td><img src="../assets/user4.jpg" class="user-photo"></td>
+                        <td><img src="<%=request.getContextPath()%>/assets/user4.jpg" class="user-photo"></td>
                         <td>Upakar Shrestha</td>
                         <td>9869750231</td>
                         <td>upakarsth@gmail.com</td>
                         <td><span class="badge active-badge">Active</span></td>
                     </tr>
                     <tr>
-                        <td><img src="../assets/user5.jpg" class="user-photo"></td>
+                        <td><img src="<%=request.getContextPath()%>/assets/user5.jpg" class="user-photo"></td>
                         <td>Krish Shrestha</td>
                         <td>9869750231</td>
                         <td>sthakriz098@gmail.com</td>

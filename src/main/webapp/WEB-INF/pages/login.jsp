@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
    <!-- Left Panel -->
     <div class="loginFormContainer">
         <div class="logo">
-            <img src="../../assets/gngLogo.png" alt="logo">
+            <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="logo">
         </div>
 
         <div class="welcomeContainer">
@@ -28,13 +29,16 @@
         </div>
         <a href="<%=request.getContextPath()%>/home"><i class="fa-solid fa-xmark cross"></i></a>
       
-        <div class="login-form">
+        <form class="login-form" action="${pageContext.request.contextPath}/login" method="post">
              
                     <label class="inputLable" for="email">Email</label>
-                    <input class="inputField" type="text" placeholder="Enter your email address" name="uname" required>
+                    <input class="inputField" type="text" placeholder="Enter your email address" name="email" required>
               
                     <label class="inputLable" for="password">Password</label>
-                    <input class="inputField" type="text" placeholder="Enter your Password" name="pw" required>
+                    <input class="inputField" type="text" placeholder="Enter your Password" name="password" required>
+                      <c:if test="${not empty requestScope.errorMessage}">
+            	<p class="errorMsg">${requestScope.errorMessage}</p>
+        		</c:if>
                <div class="checkboxArea" style="display: flex;">
                 <input  class="checkbox" type="checkbox"> <p>Remember me</p>
                </div>
@@ -42,13 +46,13 @@
 
                 <button class="submitBtn" type="submit">Submit</button>
                 <p>Don't have an account? <a href="<%= request.getContextPath() %>/signUp">Register Now </a></p>
-            </form>
-        </div>
+            
+        </form>
 
     </div>
 
     <div class="right-container">
-        <img src="../../assets/loginHero.svg" alt="right-image">
+        <img src="<%=request.getContextPath()%>/assets/loginHero.svg" alt="right-image">
 
     </div>
     </div>

@@ -81,7 +81,7 @@
     </div>
     <div class="card">
         <div class="card-item">
-            <img src="../assets/product1.jpg" alt="Product 1">
+            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
             <p>Gymshark - Element Sleeve</p>
             <div class="info">
                 <span class="price">Rs 3500.00</span>
@@ -90,7 +90,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product2.jpg" alt="Product 2">
+            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
             <p>Gymshark - Compression T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 3000.00</span>
@@ -100,7 +100,7 @@
 
         <div class="card-item">
             <div class="product">
-                <img src="../assets/product3.jpg" alt="Product 3">
+                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
                 <p>Gymshark - Graphic T-Shirt</p>
             </div>
             <div class="info">
@@ -110,7 +110,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product4.jpg" alt="Product 4">
+            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
             <p>Gymshark - Oversized T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 1500.00</span>

@@ -14,7 +14,7 @@
         <!-- Left Section -->
         <div class="footer-brand">
             <div class="footer-logo">
-                <img src="../assets/gngLogo.png" alt="GNG Logo">
+                <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="GNG Logo">
             </div>
             <p class="footer-desc">
                 To the dreamers, the grinders, and the future leaders of Nepal: your ambition

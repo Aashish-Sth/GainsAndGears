@@ -37,13 +37,13 @@
         <div class="order-card">
           <div class="order-header">
             <div class="brand-info">
-              <img src="../../assets/youngla.png" alt="YoungLA logo" class="brand-logo" />
+              <img src="../<%=request.getContextPath()%>/assets/youngla.png" alt="YoungLA logo" class="brand-logo" />
               <span class="brand-name">YoungLA</span>
             </div>
             <span class="order-status">Completed</span>
           </div>
           <div class="order-body">
-            <img src="../../assets/zipup.png" alt="Kove Zip Hoodie" class="product-img" />
+            <img src="../<%=request.getContextPath()%>/assets/zipup.png" alt="Kove Zip Hoodie" class="product-img" />
             <div class="product-info">
               <p class="product-name">W5215 - Kove Zip Hoodie</p>
               <p class="product-variant">Size - Small</p>
@@ -56,13 +56,13 @@
         <div class="order-card">
           <div class="order-header">
             <div class="brand-info">
-              <img src="../../assets/feralsupps.png" alt="Ferral Supps logo" class="brand-logo" />
+              <img src="../<%=request.getContextPath()%>/assets/feralsupps.png" alt="Ferral Supps logo" class="brand-logo" />
               <span class="brand-name">Ferral Supps</span>
             </div>
             <span class="order-status">Shipped</span>
           </div>
           <div class="order-body">
-            <img src="../../assets/fruity.png" alt="Feral Isolate" class="product-img" />
+            <img src="../<%=request.getContextPath()%>/assets/fruity.png" alt="Feral Isolate" class="product-img" />
             <div class="product-info">
               <p class="product-name">Feral Isolate - Fruity cereal</p>
               <p class="product-variant">Quantity - 250g</p>

@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="navbar.jsp" />
     <div class="main-container">
-        <video src="../assets/explorevideo.mp4" loop autoplay muted></video>
+        <video src="<%=request.getContextPath()%>/assets/explorevideo.mp4" loop autoplay muted></video>
         <div class="main-content">
             <p>NEW IN <br> GYMSHARK ONYX V5</p>
             <div class="shop-now">Check it out</div>
@@ -24,7 +24,7 @@
 
     <div class="card">
         <div class="card-item">
-            <img src="../assets/product1.jpg" alt="Product 1">
+            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
             <p>Gymshark - Element Sleeve</p>
             <div class="info">
                 <span class="price">Rs 3500.00</span>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product2.jpg" alt="Product 2">
+            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
             <p>Gymshark - Compression T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 3000.00</span>
@@ -43,7 +43,7 @@
 
         <div class="card-item">
             <div class="product">
-                <img src="../assets/product3.jpg" alt="Product 3">
+                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
                 <p>Gymshark - Graphic T-Shirt</p>
             </div>
             <div class="info">
@@ -53,7 +53,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product4.jpg" alt="Product 4">
+            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
             <p>Gymshark - Oversized T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 1500.00</span>
@@ -66,7 +66,7 @@
 
     <!-- Limited Stock Section -->
     <div class="main-container-2">
-        <img src="../assets/homebg4.png" alt="Homepage">
+        <img src="<%=request.getContextPath()%>/assets/homebg4.png" alt="Homepage">
         <div class="text">
             <p>SHORTS AS VERSATILE <br>AS YOUR TRAINING</p>
             <div class="check-2">CHECK IT OUT</div>
@@ -76,7 +76,7 @@
 
     <div class="card">
         <div class="card-item">
-            <img src="../assets/product1.jpg" alt="Product 1">
+            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
             <p>Gymshark - Element Sleeve</p>
             <div class="info">
                 <span class="price">Rs 3500.00</span>
@@ -85,7 +85,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product2.jpg" alt="Product 2">
+            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
             <p>Gymshark - Compression T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 3000.00</span>
@@ -95,7 +95,7 @@
 
         <div class="card-item">
             <div class="product">
-                <img src="../assets/product3.jpg" alt="Product 3">
+                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
                 <p>Gymshark - Graphic T-Shirt</p>
             </div>
             <div class="info">
@@ -105,7 +105,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../assets/product4.jpg" alt="Product 4">
+            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
             <p>Gymshark - Oversized T-Shirt</p>
             <div class="info">
                 <span class="price">Rs 1500.00</span>
