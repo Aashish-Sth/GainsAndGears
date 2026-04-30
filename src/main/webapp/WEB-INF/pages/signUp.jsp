@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" session="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -125,6 +125,36 @@
         </form>
      
         </c:when>
+        <c:when test="${param.step == 'third'}">
+         <form
+      class="inputForm"
+      action="${pageContext.request.contextPath}/signUp"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      <input type="hidden" name="step" value="third" />
+      <label class="inputLable">Add a profile photo</label>
+      <div class="pfpHolder"><img id="imagePreview" src="<%=request.getContextPath()%>/assets/default.jpg" alt="default user profile picture" /></div>
+
+      <label for="profilePhoto" class="photoLable">
+        <i class="fa-solid fa-plus"></i> Upload Photo
+      </label>
+
+      <input
+        id="profilePhoto"
+        class="inputField"
+        type="file"
+        name="profilePhoto"
+        id="profilePhoto"
+        hidden
+      />
+
+      <c:if test="${not empty requestScope.errorMessage}">
+        <p class="errorMsg">${requestScope.errorMessage}</p>
+      </c:if>
+      <button id="confirmBtn" class="btn">Submit</button>
+    </form>
+        </c:when>
         </c:choose>
         <p class="loginRedirectText">
             Already have an account?
@@ -140,5 +170,20 @@
       src="https://kit.fontawesome.com/b4de01d1c5.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+	document.getElementById("profilePhoto").addEventListener("change", (event)=> {
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            document.getElementById("imagePreview").src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+});
+</script>
   </body>
 </html>

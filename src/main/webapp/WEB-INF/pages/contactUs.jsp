@@ -80,7 +80,7 @@
 
     <!-- Down Shop Now -->
     <div class="shopNowSection">
-        <img src="../../assets/shopNow.svg" alt="Gym Banner" class="shopNowImage" />
+        <img src="../<%=request.getContextPath()%>/assets/shopNow.svg" alt="Gym Banner" class="shopNowImage" />
         <div class="shopNowContent">
             <h2 class="shopNowText">WAIT THERE’S<br />MORE</h2>
             <a href="/products.html" class="shopNowBtn">SHOP NOW</a>

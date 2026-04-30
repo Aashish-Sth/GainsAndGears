@@ -80,7 +80,7 @@
       <p class="summary-title">Order Summary</p>
 
       <div class="item">
-        <img src="../../assets/wheyXtrix.png" alt="product" />
+        <img src="../<%=request.getContextPath()%>/assets/wheyXtrix.png" alt="product" />
         <div class="item-info">
           <p class="item-name">GHOST WHEY x TRIX</p>
           <p class="item-qty">Quantity: 1</p>
@@ -89,7 +89,7 @@
       </div>
 
       <div class="item">
-        <img src="../../assets/zipup.png" alt="product" />
+        <img src="../<%=request.getContextPath()%>/assets/zipup.png" alt="product" />
         <div class="item-info">
           <p class="item-name">W5215 - Kove Zip Hoodie</p>
           <p class="item-size">Size - Small</p>

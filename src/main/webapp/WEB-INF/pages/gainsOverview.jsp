@@ -32,7 +32,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost2.svg" alt="Pre-Workout MuscleBlaze">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost2.svg" alt="Pre-Workout MuscleBlaze">
             <p>Pre-Workout MuscleBlaze</p>
             <div class="info">
                 <span class="price">Rs 3200.00</span>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost3.svg" alt="Creatine Monohydrate">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost3.svg" alt="Creatine Monohydrate">
             <p>Creatine Monohydrate</p>
             <div class="info">
                 <span class="price">Rs 2800.00</span>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost4.svg" alt="Mass Gainer XT">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost4.svg" alt="Mass Gainer XT">
             <p>Mass Gainer XT</p>
             <div class="info">
                 <span class="price">Rs 5500.00</span>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost1.svg" alt="Resistance Band Set">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost1.svg" alt="Resistance Band Set">
             <p>Resistance Band Set</p>
             <div class="info">
                 <span class="price">Rs 1800.00</span>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost2.svg" alt="Adjustable Dumbbell 20kg">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost2.svg" alt="Adjustable Dumbbell 20kg">
             <p>Adjustable Dumbbell 20kg</p>
             <div class="info">
                 <span class="price">Rs 7500.00</span>
@@ -77,7 +77,7 @@
         </div>
 
         <div class="card-item">
-            <img src="../../assets/Ghost3.svg" alt="Lifting Straps Pro">
+            <img src="../<%=request.getContextPath()%>/assets/Ghost3.svg" alt="Lifting Straps Pro">
             <p>Lifting Straps Pro</p>
             <div class="info">
                 <span class="price">Rs 950.00</span>
