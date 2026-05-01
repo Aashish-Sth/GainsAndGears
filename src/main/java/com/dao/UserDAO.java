@@ -18,7 +18,7 @@ public class UserDAO {
 	public List<userModel> getAllUsers() {
 	    List<userModel> userList = new ArrayList<>();
 	    
-	    // 1. Added 'user_id' to the beginning of this string
+
 	    String query = "SELECT user_id, user_first_name, user_last_name, user_email, "
 	                 + "user_phone_number, user_role, user_gender, user_status, user_img FROM users";
 
@@ -29,7 +29,7 @@ public class UserDAO {
 	        while (rs.next()) {
 	            userModel user = new userModel();
 	            
-	            // This now works because user_id is in the query above
+
 	            user.setUser_id(rs.getInt("user_id")); 
 	            
 	            user.setUser_first_name(rs.getString("user_first_name"));
@@ -65,10 +65,10 @@ public class UserDAO {
 	        st.setString(2, email);
 	        
 	        int rowsUpdated = st.executeUpdate();
-	        return rowsUpdated > 0; // Returns true if the user was found and updated
+	        return rowsUpdated > 0; // True if update worked
 
 	    } catch (SQLException e) {
-	        System.err.println("Update Error: " + e.getMessage());
+	        e.printStackTrace();
 	        return false;
 	    }
 	}

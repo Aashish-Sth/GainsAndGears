@@ -26,7 +26,7 @@ body {
   margin: 0 0 20px 32px;
 }
 
-/* --- STATS CARDS --- */
+
 .main-card {
   display: flex;
   gap: 16px;
@@ -83,11 +83,11 @@ body {
   border-radius: 50%;
 }
 
-/* --- STATUS BADGE (NO CIRCLE) --- */
+
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px; /* Space between text and icon */
+  gap: 8px; 
   padding: 4px 14px;
   border-radius: 50px;
   font-weight: 500;
@@ -95,20 +95,20 @@ body {
   cursor: default;
 }
 
-/* Icon style (The caret) */
+
 .badge i {
   font-size: 10px;
-  margin-top: 1px; /* Optical alignment */
+  margin-top: 1px;
 }
 
-/* Active State */
+
 .active-badge {
   color: #16a34a;
   border: 1px solid #16a34a;
   background-color: #f0fdf4;
 }
 
-/* Inactive State */
+
 .inactive-badge {
   color: #dc2626;
   border: 1px solid #dc2626;
@@ -134,4 +134,23 @@ body {
   border: none;
   outline: none;
   font-size: 14px;
+}
+
+.success-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #16a34a; 
+    background-color: #f0fdf4;
+    padding: 14px 24px;
+    border: 1px solid #16a34a;
+    border-radius: 10px;
+    margin: 0 32px 20px 32px;
+    font-weight: 500;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.success-alert i {
+    font-size: 18px;
 }

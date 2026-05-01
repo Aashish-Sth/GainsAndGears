@@ -1,10 +1,10 @@
 package com.controller;
 
-import java.io.IOException; // Added this
-import jakarta.servlet.ServletException; // Added this
+import java.io.IOException;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest; // Ensure this is imported
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.services.UserService;
@@ -13,26 +13,31 @@ import com.services.UserService;
 public class UpdateStatusController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // CHANGED: From doGet to doPost to match the JSP form method="POST"
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        // Match the parameter name sent from the JSP (we'll use email)
-        String userEmail = request.getParameter("email"); 
-        String statusStr = request.getParameter("status");
+        // UPDATED: Parameter names now match the <input name="..."> in your JSP
+        String userEmail = request.getParameter("userEmail"); 
+        String statusStr = request.getParameter("newStatus");
 
         if (userEmail != null && statusStr != null) {
-            int newStatus = Integer.parseInt(statusStr);
+            try {
+                int newStatus = Integer.parseInt(statusStr);
 
-            UserService service = new UserService();
-            boolean isUpdated = service.updateUserStatus(userEmail, newStatus);
+                UserService service = new UserService();
+                boolean isUpdated = service.updateUserStatus(userEmail, newStatus);
 
-            if (isUpdated) {
-                // Success: Redirect back
-                response.sendRedirect("users?success=true");
-                return; // Stop execution here
+                if (isUpdated) {
+                    // Success: Redirect back to the user list with the success flag
+                    response.sendRedirect("users?success=true");
+                    return; 
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
         }
         
-        // If it fails or parameters are missing
+       
         response.sendRedirect("users?error=true");
     }
 }
