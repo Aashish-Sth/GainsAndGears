@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,12 @@
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a ><i class="fa-solid fa-bag-shopping"></i></a>
             <a><i class="fa-regular fa-heart"></i></a>
+            <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+            </c:if>
+            <c:if test="${not empty sessionScope.loggedInUser}">
+            <a href="<%=request.getContextPath()%>/user" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+            </c:if>
         </div>
 
     </nav>

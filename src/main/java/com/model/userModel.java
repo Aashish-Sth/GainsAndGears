@@ -1,16 +1,24 @@
 package com.model;
 
-import java.sql.Blob;
 
-public class userModel {
+public class UserModel {
+	private int user_id;
 	private String user_first_name;
 	private String user_last_name;
 	private String user_password;
 	private String user_role;
 	private String user_email;
 	private String user_gender;
-	private Blob user_img;
+	private String  user_img;
 	private String user_phone_number;
+	
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	
 	
 	public String getUser_phone_number() {
 		return user_phone_number;
@@ -54,12 +62,13 @@ public class userModel {
 	public void setUser_gender(String user_gender) {
 		this.user_gender = user_gender;
 	}
-	public Blob getUser_img() {
+	public String getUser_img() {
 		return user_img;
 	}
-	public void setUser_img(Blob user_img) {
+	public void setUser_img(String user_img) {
 		this.user_img = user_img;
 	}
 	
+
 	
 }

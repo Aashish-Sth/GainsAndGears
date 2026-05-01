@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
+import com.utils.ImageUtil;
 import com.utils.SessionUtil;
 import jakarta.servlet.http.Part;
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class SignUpController extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public SignUpController() {
+    	
         super();
         // TODO Auto-generated constructor stub
     }
@@ -173,10 +176,20 @@ public class SignUpController extends HttpServlet {
         
         
         Part filePart = request.getPart("profilePhoto");
-        byte[] user_img = null;
+        String user_img = "default.jpg";
 
         if (filePart != null && filePart.getSize() > 0) {
-            user_img = filePart.getInputStream().readAllBytes();
+        	ImageUtil imageUtil = new ImageUtil();
+        	
+        	 // getRealPath("/") gives us the root folder of our app on the server
+            // something like "C:/.../gainsAndGears/"
+        	String rootPath = request.getServletContext().getRealPath("/");
+        	
+        	boolean uploaded = imageUtil.uploadImage(filePart, rootPath, "uploads");
+        	  if (uploaded) {
+                  // get just the filename to store in DB
+                  user_img = imageUtil.getImageNameFromPart(filePart);
+              }
         }
         
         SignUpService service = new SignUpService();

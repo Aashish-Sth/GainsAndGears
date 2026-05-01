@@ -6,7 +6,7 @@ import com.utils.PasswordUtil;
 
 public class SignUpService {
 	public void adduser(String user_first_name,String user_last_name,String user_password,
-			String user_email,String user_gender,byte[] user_img,String user_phone_number) {
+			String user_email,String user_gender,String user_img,String user_phone_number) {
 		user_password = PasswordUtil.getHashPassword(user_password);
 		
 		RegisterDAO dao = new RegisterDAO();
