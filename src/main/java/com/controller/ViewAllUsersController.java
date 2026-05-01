@@ -8,44 +8,36 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-// Import your Model and Service
 import com.model.userModel;
 import com.services.UserService;
 
-/**
- * Servlet implementation class ViewAllUsersController
- */
-@WebServlet(asyncSupported = true, urlPatterns = { "/admin/users" })
+@WebServlet("/admin/users")
 public class ViewAllUsersController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    public ViewAllUsersController() {
-        super();
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserService userService = new UserService();
+        
+        // 1. Get the data
+        List<userModel> allUsers = userService.getAllUsers();
+        String searchQuery = request.getParameter("search");
+        
+        // 2. Use the service to filter
+        List<userModel> displayList = userService.filterUsers(allUsers, searchQuery);
+
+        // 3. Set attributes for JSP
+        request.setAttribute("userList", displayList);
+        request.setAttribute("searchedName", searchQuery); // Keeps text in search box
+        
+        // Stats are always calculated from the full list
+        request.setAttribute("totalCount", allUsers.size());
+        request.setAttribute("activeCount", userService.countActive(allUsers));
+        request.setAttribute("inactiveCount", userService.countInactive(allUsers));
+        
+        request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. Create an instance of the Service
-		UserService userService = new UserService();
-		
-		// 2. Fetch the list of users from the DB via the Service/DAO
-		List<userModel> userList = userService.getAllUsers();
-		
-		// 3. Attach the list to the request object. 
-		// The JSP will look for the name "userList" to display the data.
-		request.setAttribute("userList", userList);
-		
-		// 4. Forward the request and the data to the JSP
-		request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

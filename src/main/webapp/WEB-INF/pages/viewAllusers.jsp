@@ -25,62 +25,60 @@
         <h1 class="page-title">Users</h1>
 
         <%-- STATS CARDS --%>
-        <div class="main-card">
-            <div class="card">
-                <span class="label">All Users</span>
-                <%-- We can get the size of the list directly --%>
-                <span class="number">${userList.size()}</span>
-            </div>
-            <div class="card">
-                <span class="label">Active Users <span class="dot green"></span></span>
-                <span class="number">3</span> <!-- We will make this dynamic later -->
-            </div>
-            <div class="card">
-                <span class="label">Inactive Users <span class="dot red"></span></span>
-                <span class="number">2</span> <!-- We will make this dynamic later -->
-            </div>
-        </div>
+       <%-- STATS CARDS --%>
+<div class="main-card">
+    <div class="card">
+        <span class="label">All Users</span>
+        <%-- Displays the total number of users in the database --%>
+        <span class="number">${totalCount}</span>
+    </div>
+    <div class="card">
+        <span class="label">Active Users <span class="dot green"></span></span>
+        <%-- Displays the count of users where status is 1 --%>
+        <span class="number">${activeCount}</span>
+    </div>
+    <div class="card">
+        <span class="label">Inactive Users <span class="dot red"></span></span>
+        <%-- Displays the count of users where status is 0 --%>
+        <span class="number">${inactiveCount}</span>
+    </div>
+</div>
 
         <div class="table-container">
             <div class="table-top">
-                <div class="choice">
-                    <button class="btn">All Users</button>
-                    <button class="btn">Active Users</button>
-                    <button class="btn">Inactive Users</button>
-                </div>
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search user">
-                </div>
+              
+              <form action="users" method="POST" class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <%-- The name "search" is how the Servlet will find the data --%>
+        <input type="text" name="search" placeholder="Search by name..." value="${searchedName}">
+        <button type="submit" style="display:none"></button>
+    </form>
             </div>
 
             <table class="user-table">
                 <thead>
                     <tr>
-                        <th>Photo</th>
+                        <th>ID</th>
                         <th>User Name</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>Role</th> <!-- Changed header to Role since that's in your model -->
+                        <th>Status</th> <!-- Changed header to Role since that's in your model -->
                     </tr>
                 </thead>
                 <tbody>
                     <%-- 2. DYNAMIC LOOP START --%>
                     <c:forEach var="user" items="${userList}">
                         <tr>
-                            <td>
-                                <%-- Using a placeholder for the Blob image for now --%>
-                                <img src="<%=request.getContextPath()%>/assets/default-user.png" class="user-photo">
-                            </td>
+                            <td>${user.user_id}</td>
                             <td>${user.user_first_name} ${user.user_last_name}</td>
                             <td>${user.user_phone_number}</td>
                             <td>${user.user_email}</td>
-                            <td>
-                                <%-- Dynamic badge based on role --%>
-                                <span class="badge ${user.user_role == 'Admin' ? 'active-badge' : 'inactive-badge'}">
-                                    ${user.user_role}
-                                </span>
-                            </td>
+                         <td>
+    <span class="badge ${user.user_status == 1 ? 'active-badge' : 'inactive-badge'}">
+        ${user.user_status == 1 ? 'Active' : 'Inactive'}
+        <i class="fa-solid fa-caret-down"></i>
+    </span>
+</td>
                         </tr>
                     </c:forEach>
                     

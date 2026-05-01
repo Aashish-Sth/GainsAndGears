@@ -17,22 +17,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 10px;
   padding: 16px 32px;
-  font-size: 14px;
-  color: #333;
-}
-
-.top-bar i {
-  width: 34px;
-  height: 34px;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
 }
 
 .page-title {
@@ -41,6 +26,7 @@ body {
   margin: 0 0 20px 32px;
 }
 
+/* --- STATS CARDS --- */
 .main-card {
   display: flex;
   gap: 16px;
@@ -52,100 +38,77 @@ body {
   border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 16px 24px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  min-width: 120px;
-}
-
-.label {
-  font-size: 12px;
-  color: #888;
-  display: flex;
-  align-items: center;
   gap: 6px;
 }
 
 .number {
   font-size: 28px;
   font-weight: 600;
-  color: #111;
 }
 
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.green {
-  background-color: #22c55e;
-}
-
-.red {
-  background-color: #ef4444;
-}
-
+/* --- TABLE --- */
 .table-container {
   background-color: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 12px;
   margin: 0 32px 40px 32px;
   padding: 20px 24px;
-  overflow-x: auto;
 }
 
 .user-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 500px;
 }
 
 .user-table th {
   text-align: left;
-  font-size: 12px;
-  font-weight: 500;
   color: #aaa;
-  padding: 10px 12px;
+  font-size: 12px;
+  padding: 12px;
   border-bottom: 1px solid #f0f0f0;
 }
 
 .user-table td {
   padding: 14px 12px;
-  font-size: 13px;
-  color: #333;
   border-bottom: 1px solid #f5f5f5;
-}
-
-.user-table tr:last-child td {
-  border-bottom: none;
-}
-
-.user-table tbody tr:hover {
-  background-color: #fafafa;
+  font-size: 13px;
 }
 
 .user-photo {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  object-fit: cover;
 }
 
+/* --- STATUS BADGE (NO CIRCLE) --- */
 .badge {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* Space between text and icon */
+  padding: 4px 14px;
+  border-radius: 50px;
   font-weight: 500;
+  font-size: 13px;
+  cursor: default;
 }
 
+/* Icon style (The caret) */
+.badge i {
+  font-size: 10px;
+  margin-top: 1px; /* Optical alignment */
+}
+
+/* Active State */
 .active-badge {
   color: #16a34a;
   border: 1px solid #16a34a;
   background-color: #f0fdf4;
 }
 
+/* Inactive State */
 .inactive-badge {
   color: #dc2626;
   border: 1px solid #dc2626;
@@ -154,65 +117,21 @@ body {
 
 .table-top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   margin-bottom: 20px;
-}
-
-.choice {
-  display: flex;
-  gap: 10px;
-}
-
-.btn {
-  padding: 8px 16px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.btn:hover {
-  border-color: #000;
 }
 
 .search-box {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-.search-box i {
-  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 14px;
 }
 
 .search-box input {
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  padding: 8px 16px;
+  border: none;
+  outline: none;
   font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  .top-bar {
-    padding: 12px 16px;
-  }
-
-  .page-title {
-    margin-left: 16px;
-  }
-
-  .stat-cards {
-    margin: 0 16px 20px 16px;
-    flex-wrap: wrap;
-  }
-
-  .stat-card {
-    flex: 1;
-    min-width: 90px;
-  }
-
-  .table-container {
-    margin: 0 16px 30px 16px;
-  }
 }

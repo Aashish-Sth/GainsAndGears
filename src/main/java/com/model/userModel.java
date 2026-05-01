@@ -11,6 +11,10 @@ public class userModel {
 	private String user_gender;
 	private Blob user_img;
 	private String user_phone_number;
+	private int user_status;
+	private int user_id;
+	
+	
 	
 	public String getUser_phone_number() {
 		return user_phone_number;
@@ -18,6 +22,23 @@ public class userModel {
 	public void setUser_phone_number(String user_phone_number) {
 		this.user_phone_number = user_phone_number;
 	}
+	
+	public int getUser_status() {
+        return user_status;
+    }
+
+    public void setUser_status(int user_status) {
+        this.user_status = user_status;
+    }
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+    
+    
 	public String getUser_first_name() {
 		return user_first_name;
 	}
