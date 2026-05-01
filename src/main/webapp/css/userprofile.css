@@ -20,6 +20,7 @@ html, body {
   min-height: 100vh;
   gap: 0;
 }
+
 .main-content {
   flex: 1;
   padding: 49px 52px;
@@ -31,7 +32,7 @@ html, body {
 
 .profile-card {
   background-color: white ;
-  padding: 48px 52px;
+  padding: 48px 52px 28px 52px;
   display: flex;
   gap: 56px;
   align-items: flex-start;
@@ -139,66 +140,7 @@ html, body {
   gap: 10px;
 }
 
-.radio-group {
-  display: flex;
-  gap: 28px;
-}
-
-.radio-label {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #1a1a1a;
-  user-select: none;
-}
-
-.radio-label input[type="radio"] {
-  display: none;
-}
-
-.radio-custom {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid #a0a0a0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.radio-custom::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-  opacity: 0;
-  transition: opacity 0.22s ease;
-}
-
-.radio-label input[type="radio"]:checked + .radio-custom {
-  background: black;
-  border-color: black;
-}
-
-.radio-label input[type="radio"]:checked + .radio-custom::after {
-  opacity: 1;
-}
-
-.radio-text {
-  font-weight: 400;
-  color: #a0a0a0;
-  transition: color 0.22s ease;
-}
-
-.radio-label input[type="radio"]:checked ~ .radio-text {
-  color: black;
-  font-weight: 500;
-}
+	
 
 .actions {
   display: flex;
