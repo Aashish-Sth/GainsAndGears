@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +11,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/viewAllUsers.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 
 <body>
@@ -27,18 +24,20 @@
 
         <h1 class="page-title">Users</h1>
 
+        <%-- STATS CARDS --%>
         <div class="main-card">
             <div class="card">
                 <span class="label">All Users</span>
-                <span class="number">5</span>
+                <%-- We can get the size of the list directly --%>
+                <span class="number">${userList.size()}</span>
             </div>
             <div class="card">
                 <span class="label">Active Users <span class="dot green"></span></span>
-                <span class="number">3</span>
+                <span class="number">3</span> <!-- We will make this dynamic later -->
             </div>
             <div class="card">
                 <span class="label">Inactive Users <span class="dot red"></span></span>
-                <span class="number">2</span>
+                <span class="number">2</span> <!-- We will make this dynamic later -->
             </div>
         </div>
 
@@ -62,52 +61,40 @@
                         <th>User Name</th>
                         <th>Mobile</th>
                         <th>Email</th>
-                        <th>Status</th>
+                        <th>Role</th> <!-- Changed header to Role since that's in your model -->
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/assets/user1.jpg" class="user-photo"></td>
-                        <td>Aarshnav KC</td>
-                        <td>9869750231</td>
-                        <td>aarshnav@gmail.com</td>
-                        <td><span class="badge active-badge">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/assets/user2.jpg" class="user-photo"></td>
-                        <td>Dilip Shrestha</td>
-                        <td>9876754546</td>
-                        <td>dilipstha@gmail.com</td>
-                        <td><span class="badge inactive-badge">Inactive</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/assets/user3.jpg" class="user-photo"></td>
-                        <td>Asheesh Shrestha</td>
-                        <td>9869750231</td>
-                        <td>ashishstha@gmail.com</td>
-                        <td><span class="badge active-badge">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/assets/user4.jpg" class="user-photo"></td>
-                        <td>Upakar Shrestha</td>
-                        <td>9869750231</td>
-                        <td>upakarsth@gmail.com</td>
-                        <td><span class="badge active-badge">Active</span></td>
-                    </tr>
-                    <tr>
-                        <td><img src="<%=request.getContextPath()%>/assets/user5.jpg" class="user-photo"></td>
-                        <td>Krish Shrestha</td>
-                        <td>9869750231</td>
-                        <td>sthakriz098@gmail.com</td>
-                        <td><span class="badge inactive-badge">Inactive</span></td>
-                    </tr>
+                    <%-- 2. DYNAMIC LOOP START --%>
+                    <c:forEach var="user" items="${userList}">
+                        <tr>
+                            <td>
+                                <%-- Using a placeholder for the Blob image for now --%>
+                                <img src="<%=request.getContextPath()%>/assets/default-user.png" class="user-photo">
+                            </td>
+                            <td>${user.user_first_name} ${user.user_last_name}</td>
+                            <td>${user.user_phone_number}</td>
+                            <td>${user.user_email}</td>
+                            <td>
+                                <%-- Dynamic badge based on role --%>
+                                <span class="badge ${user.user_role == 'Admin' ? 'active-badge' : 'inactive-badge'}">
+                                    ${user.user_role}
+                                </span>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    
+                    <%-- 3. MESSAGE IF DATABASE IS EMPTY --%>
+                    <c:if test="${empty userList}">
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 20px;">No users found in database.</td>
+                        </tr>
+                    </c:if>
                 </tbody>
             </table>
         </div>
-
     </div>
 
-
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
-
+</body>
 </html>
