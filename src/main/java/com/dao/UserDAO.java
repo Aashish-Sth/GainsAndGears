@@ -7,16 +7,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.model.userModel;
+import com.model.UserModel;
 import com.utils.DBconfig;
 
 public class UserDAO {
 
     /**
-     * Fetches all users from the database and returns them as a List of userModel objects.
+     * Fetches all users from the database and returns them as a List of UserModel objects.
      */
-	public List<userModel> getAllUsers() {
-	    List<userModel> userList = new ArrayList<>();
+	public List<UserModel> getAllUsers() {
+	    List<UserModel> userList = new ArrayList<>();
 	    
 
 	    String query = "SELECT user_id, user_first_name, user_last_name, user_email, "
@@ -27,7 +27,7 @@ public class UserDAO {
 	         ResultSet rs = st.executeQuery()) {
 
 	        while (rs.next()) {
-	            userModel user = new userModel();
+	            UserModel user = new UserModel();
 	            
 
 	            user.setUser_id(rs.getInt("user_id")); 
@@ -38,8 +38,8 @@ public class UserDAO {
 	            user.setUser_phone_number(rs.getString("user_phone_number"));
 	            user.setUser_role(rs.getString("user_role"));
 	            user.setUser_gender(rs.getString("user_gender"));
-	            user.setUser_status(rs.getInt("user_status"));
-	            user.setUser_img(rs.getBlob("user_img"));
+	            user.setUser_status(rs.getBoolean("user_status"));
+	       
 
 	            userList.add(user);
 	        }
@@ -55,13 +55,13 @@ public class UserDAO {
 	}
 	
 	
-	public boolean updateStatus(String email, int newStatus) {
+	public boolean updateStatus(String email, boolean newStatus) {
 	    String query = "UPDATE users SET user_status = ? WHERE user_email = ?";
 	    
 	    try (Connection conn = DBconfig.getConnection();
 	         PreparedStatement st = conn.prepareStatement(query)) {
 	        
-	        st.setInt(1, newStatus);
+	        st.setBoolean(1, newStatus);
 	        st.setString(2, email);
 	        
 	        int rowsUpdated = st.executeUpdate();

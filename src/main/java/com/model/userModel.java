@@ -1,44 +1,31 @@
 package com.model;
 
-import java.sql.Blob;
 
-public class userModel {
+public class UserModel {
+	private int user_id;
 	private String user_first_name;
 	private String user_last_name;
 	private String user_password;
 	private String user_role;
 	private String user_email;
 	private String user_gender;
-	private Blob user_img;
+	private String  user_img;
 	private String user_phone_number;
-	private int user_status;
-	private int user_id;
+	private boolean user_status;
 	
 	
-	
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
 	public String getUser_phone_number() {
 		return user_phone_number;
 	}
 	public void setUser_phone_number(String user_phone_number) {
 		this.user_phone_number = user_phone_number;
 	}
-	
-	public int getUser_status() {
-        return user_status;
-    }
-
-    public void setUser_status(int user_status) {
-        this.user_status = user_status;
-    }
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-    
-    
 	public String getUser_first_name() {
 		return user_first_name;
 	}
@@ -75,12 +62,19 @@ public class userModel {
 	public void setUser_gender(String user_gender) {
 		this.user_gender = user_gender;
 	}
-	public Blob getUser_img() {
+	public String getUser_img() {
 		return user_img;
 	}
-	public void setUser_img(Blob user_img) {
+	public void setUser_img(String user_img) {
 		this.user_img = user_img;
 	}
+	public boolean getUser_status() {
+		return user_status;
+	}
+	public void setUser_status(boolean user_status) {
+		this.user_status = user_status;
+	}
 	
+
 	
 }

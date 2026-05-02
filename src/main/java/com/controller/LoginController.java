@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.utils.CookieUtil;
-import com.model.userModel;
+import com.model.UserModel;
 import com.services.LoginService;
 import com.utils.SessionUtil;
 
@@ -48,7 +48,7 @@ public class LoginController extends HttpServlet {
         	request.getRequestDispatcher("/WEB-INF/pages/Login.jsp").forward(request, response);
             return;
         }
-        userModel user = new userModel();
+        UserModel user = new UserModel();
         user.setUser_email(email);
         user.setUser_password(password);
         

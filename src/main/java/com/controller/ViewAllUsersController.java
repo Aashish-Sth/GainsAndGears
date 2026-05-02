@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-import com.model.userModel;
+import com.model.UserModel;
 import com.services.UserService;
 
 @WebServlet("/admin/users")
@@ -18,18 +18,18 @@ public class ViewAllUsersController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserService userService = new UserService();
         
-        // 1. Get the data
-        List<userModel> allUsers = userService.getAllUsers();
+
+        List<UserModel> allUsers = userService.getAllUsers();
         String searchQuery = request.getParameter("search");
         
         // 2. Use the service to filter
-        List<userModel> displayList = userService.filterUsers(allUsers, searchQuery);
+        List<UserModel> displayList = userService.filterUsers(allUsers, searchQuery);
 
-        // 3. Set attributes for JSP
+       
         request.setAttribute("userList", displayList);
-        request.setAttribute("searchedName", searchQuery); // Keeps text in search box
+        request.setAttribute("searchedName", searchQuery); 
         
-        // Stats are always calculated from the full list
+      
         request.setAttribute("totalCount", allUsers.size());
         request.setAttribute("activeCount", userService.countActive(allUsers));
         request.setAttribute("inactiveCount", userService.countInactive(allUsers));

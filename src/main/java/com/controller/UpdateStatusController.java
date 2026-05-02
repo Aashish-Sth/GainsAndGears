@@ -22,7 +22,7 @@ public class UpdateStatusController extends HttpServlet {
 
         if (userEmail != null && statusStr != null) {
             try {
-                int newStatus = Integer.parseInt(statusStr);
+                boolean newStatus = Boolean.parseBoolean(statusStr);
 
                 UserService service = new UserService();
                 boolean isUpdated = service.updateUserStatus(userEmail, newStatus);

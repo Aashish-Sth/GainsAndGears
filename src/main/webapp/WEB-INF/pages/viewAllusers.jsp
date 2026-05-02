@@ -17,8 +17,7 @@
 <jsp:include page="adminSideBar.jsp" />
     <div class="page-content">
         <div class="top-bar">
-            <p>Admin</p>
-            <i class="fa-regular fa-user"></i>
+          
         </div>
 
         <h1 class="page-title">Users</h1>
@@ -75,12 +74,12 @@
                              
                                 <form id="statusForm-${user.user_id}" action="updateStatus" method="POST">
                                     <input type="hidden" name="userEmail" value="${user.user_email}">
-                                    <input type="hidden" name="newStatus" value="${user.user_status == 1 ? 0 : 1}">
+                                    <input type="hidden" name="newStatus" value="${user.user_status? false : true}">
 
-                                    <span class="badge ${user.user_status == 1 ? 'active-badge' : 'inactive-badge'}" 
+                                    <span class="badge ${user.user_status? 'active-badge' : 'inactive-badge'}" 
                                           style="cursor: pointer;"
                                           onclick="confirmAndSubmit(${user.user_id}, ${user.user_status})">
-                                        ${user.user_status == 1 ? 'Active' : 'Inactive'}
+                                        ${user.user_status? 'Active' : 'Inactive'}
                                         <i class="fa-solid fa-caret-down"></i>
                                     </span>
                                 </form>

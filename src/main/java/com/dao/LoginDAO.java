@@ -1,14 +1,15 @@
 package com.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.model.userModel;
+import com.model.UserModel;
 import com.utils.DBconfig;
 
 public class LoginDAO {
-	public ResultSet checkUser(userModel user) throws Exception {
+	public ResultSet checkUser(UserModel user) throws Exception {
 		String email = user.getUser_email();
 		
 		Connection con = DBconfig.getConnection();
