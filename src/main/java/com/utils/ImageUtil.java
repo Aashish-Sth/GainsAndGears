@@ -21,23 +21,20 @@ public class ImageUtil {
         return System.currentTimeMillis() + "_" + imageName;
     }
 
-    public boolean uploadImage(Part part, String rootPath, String saveFolder) {
+    public boolean uploadImage(Part part, String rootPath, String fileName) {
         // builds the full path like "C:/.../gainsAndGears/uploads"
-        String savePath = rootPath + saveFolder;
+     
         
-        File fileSaveDir = new File(savePath);
+        File fileSaveDir = new File(rootPath);
         
         // creates the uploads folder if it doesnt exist yet
         if (!fileSaveDir.exists()) {
-            if (!fileSaveDir.mkdir()) {
-                return false; // couldnt create folder, something went wrong
-            }
+        	fileSaveDir.mkdirs();
         }
         
         try {
-            String imageName = getImageNameFromPart(part);
             // builds full file path like "C:/.../gainsAndGears/uploads/john.jpg"
-            String filePath = savePath + "/" + imageName;
+            String filePath = rootPath + fileName;
             part.write(filePath);
             return true; 
         } catch (IOException e) {

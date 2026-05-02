@@ -56,6 +56,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	      
 	      if (path.startsWith("/resources/") || path.endsWith(".css")  || path.endsWith(".svg") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg")   || path.startsWith("/WEB-INF")  || path.startsWith("/uploads/")) {
 	            chain.doFilter(request, response);
+	            System.out.println("PATH: " + path);
 	            return;
 	        }
 	      
@@ -106,7 +107,10 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	                res.sendRedirect(contextPath + LOGIN);
 	            }
 	        } else {
-	            if ( path.equals(LOGIN) ||  path.equals(SIGNUP)) {
+	        	String action = req.getParameter("action");
+	            if (path.equals(LOGIN) && "logout".equals(action)) {
+	                chain.doFilter(request, response); // let logout through
+	            } else if (path.equals(LOGIN) || path.equals(SIGNUP)) {
 	                res.sendRedirect(contextPath + "/home");
 	            } else {
 	                chain.doFilter(request, response);
