@@ -9,3 +9,5 @@ target/
 # OS
 .DS_Store
 Thumbs.db
+
+src/main/webapp/uploads/

@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import com.utils.CookieUtil;
-import com.model.userModel;
+import com.model.UserModel;
 import com.services.LoginService;
 import com.utils.SessionUtil;
 
@@ -32,6 +32,17 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String action = request.getParameter("action");
+	    
+		if ("logout".equals(action)) {
+		    System.out.println("=== LOGOUT ===");
+		    System.out.println("Before invalidate - user_email: " + SessionUtil.getAttribute(request, "user_email"));
+		    SessionUtil.invalidate(request);
+		    System.out.println("After invalidate - user_email: " + SessionUtil.getAttribute(request, "user_email"));
+		    CookieUtil.deleteCookie(response, "user_email");
+		    response.sendRedirect(request.getContextPath() + "/home");
+		    return;
+		}
 		request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
 	}
 
@@ -48,15 +59,19 @@ public class LoginController extends HttpServlet {
         	request.getRequestDispatcher("/WEB-INF/pages/Login.jsp").forward(request, response);
             return;
         }
-        userModel user = new userModel();
+        UserModel user = new UserModel();
         user.setUser_email(email);
         user.setUser_password(password);
         
         LoginService service = new LoginService();
         try {
         	 if(service.validateUser(user)) {
-             	SessionUtil.setAttribute(request, "user_email", email);
+        		 SessionUtil.setAttribute(request, "user_email", email);
              	CookieUtil.addCookie(response, "user_email", email, 60*60);
+             	 UserModel sessionUser = service.getUserByEmail(email);
+                 SessionUtil.setAttribute(request, "loggedInUser", sessionUser);
+                 response.sendRedirect(request.getContextPath() + "/home");
+                 return;
              }
         	 else {
                  request.setAttribute("errorMessage", "Invalid username or password");

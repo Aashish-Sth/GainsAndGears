@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,20 @@
             <a href="<%=request.getContextPath()%>/explore" class="desktop-hidden"><i class="fa-solid fa-bag-shopping"></i>Explore</a>
             <a href="<%=request.getContextPath()%>/about"><i class="fa-solid fa-circle-info"></i>About us</a>
             <a href="<%=request.getContextPath()%>/contact"><i class="fa-regular fa-envelope"></i>Contact Us</a>
+            <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login"><i class="fa-regular fa-circle-user"></i>My Profile</a>
+            </c:if>
+            <c:if test="${not empty sessionScope.loggedInUser}">
+            <a href="<%=request.getContextPath()%>/user"><i class="fa-regular fa-circle-user"></i>My Profile</a>
+            </c:if>
         </nav>
-        <button class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</button>
+        <c:if test="${not empty sessionScope.loggedInUser}">
+        <a href="${pageContext.request.contextPath}/login?action=logout" class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
+        </c:if>
+        <c:if test="${empty sessionScope.loggedInUser}">
+        <a href="${pageContext.request.contextPath}/login?action=logout" class="logout"><i class="fa-solid fa-user-plus"></i>Sign Up</a>
+        </c:if>
+        
     </div>
 
     <!-- Navigation Bar -->
@@ -62,11 +74,36 @@
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a ><i class="fa-solid fa-bag-shopping"></i></a>
             <a><i class="fa-regular fa-heart"></i></a>
+            <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+            </c:if>
+            <c:if test="${not empty sessionScope.loggedInUser}">
+            <a href="<%=request.getContextPath()%>/user" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+            </c:if>
         </div>
 
     </nav>
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
+    <script>
+    var hamburger = document.getElementById('hamburger');
+    var Leftbar = document.getElementById('left-bar');
+    var LeftBarClose = document.getElementById('close');
+    var LeftBarOverlay = document.getElementById('left-bar-overlay');
+
+    function openBar() {
+        Leftbar.classList.add('open');
+        LeftBarOverlay.classList.add('active');
+    }
+
+    function closeBar() {
+        Leftbar.classList.remove('open');
+        LeftBarOverlay.classList.remove('active');
+    }
+
+    hamburger.addEventListener('click', openBar);
+    LeftBarClose.addEventListener('click', closeBar);
+    LeftBarOverlay.addEventListener('click', closeBar);
+</script>
 </body>
 
 
