@@ -11,6 +11,8 @@ public class UserModel {
 	private String user_gender;
 	private String  user_img;
 	private String user_phone_number;
+	private int user_status;
+	
 	
 	public int getUser_id() {
 		return user_id;
@@ -18,8 +20,6 @@ public class UserModel {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
-	
-	
 	public String getUser_phone_number() {
 		return user_phone_number;
 	}
@@ -67,6 +67,12 @@ public class UserModel {
 	}
 	public void setUser_img(String user_img) {
 		this.user_img = user_img;
+	}
+	public int getUser_status() {
+		return user_status;
+	}
+	public void setUser_status(int user_status) {
+		this.user_status = user_status;
 	}
 	
 

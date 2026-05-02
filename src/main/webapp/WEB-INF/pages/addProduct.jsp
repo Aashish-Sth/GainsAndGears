@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +14,26 @@
     <div class="page-content">
 
         <div class="container">
-            <form action="" method="post">
+        
+            <form action="<%=request.getContextPath()%>/admin/products/add" method="post" enctype="multipart/form-data">
                 <!--Main heading-->
                 <div class="header">
                     <h1 class="title">Product Details</h1>
                     <button type="submit">Done</button>
                 </div>
-                <div class="info">
+                
+                 <div class="info">
                     <p>Product Information</p>
                 </div>
+                
+                <!-- Error Message -->
+                <c:if test="${not empty error}">
+                    <div class="error">
+                    	<i class="fa-solid fa-circle-exclamation"></i>${error}
+                    </div>
+                </c:if>
+                
+               
 
 
                 <div class="top">
@@ -29,29 +41,29 @@
                     <div class="product">
                         <label for="product_category">Category</label>
                         <select id="product_category" name="product_category">
-                            <option value="mens" selected>Mens Clothing</option>
-                            <option value="womens">Womens Clothing</option>
-                            <option value="supplement">Supplement</option>
+                            <option value="mens" ${category == 'mens' ? 'selected' : ''} selected>Mens Clothing</option>
+                            <option value="womens" ${category == 'womens' ? 'selected' : ''}>Womens Clothing</option>
+                            <option value="supplement" ${category == 'supplement' ? 'selected' : ''}>Supplement</option>
                         </select>
                     </div>
                     <!--Cloth Brand-->
                     <div class="product" id="cloth_brand">
                         <label for="product_cloth_brand">Brand</label>
                         <select id="product_cloth_brand" name="product_cloth_brand">
-                            <option disabled selected hidden>Select Brand</option>
-                            <option value="youngLA">YoungLA</option>
-                            <option value="gymshark">Gymshark</option>
-                            <option value="furaak">Furaak</option>
+                            <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''} >Select Brand</option>
+                            <option value="youngLA" ${product_brand == 'youngLA' ? 'selected' : ''}>YoungLA</option>
+                            <option value="gymshark" ${product_brand == 'gymshark' ? 'selected' : ''}>Gymshark</option>
+                            <option value="furaak" ${product_brand == 'furaak' ? 'selected' : ''}>Furaak</option>
                         </select>
                     </div>
                     <!--Supplement Brand-->
                     <div class="product" id="supplement_brand">
                         <label for="product_supplement_brand">Brand</label>
                         <select id="product_supplement_brand" name="product_supplement_brand">
-                            <option disabled selected hidden>Select Brand</option>
-                            <option value="ghost">Ghost</option>
-                            <option value="feral">Feral</option>
-                            <option value="muscleblaze">MuscleBlaze</option>
+                            <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''}>Select Brand</option>
+                            <option value="ghost" ${product_brand == 'ghost' ? 'selected' : ''}>Ghost</option>
+                            <option value="feral" ${product_brand == 'feral' ? 'selected' : ''}>Feral</option>
+                            <option value="muscleblaze" ${product_brand == 'muscleblaze' ? 'selected' : ''}>MuscleBlaze</option>
                         </select>
                     </div>
                 </div>
@@ -59,32 +71,34 @@
                 <!--Name-->
                 <div class="product">
                     <label for="product_name">Product Name</label>
-                    <input type="text" id="product_name" name="product_name" placeholder="Product Name">
+                    <input type="text" id="product_name" name="product_name" placeholder="Product Name"
+                    value="${product_name}">
                 </div>
 
                 <!--Price-->
-                <div class="product">
+                <div class="product"> 
                     <label for="product_price">Price</label>
-                    <input type="text" id="product_price" name="product_price" placeholder="Rs Price">
+                    <input type="text" id="product_price" name="product_price" placeholder="Rs Price"
+                    value="${product_price_str}">
                 </div>
 
                 <!--Sizes-->
                 <div class="product" id="sizes">
                     <label for="product_sizes">Sizes</label>
                     <div class="options">
-                        <input type="checkbox" id="xs" name="size" value="XS">
+                        <input type="checkbox" id="xs" name="size" value="XS" ${attr1.contains('XS') ? 'checked' : ''}>
                         <label for="xs">XSmall</label>
 
-                        <input type="checkbox" id="s" name="size" value="S">
+                        <input type="checkbox" id="s" name="size" value="S" ${attr1.contains('S') ? 'checked' : ''}>
                         <label for="s">Small</label>
 
-                        <input type="checkbox" id="m" name="size" value="M">
+                        <input type="checkbox" id="m" name="size" value="M" ${attr1.contains('M') ? 'checked' : ''}>
                         <label for="m">Medium</label>
 
-                        <input type="checkbox" id="l" name="size" value="L">
+                        <input type="checkbox" id="l" name="size" value="L" ${attr1.contains('L') ? 'checked' : ''}>
                         <label for="l">Large</label>
 
-                        <input type="checkbox" id="xl" name="size" value="XL">
+                        <input type="checkbox" id="xl" name="size" value="XL" ${attr1.contains('XL') ? 'checked' : ''}>
                         <label for="xl">XLarge</label>
                     </div>
                 </div>
@@ -93,19 +107,19 @@
                 <div class="product" id="colors">
                     <label for="product_color">Colors</label>
                     <div class="options">
-                        <input type="checkbox" id="red" name="color" value="Red">
+                        <input type="checkbox" id="red" name="color" value="Red" ${attr2.contains('Red') ? 'checked' : ''}>
                         <label for="red">Red</label>
 
-                        <input type="checkbox" id="blue" name="color" value="Blue">
+                        <input type="checkbox" id="blue" name="color" value="Blue" ${attr2.contains('Blue') ? 'checked' : ''}>
                         <label for="blue">Blue</label>
 
-                        <input type="checkbox" id="green" name="color" value="Green">
+                        <input type="checkbox" id="green" name="color" value="Green" ${attr2.contains('Green') ? 'checked' : ''}>
                         <label for="green">Green</label>
 
-                        <input type="checkbox" id="black" name="color" value="Black">
+                        <input type="checkbox" id="black" name="color" value="Black" ${attr2.contains('Black') ? 'checked' : ''}>
                         <label for="black">Black</label>
 
-                        <input type="checkbox" id="white" name="color" value="White">
+                        <input type="checkbox" id="white" name="color" value="White" ${attr2.contains('White') ? 'checked' : ''}>
                         <label for="white">White</label>
                     </div>
                 </div>
@@ -114,16 +128,16 @@
                 <div class="product hidden" id="flavors">
                     <label for="product_flavors">Flavors</label>
                     <div class="options">
-                        <input type="checkbox" id="chocolate" name="flavor" value="Chocolate">
+                        <input type="checkbox" id="chocolate" name="flavor" value="Chocolate" ${attr1.contains('Chocolate')  ? 'checked' : ''}>
                         <label for="chocolate">Chocolate</label>
 
-                        <input type="checkbox" id="vanilla" name="flavor" value="Vanilla">
+                        <input type="checkbox" id="vanilla" name="flavor" value="Vanilla" ${attr1.contains('Vanilla')    ? 'checked' : ''}>
                         <label for="vanilla">Vanilla</label>
 
-                        <input type="checkbox" id="strawberry" name="flavor" value="Strawberry">
+                        <input type="checkbox" id="strawberry" name="flavor" value="Strawberry" ${attr1.contains('Strawberry') ? 'checked' : ''}>
                         <label for="strawberry">Strawberry</label>
 
-                        <input type="checkbox" id="blueberry" name="flavor" value="Blueberry">
+                        <input type="checkbox" id="blueberry" name="flavor" value="Blueberry" ${attr1.contains('Blueberry')  ? 'checked' : ''}>
                         <label for="blueberry">Blueberry</label>
                     </div>
                 </div>
@@ -132,16 +146,16 @@
                 <div class="product hidden" id="quantity">
                     <label for="product_quantity">Quantity</label>
                     <div class="options">
-                        <input type="checkbox" id="250" name="quantity" value="250g">
+                        <input type="checkbox" id="250" name="quantity" value="250g" ${attr2.contains('250g')  ? 'checked' : ''}>
                         <label for="250">250g</label>
 
-                        <input type="checkbox" id="500" name="quantity" value="500g">
+                        <input type="checkbox" id="500" name="quantity" value="500g" ${attr2.contains('500g')  ? 'checked' : ''}>
                         <label for="500">500g</label>
 
-                        <input type="checkbox" id="1000" name="quantity" value="1000g">
+                        <input type="checkbox" id="1000" name="quantity" value="1000g" ${attr2.contains('1000g') ? 'checked' : ''}>
                         <label for="1000">1000g</label>
 
-                        <input type="checkbox" id="2500" name="quantity" value="2500g">
+                        <input type="checkbox" id="2500" name="quantity" value="2500g" ${attr2.contains('2500g') ? 'checked' : ''}>
                         <label for="2500">2500g</label>
                     </div>
                 </div>
