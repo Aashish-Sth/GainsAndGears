@@ -89,7 +89,7 @@
                 <c:forEach var="order" items="${orderList}">
                 <tr>
                     <td>${order.orderId}</td>
-                    <td>${order.fullname}</td>
+                    <td>${order.fullName}</td>
                     <td><span class="badge ${order.paymentStatus == 'Success' ? 'success-badge' : 'cod-badge'}">${order.paymentStatus}</span></td>
                     <td>${order.orderDate}</td>
                     <td><span 

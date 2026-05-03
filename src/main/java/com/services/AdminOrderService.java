@@ -21,7 +21,7 @@ public class AdminOrderService {
 			{
 				OrderModel order = new OrderModel(); 
 		        order.setOrderId(rs.getInt("order_id"));
-		        order.setFullname(rs.getString("customer_name"));
+		        order.setFullName(rs.getString("customer_name"));
 		        order.setPaymentStatus(rs.getString("payment_status"));
 		        order.setOrderDate(rs.getDate("order_date"));  
 		        order.setOrderStatus(rs.getString("order_status"));
