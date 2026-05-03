@@ -199,10 +199,8 @@ public class SignUpController extends HttpServlet {
         SignUpService service = new SignUpService();
         service.adduser(user_first_Name, user_last_Name, user_password, user_email, user_gender, user_img, user_phone_Number);
         
-        response.sendRedirect(request.getContextPath() + "/login");
-        
-        
-
         SessionUtil.invalidate(request);
+        request.getSession().setAttribute("successMessage", "Account has sucesfully been set for activation");
+        response.sendRedirect(request.getContextPath() + "/login");
 	}
 }

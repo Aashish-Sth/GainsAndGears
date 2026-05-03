@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminDashBoard.css" />
   </head>
   <body>
+  <c:if test="${not empty sessionScope.successMessage}">
+	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+	    <% session.removeAttribute("successMessage"); %>
+	</c:if>
   <jsp:include page="adminSideBar.jsp" />
     <div class="content">
       <div class="header">
@@ -93,5 +97,14 @@
         </div>
       </div>
     </div>
+    <script >
+    const sucessMsg = document.getElementById('sucessMsg');
+    if (sucessMsg) {
+        setTimeout(() => {
+        	sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
+        }, 2000); // shows for 3 seconds
+    }
+    </script>
   </body>
 </html>
