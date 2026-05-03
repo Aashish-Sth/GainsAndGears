@@ -1,8 +1,15 @@
 @charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Segoe UI", sans-serif;
   background-color: #f0f2f5;
 }
 
@@ -187,7 +194,7 @@ body {
 
 .table-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 20px;
 }
@@ -203,6 +210,11 @@ body {
   border-radius: 20px;
   background-color: #fff;
   cursor: pointer;
+}
+
+.activeBtn{
+	background-color: black;
+	color: #ffffff;
 }
 
 .btn:hover {
@@ -226,26 +238,34 @@ body {
   font-size: 14px;
 }
 
-@media (max-width: 768px) {
-  .top-bar {
-    padding: 12px 16px;
-  }
+/* Empty Orders State */
+.emptyOrders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 40px 20px;
+  background-color: #f0f2f5;
+}
 
-  .page-title {
-    margin-left: 16px;
-  }
+.bagSearch img {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+}
 
-  .stat-cards {
-    margin: 0 16px 20px 16px;
-    flex-wrap: wrap;
-  }
+.emptyOrderText-block {
+  text-align: center;
+}
 
-  .stat-card {
-    flex: 1;
-    min-width: 90px;
-  }
+.emptyOrderText p {
+  font-size: 13px;
+  color: grey;
+  line-height: 1.6;
+}
 
-  .table-container {
-    margin: 0 16px 30px 16px;
-  }
+.emptyOrderText p.main {
+  color: grey;
+  font-weight: 500;
 }

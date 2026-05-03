@@ -11,7 +11,7 @@ public class SessionUtil {
 	    }
 
 	    public static Object getAttribute(HttpServletRequest request, String key) {
-	        HttpSession session = request.getSession(false); // don’t create new
+	        HttpSession session = request.getSession(false); 
 	        if (session != null) {
 	            return session.getAttribute(key);
 	        }
