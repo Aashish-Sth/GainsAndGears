@@ -12,9 +12,7 @@ import com.utils.DBconfig;
 
 public class UserDAO {
 
-    /**
-     * Fetches all users from the database and returns them as a List of UserModel objects.
-     */
+  
 	public List<UserModel> getAllUsers() {
 	    List<UserModel> userList = new ArrayList<>();
 	    
@@ -65,7 +63,7 @@ public class UserDAO {
 	        st.setString(2, email);
 	        
 	        int rowsUpdated = st.executeUpdate();
-	        return rowsUpdated > 0; // True if update worked
+	        return rowsUpdated > 0;
 
 	    } catch (SQLException e) {
 	        e.printStackTrace();

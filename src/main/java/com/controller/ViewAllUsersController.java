@@ -15,29 +15,30 @@ import com.services.UserService;
 public class ViewAllUsersController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserService userService = new UserService();
-        
 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserService userService = new UserService();
+     
         List<UserModel> allUsers = userService.getAllUsers();
+        
+     
         String searchQuery = request.getParameter("search");
         
-        // 2. Use the service to filter
         List<UserModel> displayList = userService.filterUsers(allUsers, searchQuery);
 
-       
+     
         request.setAttribute("userList", displayList);
         request.setAttribute("searchedName", searchQuery); 
-        
-      
+     
         request.setAttribute("totalCount", allUsers.size());
         request.setAttribute("activeCount", userService.countActive(allUsers));
         request.setAttribute("inactiveCount", userService.countInactive(allUsers));
         
-        request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
-    }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doGet(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
     }
 }

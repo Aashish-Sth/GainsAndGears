@@ -13,10 +13,10 @@ import com.services.UserService;
 public class UpdateStatusController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // CHANGED: From doGet to doPost to match the JSP form method="POST"
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        // UPDATED: Parameter names now match the <input name="..."> in your JSP
+
         String userEmail = request.getParameter("userEmail"); 
         String statusStr = request.getParameter("newStatus");
 
@@ -28,7 +28,7 @@ public class UpdateStatusController extends HttpServlet {
                 boolean isUpdated = service.updateUserStatus(userEmail, newStatus);
 
                 if (isUpdated) {
-                    // Success: Redirect back to the user list with the success flag
+                
                     response.sendRedirect("users?success=true");
                     return; 
                 }
