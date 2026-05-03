@@ -72,7 +72,7 @@
         <!-- User Info -->
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a ><i class="fa-solid fa-bag-shopping"></i></a>
+            <a onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i></a>
             <a><i class="fa-regular fa-heart"></i></a>
             <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
@@ -80,6 +80,7 @@
             <c:if test="${not empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/user" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
             </c:if>
+            <jsp:include page="cart.jsp"></jsp:include>
         </div>
 
     </nav>
