@@ -32,6 +32,17 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String action = request.getParameter("action");
+	    
+		if ("logout".equals(action)) {
+		    System.out.println("=== LOGOUT ===");
+		    System.out.println("Before invalidate - user_email: " + SessionUtil.getAttribute(request, "user_email"));
+		    SessionUtil.invalidate(request);
+		    System.out.println("After invalidate - user_email: " + SessionUtil.getAttribute(request, "user_email"));
+		    CookieUtil.deleteCookie(response, "user_email");
+		    response.sendRedirect(request.getContextPath() + "/home");
+		    return;
+		}
 		request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
 	}
 
@@ -55,8 +66,12 @@ public class LoginController extends HttpServlet {
         LoginService service = new LoginService();
         try {
         	 if(service.validateUser(user)) {
-             	SessionUtil.setAttribute(request, "user_email", email);
+        		 SessionUtil.setAttribute(request, "user_email", email);
              	CookieUtil.addCookie(response, "user_email", email, 60*60);
+             	 UserModel sessionUser = service.getUserByEmail(email);
+                 SessionUtil.setAttribute(request, "loggedInUser", sessionUser);
+                 response.sendRedirect(request.getContextPath() + "/home");
+                 return;
              }
         	 else {
                  request.setAttribute("errorMessage", "Invalid username or password");

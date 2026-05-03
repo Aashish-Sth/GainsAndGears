@@ -16,4 +16,10 @@ public class LoginService {
 	}
 		return false;
 }
+	
+	 public UserModel getUserByEmail(String email) throws Exception {
+	        LoginDAO dao = new LoginDAO();
+	        return dao.getUserByEmail(email);
+	    }
 }
+

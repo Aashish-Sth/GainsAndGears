@@ -11,7 +11,7 @@ public class UserModel {
 	private String user_gender;
 	private String  user_img;
 	private String user_phone_number;
-	private boolean user_status;
+	private Boolean user_status;
 	
 	
 	public int getUser_id() {
@@ -68,10 +68,10 @@ public class UserModel {
 	public void setUser_img(String user_img) {
 		this.user_img = user_img;
 	}
-	public boolean getUser_status() {
+	public Boolean getUser_status() {
 		return user_status;
 	}
-	public void setUser_status(boolean user_status) {
+	public void setUser_status(Boolean user_status) {
 		this.user_status = user_status;
 	}
 	
