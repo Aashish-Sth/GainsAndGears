@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +21,7 @@
           <h1>Welcome, Admin</h1>
           <p>Here's whats happening in your store</p>
         </div>
-        <div class="admin-name">Admin 👤</div>
-      </div>
-
+</div>
       <div class="section">
         <h2>Sales</h2>
         <div class="row">
@@ -41,19 +41,19 @@
         <div class="row">
           <div class="card small-card">
             <p class="label">Total orders</p>
-            <p class="number">5</p>
+            <p class="number">${totalOrder}</p>
           </div>
           <div class="card small-card">
             <p class="label">Completed <span class="dot green"></span></p>
-            <p class="number">3</p>
+            <p class="number">${completedOrders}</p>
           </div>
           <div class="card small-card">
             <p class="label">Shipped <span class="dot purple"></span></p>
-            <p class="number">2</p>
+            <p class="number">${shippedOrders}</p>
           </div>
           <div class="card small-card">
             <p class="label">Confirmed <span class="dot orange"></span></p>
-            <p class="number">1</p>
+            <p class="number">${confirmedOrders}</p>
           </div>
         </div>
       </div>
@@ -63,15 +63,32 @@
         <div class="row">
           <div class="card small-card">
             <p class="label">All Users</p>
-            <p class="number">5</p>
+            <p class="number">${totalCount}</p>
           </div>
           <div class="card small-card">
             <p class="label">Active Users <span class="dot green"></span></p>
-            <p class="number">3</p>
+            <p class="number">${activeCount}</p>
           </div>
           <div class="card small-card">
             <p class="label">Inactive Users <span class="dot red"></span></p>
-            <p class="number">2</p>
+            <p class="number">${inactiveCount}</p>
+          </div>
+        </div>
+      </div>
+       <div class="section">
+        <h2>Products</h2>
+        <div class="row">
+          <div class="card small-card">
+            <p class="label">All Products</p>
+            <p class="number">${totalProducts}</p>
+          </div>
+          <div class="card small-card">
+            <p class="label">Available Products <span class="dot green"></span></p>
+            <p class="number">${availableProducts}</p>
+          </div>
+          <div class="card small-card">
+            <p class="label">Unavailable Products <span class="dot red"></span></p>
+            <p class="number">${unavailableProducts}</p>
           </div>
         </div>
       </div>
