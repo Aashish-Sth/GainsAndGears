@@ -5,7 +5,8 @@ import jakarta.servlet.http.HttpSession;
 
 public class SessionUtil {
 	 public static void setAttribute(HttpServletRequest request, String key, Object value) {
-	        HttpSession session = request.getSession(); // ✅ create if not exists
+	        HttpSession session = request.getSession(); 
+	        session.setMaxInactiveInterval(60 * 60);
 	        session.setAttribute(key, value);
 	    }
 
