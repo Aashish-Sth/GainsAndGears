@@ -122,6 +122,12 @@ input:focus {
   padding: 22px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  
+}
+.productTop{
+	display:flex;
+	flex-direction: column;
 }
 
 .summary-title {

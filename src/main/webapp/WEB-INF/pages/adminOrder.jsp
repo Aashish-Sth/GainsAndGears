@@ -97,7 +97,7 @@
                      order.orderStatus == 'Shipped' ? 'shipped-badge' : 'confirmed-badge'
                      } "
                     >${order.orderStatus}</span></td>
-                    <td><i class="fa-solid fa-chevron-right"></i></td>
+                    <td><a style="color:black" href="${pageContext.request.contextPath}/admin/orders/detail?orderId=${order.orderId}"><i class="fa-solid fa-chevron-right"></i></a></td>
                 </tr>
                 </c:forEach>
                 </tbody>

@@ -36,12 +36,11 @@ public class OrderSummaryService {
         item.setPrice(rs.getInt("price"));
         items.add(item);
 	}
+	generalDetail.setItems(items);
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
-	
-	return null;
-	
+	return generalDetail;
 	}
 	
 }
