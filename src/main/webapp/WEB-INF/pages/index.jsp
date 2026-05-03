@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +18,10 @@
 </head>
 
 <body>
+<c:if test="${not empty sessionScope.successMessage}">
+	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+	    <% session.removeAttribute("successMessage"); %>
+	</c:if>
 	<jsp:include page="navbar.jsp" />
     <!-- Main Section -->
     <div class="main-container">
@@ -190,6 +195,15 @@
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <jsp:include page="footer.jsp" />
+    <script >
+    const sucessMsg = document.getElementById('sucessMsg');
+    if (sucessMsg) {
+        setTimeout(() => {
+        	sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
+        }, 2000); // shows for 3 seconds
+    }
+    </script>
 </body>
 
 

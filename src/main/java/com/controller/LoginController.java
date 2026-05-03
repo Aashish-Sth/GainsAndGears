@@ -66,12 +66,18 @@ public class LoginController extends HttpServlet {
         LoginService service = new LoginService();
         try {
         	 if(service.validateUser(user)) {
+        		 if(service.userActive(user)) {
         		 SessionUtil.setAttribute(request, "user_email", email);
              	CookieUtil.addCookie(response, "user_email", email, 60*60);
              	 UserModel sessionUser = service.getUserByEmail(email);
                  SessionUtil.setAttribute(request, "loggedInUser", sessionUser);
+                 request.getSession().setAttribute("successMessage", "Welcome back, " + sessionUser.getUser_first_name() + "!");
                  response.sendRedirect(request.getContextPath() + "/home");
                  return;
+        		 }else {
+        			 request.setAttribute("errorMessage", "Your account has yet not been activated");
+        			 request.getRequestDispatcher("/WEB-INF/pages/login.jsp").forward(request, response);
+        		 }
              }
         	 else {
                  request.setAttribute("errorMessage", "Invalid username or password");

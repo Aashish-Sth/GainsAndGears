@@ -17,6 +17,16 @@ public class LoginService {
 		return false;
 }
 	
+	public Boolean  userActive(UserModel user)throws Exception {
+		
+		LoginDAO dao = new LoginDAO();
+		ResultSet rs =dao.checkUser(user);
+		if(rs.next()) {
+			return rs.getInt("user_status") == 1;
+			}
+		return false;
+}
+	
 	 public UserModel getUserByEmail(String email) throws Exception {
 	        LoginDAO dao = new LoginDAO();
 	        return dao.getUserByEmail(email);

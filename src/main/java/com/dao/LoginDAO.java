@@ -29,6 +29,7 @@ public class LoginDAO {
 		
 	}
 	
+	
 	public UserModel getUserByEmail(String email) throws Exception {
         Connection con = DBconfig.getConnection();
         String query = "SELECT * FROM users WHERE user_email = ?";

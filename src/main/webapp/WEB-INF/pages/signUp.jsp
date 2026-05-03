@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" session="false" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -149,9 +149,10 @@
         hidden
       />
 
-      <c:if test="${not empty requestScope.errorMessage}">
-        <p class="errorMsg">${requestScope.errorMessage}</p>
+      <c:if test="${not empty requestScope.errorMessage or not empty sessionScope.errorMessage}">
+        <p class="errorMsg">${not empty requestScope.errorMessage ? requestScope.errorMessage : sessionScope.errorMessage}</p>
       </c:if>
+      
       <button id="confirmBtn" class="btn">Submit</button>
     </form>
         </c:when>
