@@ -33,7 +33,7 @@
         <a href="${pageContext.request.contextPath}/login?action=logout" class="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i>Log out</a>
         </c:if>
         <c:if test="${empty sessionScope.loggedInUser}">
-        <a href="${pageContext.request.contextPath}/login?action=logout" class="logout"><i class="fa-solid fa-user-plus"></i>Sign Up</a>
+        <a href="${pageContext.request.contextPath}/signUp" class="logout"><i class="fa-solid fa-user-plus"></i>Sign Up</a>
         </c:if>
         
     </div>
