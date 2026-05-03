@@ -193,10 +193,9 @@ public class SignUpController extends HttpServlet {
         	if (uploaded) {
                   // get just the filename to store in DB
                   user_img = fileName;
-                  System.out.println("Filename: " + user_img);
               }
         }
-        System.out.println("===================");
+       
         SignUpService service = new SignUpService();
         service.adduser(user_first_Name, user_last_Name, user_password, user_email, user_gender, user_img, user_phone_Number);
         
