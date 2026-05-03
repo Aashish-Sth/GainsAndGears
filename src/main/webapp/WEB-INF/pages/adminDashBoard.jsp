@@ -41,19 +41,19 @@
         <div class="row">
           <div class="card small-card">
             <p class="label">Total orders</p>
-            <p class="number">5</p>
+            <p class="number">${totalOrder}</p>
           </div>
           <div class="card small-card">
             <p class="label">Completed <span class="dot green"></span></p>
-            <p class="number">3</p>
+            <p class="number">${completedOrders}</p>
           </div>
           <div class="card small-card">
             <p class="label">Shipped <span class="dot purple"></span></p>
-            <p class="number">2</p>
+            <p class="number">${shippedOrders}</p>
           </div>
           <div class="card small-card">
             <p class="label">Confirmed <span class="dot orange"></span></p>
-            <p class="number">1</p>
+            <p class="number">${confirmedOrders}</p>
           </div>
         </div>
       </div>
