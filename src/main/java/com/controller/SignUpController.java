@@ -183,15 +183,19 @@ public class SignUpController extends HttpServlet {
         	
         	 // getRealPath("/") gives us the root folder of our app on the server
             // something like "C:/.../gainsAndGears/"
-        	String rootPath = request.getServletContext().getRealPath("/");
+        	String rootPath = request.getServletContext().getRealPath("/uploads/");
+        	String fileName = imageUtil.getImageNameFromPart(filePart);
+        	System.out.println("Filename: " + fileName);
         	
-        	boolean uploaded = imageUtil.uploadImage(filePart, rootPath, "uploads");
-        	  if (uploaded) {
+        	
+        	boolean uploaded = imageUtil.uploadImage(filePart, rootPath, fileName);
+        	 System.out.println("Upload success: " + uploaded);  
+        	if (uploaded) {
                   // get just the filename to store in DB
-                  user_img = imageUtil.getImageNameFromPart(filePart);
+                  user_img = fileName;
               }
         }
-        
+       
         SignUpService service = new SignUpService();
         service.adduser(user_first_Name, user_last_Name, user_password, user_email, user_gender, user_img, user_phone_Number);
         
