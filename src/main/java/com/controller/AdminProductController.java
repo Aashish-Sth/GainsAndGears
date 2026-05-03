@@ -38,12 +38,14 @@ public class AdminProductController extends HttpServlet {
 
 	        int totalProducts = service.countAllProducts(productList);
 	        int availableProducts = service.countAvailableProducts(productList);
-	        int unavailableProducts  = service.countUnavailableProducts(productList);
-
+	        int unavailableProducts = service.countUnavailableProducts(productList);
+	        
 	        request.setAttribute("productList", productList);
 	        request.setAttribute("totalProducts", totalProducts);
 	        request.setAttribute("availableProducts", availableProducts);
 	        request.setAttribute("unavailableProducts", unavailableProducts);
+	        	        
+	        
 
 	        request.getRequestDispatcher("/WEB-INF/pages/adminProduct.jsp").forward(request, response);
 
@@ -58,30 +60,41 @@ public class AdminProductController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			AdminProductService service = new AdminProductService();
-			
-			//calling service method
-			List<ProductModel> allproducts = service.getAllProducts();
+	        AdminProductService service = new AdminProductService();
+	        
+	        String productIdParam = request.getParameter("product_id");
+	       
+	        if (productIdParam != null && !productIdParam.trim().isEmpty()) {
+	        	
+	            int product_id = Integer.parseInt(productIdParam);
+	            boolean newStatus = Boolean.parseBoolean(request.getParameter("status"));
+	            
+	            boolean isUpdated = service.updateStatus(product_id, newStatus);
+	            if (isUpdated) {
+	                response.sendRedirect(request.getContextPath() + "/admin/products?success=true");
+	            } else {
+	                response.sendRedirect(request.getContextPath() + "/admin/products");
+	            }
+	            return;
+	        }
+	        
+	        
+	        List<ProductModel> productList = service.getAllProducts();
 	        String search = request.getParameter("search");
+	        List<ProductModel> list = service.filterProducts(productList, search);
 	        
+	        int totalProducts = service.countAllProducts(productList);
+	        int availableProducts = service.countAvailableProducts(productList);
+	        int unavailableProducts = service.countUnavailableProducts(productList);
 	        
-	        List<ProductModel> list = service.filterProducts(allproducts, search);
-			
 	        request.setAttribute("productList", list);
-	        request.setAttribute("searchedName", search); 
+	        request.setAttribute("searchedName", search);
+	        request.setAttribute("totalProducts", totalProducts);
+	        request.setAttribute("availableProducts", availableProducts);
+	        request.setAttribute("unavailableProducts", unavailableProducts);
 	        
+	        request.getRequestDispatcher("/WEB-INF/pages/adminProduct.jsp").forward(request, response);
 	        
-	        int product_id = Integer.parseInt(request.getParameter("product_id"));
-	        boolean newStatus = Boolean.parseBoolean(request.getParameter("status"));
-
-	        
-	        boolean isUpdated = service.updateStatus(product_id, newStatus);
-	        if (isUpdated) {
-                response.sendRedirect(request.getContextPath() + "/admin/products?success=true");
-                return; 
-            }
-	        
-	        response.sendRedirect(request.getContextPath() + "/admin/products");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

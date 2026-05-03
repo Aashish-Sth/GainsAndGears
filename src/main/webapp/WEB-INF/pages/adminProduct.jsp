@@ -43,10 +43,6 @@
 	                    <input type="text" name="search" placeholder="Search product..." value="${searchedName}">
 	                    <button type="submit" style="display:none"></button>
 	                </form>
-                    <div class="search-box">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search user">
-                    </div>
                 </div>
 
                 <table class="user-table">

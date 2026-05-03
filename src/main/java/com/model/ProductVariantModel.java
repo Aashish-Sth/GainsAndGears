@@ -5,17 +5,13 @@ public class ProductVariantModel {
     private int product_id;
     private String attribute_1;  // size or flavor 
     private String attribute_2;  // color or quantity 
-    private int stock;
+    
     
     
     //constructor
-	public ProductVariantModel(int variant_id, int product_id, String attribute_1, String attribute_2, int stock) {
+    public ProductVariantModel() {
 		super();
-		this.variant_id = variant_id;
-		this.product_id = product_id;
-		this.attribute_1 = attribute_1;
-		this.attribute_2 = attribute_2;
-		this.stock = stock;
+		// TODO Auto-generated constructor stub
 	}
 	
 	//getter and setter
@@ -43,12 +39,7 @@ public class ProductVariantModel {
 	public void setAttribute_2(String attribute_2) {
 		this.attribute_2 = attribute_2;
 	}
-	public int getStock() {
-		return stock;
-	}
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
+
 
     
     
