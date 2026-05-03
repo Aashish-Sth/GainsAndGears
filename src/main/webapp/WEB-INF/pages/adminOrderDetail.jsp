@@ -1,21 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Checkout</title>
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/checkout.css">
+<meta charset="UTF-8">
+<title>Gains & Gears</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/adminOrderDetail.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-<jsp:include page="navbar.jsp" />
+<div class="mainContainer">
+
+    <a href="<%=request.getContextPath()%>/admin/orders" class="backBtn">
+        <i class="fa-solid fa-chevron-left"></i>
+    </a>
 
   <div class="wrapper">
   
 
     <!-- Left Side -->
     <div class="left"> 
-      <h1>Checkout</h1>
+      <h1>Order Summary</h1>
 
       <p class="section-title">General Information</p>
 
@@ -121,7 +127,8 @@
   </div>
   
   
-  <jsp:include page="footer.jsp" />
+   </div>
 
+<script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -20,43 +21,56 @@
 <body>
 <jsp:include page="adminSideBar.jsp" />
     <div class="page-content">
-        <div class="top-bar">
-            <p>Admin</p>
-            <i class="fa-regular fa-user"></i>
-        </div>
-
         <h1 class="page-title">Orders</h1>
-
+		<c:if test="${not empty orderList}">
         <div class="main-card">
             <div class="card">
                 <span class="label">Total Orders</span>
-                <span class="number">5</span>
+                <span class="number">${totalOrder}</span>
             </div>
             <div class="card">
                 <span class="label">Completed<span class="dot green"></span></span>
-                <span class="number">3</span>
+                <span class="number">${completedOrders}</span>
             </div>
             <div class="card">
                 <span class="label">Shipped<span class="dot purple"></span></span>
-                <span class="number">2</span>
+                <span class="number">${shippedOrders}</span>
             </div>
             <div class="card">
                 <span class="label">Confirmed<span class="dot orange"></span></span>
-                <span class="number">1</span>
+                <span class="number">${confirmedOrders}</span>
             </div>
         </div>
 
         <div class="table-container">
             <div class="table-top">
-                <div class="choice">
-                    <button class="btn">All</button>
-                    <button class="btn">Completed</button>
-                    <button class="btn">Shipped</button>
-                    <button class="btn">Confirmed</button>
-                </div>
+                
                 <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Search user">
+                    <form action="${pageContext.request.contextPath}/admin/orders" method="post" class="choice">
+                    <button 
+                    type="submit" 
+                    name="filter"
+                    value="all"
+                    class="btn ${requestScope.activeFilter == 'all' ? 'activeBtn' : ''}">All</button>
+                    
+                    <button 
+                    type="submit"
+                    name="filter"
+                    value="Completed" 
+                    class="btn ${requestScope.activeFilter == 'Completed' ? 'activeBtn' : ''}">Completed</button>
+                   
+                    <button 
+                    type="submit" 
+                    name="filter"
+                    value="Shipped"
+                    class="btn ${requestScope.activeFilter == 'Shipped' ? 'activeBtn' : ''}">Shipped</button>
+                    
+                    <button 
+                    type="submit" 
+                    name="filter"
+                    value="Confirmed"
+                    class="btn ${requestScope.activeFilter == 'Confirmed' ? 'activeBtn' : ''}">Confirmed</button>
+                </form>
                 </div>
             </div>
 
@@ -72,53 +86,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>#1000</td>
-                    <td>Aarshnav KC</td>
-                    <td><span class="badge success-badge">Success</span></td>
-                    <td>12/12/2024</td>
-                    <td><span class="badge completed-badge">Completed</span></td>
-                    <td><i class="fa-solid fa-chevron-right"></i></td>
-                </tr>
+                <c:forEach var="order" items="${orderList}">
                 <tr>
-                    <td>#1023</td>
-                    <td>Dilip Shrestha</td>
-                    <td><span class="badge cod-badge">COD</span></td>
-                    <td>12/12/2024</td>
-                    <td><span class="badge shipped-badge">Shipped</span></td>
+                    <td>${order.orderId}</td>
+                    <td>${order.fullname}</td>
+                    <td><span class="badge ${order.paymentStatus == 'Success' ? 'success-badge' : 'cod-badge'}">${order.paymentStatus}</span></td>
+                    <td>${order.orderDate}</td>
+                    <td><span 
+                    class="badge ${order.orderStatus == 'Completed' ? 'completed-badge' :
+                     order.orderStatus == 'Shipped' ? 'shipped-badge' : 'confirmed-badge'
+                     } "
+                    >${order.orderStatus}</span></td>
                     <td><i class="fa-solid fa-chevron-right"></i></td>
                 </tr>
-                <tr>
-                    <td>#1273</td>
-                    <td>Asheesh Shrestha</td>
-                    <td><span class="badge success-badge">Success</span></td>
-                    <td>12/12/2024</td>
-                    <td><span class="badge confirmed-badge">Confirmed</span></td>
-                    <td><i class="fa-solid fa-chevron-right"></i></td>
-                </tr>
-                <tr>
-                    <td>#1243</td>
-                    <td>Upakar Shrestha</td>
-                    <td><span class="badge success-badge">Success</span></td>
-                    <td>12/12/2024</td>
-                    <td><span class="badge shipped-badge">Shipped</span></td>
-                    <td><i class="fa-solid fa-chevron-right"></i></td>
-                </tr>
-                <tr>
-                    <td>#6546</td>
-                    <td>Krish Shrestha</td>
-                    <td><span class="badge success-badge">Success</span></td>
-                    <td>12/12/2024</td>
-                    <td><span class="badge completed-badge">Completed</span></td>
-                    <td><i class="fa-solid fa-chevron-right"></i></td>
-                </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
+        </c:if>
+		<c:if test="${empty orderList}">
+		<div class="emptyOrders">
+    <div class="bagSearch">
+      <img src="<%=request.getContextPath()%>/assets/noOrders.svg" alt="No orders yet" />
+    </div>
+ 
+    <div class="emptyOrderText">
+      <p class="main">Orders from customers will appear here.</p>
+      <p>There are no orders yet</p>
+    </div>
+  </div>
 
+		</c:if>
     </div>
 
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
-
+</body>
 </html>
