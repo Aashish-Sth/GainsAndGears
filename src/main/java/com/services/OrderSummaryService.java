@@ -36,7 +36,9 @@ public class OrderSummaryService {
         item.setPrice(rs.getInt("price"));
         items.add(item);
 	}
-	generalDetail.setItems(items);
+	if (generalDetail != null) {
+        generalDetail.setItems(items);
+    }
 	}catch(Exception e) {
 		e.printStackTrace();
 	}
