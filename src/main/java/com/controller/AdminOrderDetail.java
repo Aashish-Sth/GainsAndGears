@@ -39,6 +39,11 @@ public class AdminOrderDetail extends HttpServlet {
 		    int orderId = Integer.parseInt(request.getParameter("orderId"));
 		    OrderSummaryService service = new OrderSummaryService();
 		    OrderSummaryModel order = service.retriveOrderSummary(orderId);
+		    if (order == null) {
+		        // order exists in orders table but has no details — redirect back
+		        response.sendRedirect(request.getContextPath() + "/admin/orders");
+		        return;
+		    }
 		    
 		    request.setAttribute("order", order);
 		    request.getRequestDispatcher("/WEB-INF/pages/adminOrderDetail.jsp").forward(request, response);

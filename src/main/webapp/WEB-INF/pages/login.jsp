@@ -39,14 +39,14 @@
                     <input class="inputField" type="text" placeholder="Enter your email address" name="email" required>
               
                     <label class="inputLable" for="password">Password</label>
-                    <input class="inputField" type="text" placeholder="Enter your Password" name="password" required>
+                    <input class="inputField" type="password" placeholder="Enter your Password" name="password" required>
                       <c:if test="${not empty requestScope.errorMessage}">
             	<p class="errorMsg">${requestScope.errorMessage}</p>
         		</c:if>
-               <div class="checkboxArea" style="display: flex;">
+            <!--    <div class="checkboxArea" style="display: flex;">
                 <input  class="checkbox" type="checkbox"> <p>Remember me</p>
                </div>
-                
+                --> 
 
                 <button class="submitBtn" type="submit">Submit</button>
                 <p>Don't have an account? <a href="<%= request.getContextPath() %>/signUp">Register Now </a></p>
