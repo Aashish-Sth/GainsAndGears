@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.Base64" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,88 +15,30 @@
 </head>
 <body>
 
-    <!-- Brand header -->
     <div class="brandHeader">
         <a href="<%=request.getContextPath()%>/gains" class="brandName active">GAINS</a>
-    	<a href="<%=request.getContextPath()%>/gears" class="brandName">GEARS</a>
+    	<a href="<%=request.getContextPath()%>/gears" class="brandName ">GEARS</a>
     </div>
-
-    <!-- All gains products -->
-    <div class="card">
-
+    <!-- Brand header -->
+ <div class="card">
+    <c:forEach var="p" items="${supplementProducts}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/Ghost1.svg" alt="GHOST WHEY x TRIX">
-            <p>GHOST WHEY x TRIX</p>
+            <c:choose>
+                <c:when test="${not empty p.product_image}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
+                </c:otherwise>
+            </c:choose>
+            <p>${p.product_name}</p>
             <div class="info">
-                <span class="price">Rs 4500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.9</span>
+                <span class="price">Rs ${p.product_price}</span>
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost2.svg" alt="Pre-Workout MuscleBlaze">
-            <p>Pre-Workout MuscleBlaze</p>
-            <div class="info">
-                <span class="price">Rs 3200.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.7</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost3.svg" alt="Creatine Monohydrate">
-            <p>Creatine Monohydrate</p>
-            <div class="info">
-                <span class="price">Rs 2800.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.8</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost4.svg" alt="Mass Gainer XT">
-            <p>Mass Gainer XT</p>
-            <div class="info">
-                <span class="price">Rs 5500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.6</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost1.svg" alt="Resistance Band Set">
-            <p>Resistance Band Set</p>
-            <div class="info">
-                <span class="price">Rs 1800.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost2.svg" alt="Adjustable Dumbbell 20kg">
-            <p>Adjustable Dumbbell 20kg</p>
-            <div class="info">
-                <span class="price">Rs 7500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.8</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/Ghost3.svg" alt="Lifting Straps Pro">
-            <p>Lifting Straps Pro</p>
-            <div class="info">
-                <span class="price">Rs 950.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.4</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="${pageContext.request.contextPath}/Ghost1.svg" alt="Shaker Bottle 700ml">
-            <p>Shaker Bottle 700ml</p>
-            <div class="info">
-                <span class="price">Rs 650.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.3</span>
-            </div>
-        </div>
-
-    </div>
+    </c:forEach>
+</div>
 
 
 </body>

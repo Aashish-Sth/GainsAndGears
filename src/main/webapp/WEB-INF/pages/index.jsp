@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.Base64" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -28,52 +29,50 @@
         <img src="<%=request.getContextPath()%>/assets/homebg.png" alt="Homepage">
         <div class="shop-now">Shop Now</div>
     </div>
+<ul class="pages">
+    <li><a href="javascript:void(0)" id="men-link" class="active" onclick="showCategory('men')">FOR HIM</a></li>
+    <li><a href="javascript:void(0)" id="women-link" onclick="showCategory('women')">FOR HER</a></li>
+</ul>
 
-    <ul class="pages">
-        <li><a href="" class="active">FOR HIM</a></li>
-        <li><a href="">FOR HER</a></li>
-    </ul>
-
-    <div class="card">
+<div id="men-section" class="card">
+    <c:forEach var="p" items="${mensProducts}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
-            <p>Gymshark - Element Sleeve</p>
+            <c:choose>
+                <c:when test="${not empty p.product_image}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
+                </c:otherwise>
+            </c:choose>
+            <p>${p.product_name}</p>
             <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+                <span class="price">Rs ${p.product_price}</span>
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
-
+    </c:forEach>
+</div>
+<div id="women-section" class="card" style="display: none;">
+    <c:forEach var="p" items="${womensProducts}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
-            <p>Gymshark - Compression T-Shirt</p>
+            <c:choose>
+                <c:when test="${not empty p.product_image}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
+                </c:otherwise>
+            </c:choose>
+            <p>${p.product_name}</p>
             <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+                <span class="price">Rs ${p.product_price}</span>
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
+    </c:forEach>
+</div>
 
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
-                <p>Gymshark - Graphic T-Shirt</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-    </div>
 
     <div class="all-btn">ALL FOR HIM</div>
 
@@ -90,54 +89,33 @@
     <div class="content-1">
         <h2>Recover Faster, Go Harder</h2>
     </div>
-
-    <div class="card">
+    
+<div class="card">
+    <c:forEach var="p" items="${supplementProducts}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/protien1.jpg" alt="Product 1">
-            <p>Ghost Legend Pre-Workout</p>
+            <c:choose>
+                <c:when test="${not empty p.product_image}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
+                </c:otherwise>
+            </c:choose>
+            <p>${p.product_name}</p>
             <div class="info">
-                <span class="price">Rs 4200.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.7</span>
+                <span class="price">Rs ${p.product_price}</span>
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/protien2.jpg" alt="Product 2">
-            <p>MB WrathX Pre-Workout</p>
-            <div class="info">
-                <span class="price">Rs 3600.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.4</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/protien3.jpg" alt="Product 3">
-                <p>Ghost Creatine Monohydrate</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 2200.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/protien4.jpg" alt="Product 4">
-            <p>Ghost Whey Protein</p>
-            <div class="info">
-                <span class="price">Rs 4800.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.8</span>
-            </div>
-        </div>
-
-    </div>
+    </c:forEach>
+</div>
 
     <div class="all-btn">VIEW SUPPLEMENTS</div>
 
 
     <!-- Limited Stock Section -->
     <div class="main-container-2">
-        <img src="<%=request.getContextPath()%>/assets/homebg3.png" alt="Homepage">
+        <img src="<%=request.getContextPath()%>/assets/homebg3.svg" alt="Homepage">
         <div class="text">
             <p>WAIT THERE’S <br>MORE…</p>
             <div class="shop-now-3">Shop Now</div>
@@ -145,49 +123,28 @@
     </div>
 
     <div class="content-2">
-        <h2>Limited Stocks</h2>
+        <h2>New Arrivals</h2>
     </div>
 
-    <div class="card">
+   <div class="card">
+    <c:forEach var="p" items="${newCollections}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
-            <p>Gymshark - Element Sleeve</p>
+            <c:choose>
+                <c:when test="${not empty p.product_image}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
+                </c:otherwise>
+            </c:choose>
+            <p>${p.product_name}</p>
             <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+                <span class="price">Rs ${p.product_price}</span>
+                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
-                <p>Gymshark - Graphic T-Shirt</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-    </div>
+    </c:forEach>
+</div>
 
     <div class="all-btn">SHOP NOW</div>
 
@@ -204,6 +161,33 @@
         }, 2000); // shows for 3 seconds
     }
     </script>
+    
+    <script>
+function showCategory(category) {
+    const menSection = document.getElementById('men-section');
+    const womenSection = document.getElementById('women-section');
+    const menLink = document.getElementById('men-link');
+    const womenLink = document.getElementById('women-link');
+
+    if (category === 'men') {
+        // Show Men, Hide Women
+        menSection.style.display = 'grid'; // Use 'flex' or 'grid' depending on your .card CSS
+        womenSection.style.display = 'none';
+        
+        // Update active link styles
+        menLink.classList.add('active');
+        womenLink.classList.remove('active');
+    } else {
+        // Show Women, Hide Men
+        menSection.style.display = 'none';
+        womenSection.style.display = 'grid';
+        
+        // Update active link styles
+        womenLink.classList.add('active');
+        menLink.classList.remove('active');
+    }
+}
+</script>
 </body>
 
 
