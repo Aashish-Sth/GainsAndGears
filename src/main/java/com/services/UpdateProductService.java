@@ -21,7 +21,9 @@ public class UpdateProductService {
 
     public boolean updateProduct(int product_id, String product_name, int product_price,
             String category, String product_brand, byte[] product_image) {
+    	
         UpdateProductDAO dao = new UpdateProductDAO();
+        
         try {
             dao.updateProduct(product_id, product_name, product_price, category, product_brand, product_image);
             return true;
@@ -32,7 +34,9 @@ public class UpdateProductService {
     }
 
     public boolean replaceVariants(int product_id, List<String> attr1, List<String> attr2) {
+    	
         UpdateProductDAO dao = new UpdateProductDAO();
+        
         try {
             dao.replaceVariants(product_id, attr1, attr2);
             return true;

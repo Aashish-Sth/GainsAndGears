@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page import="java.util.Base64" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -187,8 +188,18 @@
 
                 <div class="product">
                     <label>Photo</label>
-                    <img src="<%=request.getContextPath()%>/admin/products/image?id=${product.product_id}" 
-                         class="photo-preview">
+                    
+					<c:choose>
+				        <c:when test="${not empty product.product_image}">
+				            <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product.product_image)}" 
+				                 id="photoPreview" class="photo-preview">
+				        </c:when>
+				        <c:otherwise>
+				            <img src="<%=request.getContextPath()%>/assets/default-product.jpg" 
+				                 id="photoPreview" class="photo-preview">
+				        </c:otherwise>
+				    </c:choose>
+
                     <!-- Upload only available in edit mode -->
                     <c:if test="${param.mode == 'edit'}">
                         <input type="file" id="product_image" name="product_image" hidden>
