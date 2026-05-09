@@ -56,6 +56,7 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 	      
 	      if (path.startsWith("/resources/") || path.endsWith(".css")  || path.endsWith(".svg") || path.endsWith(".js") || path.endsWith(".png") || path.endsWith(".jpg")   || path.startsWith("/WEB-INF")  || path.startsWith("/uploads/")) {
 	            chain.doFilter(request, response);
+	            System.out.println("PATH: " + path);
 	            return;
 	        }
 	      
@@ -89,7 +90,6 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 		boolean isPublic =
 		        path.equals(LOGIN) ||
 		        path.equals(SIGNUP) ||
-		        path.equals(HOME) ||
 		        path.startsWith("/gains/") ||
 		        path.startsWith("/gears/") ||
 		        path.equals(EXPLORE) ||
@@ -99,18 +99,50 @@ public class AuthenticationFilter extends HttpFilter implements Filter {
 		        path.equals(CONTACTUS) ||
 		        path.equals(REVIEW);
 		
+		 boolean isAdminPage = path.startsWith("/admin/");
+		 boolean isCustomerOnly =
+	                path.equals("/user") ||
+	                path.equals("/cart") ||
+	                path.equals("/checkout") ||
+	                path.equals("/orders") ||
+	                path.equals("/changepassword") ||
+	                path.equals("/home");
+		
 		   if (!isLoggedIn) {
-	            if (isPublic) {
+	            if (isPublic || path.equals(HOME)){
 	                chain.doFilter(request, response);
-	            } else {
+	            } 
+	            else 
+	            {
 	                res.sendRedirect(contextPath + LOGIN);
 	            }
-	        } else {
-	            if ( path.equals(LOGIN) ||  path.equals(SIGNUP)) {
+	        }
+		   else {
+	        	String action = req.getParameter("action");
+	        	UserModel loggedInUser = (UserModel) SessionUtil.getAttribute(req, "loggedInUser");
+	            String role = loggedInUser.getUser_role();
+	            
+	            if (path.equals(LOGIN) && "logout".equals(action)) {
+	                chain.doFilter(request, response); // let logout through
+	            } 
+	            else if (path.equals(LOGIN) || path.equals(SIGNUP)) {
 	                res.sendRedirect(contextPath + "/home");
-	            } else {
-	                chain.doFilter(request, response);
+	            } 
+	            else if (isAdminPage && !role.equals("admin")) {
+	                res.sendRedirect(contextPath + "/home");
 	            }
+	            else if (isCustomerOnly && role.equals("admin")) {
+	                    res.sendRedirect(contextPath + "/admin/dashboard");
+	                    }
+	            else if (!isAdminPage && !isPublic && !isCustomerOnly && role.equals("admin")) {
+	                    res.sendRedirect(contextPath + "/admin/dashboard");
+
+	            }
+	            else {
+	                    chain.doFilter(request, response);
+	            }
+	            	
+	                
 	        }	
 	}
 	@Override

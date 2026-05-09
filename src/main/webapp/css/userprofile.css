@@ -20,6 +20,7 @@ html, body {
   min-height: 100vh;
   gap: 0;
 }
+
 .main-content {
   flex: 1;
   padding: 49px 52px;
@@ -31,7 +32,7 @@ html, body {
 
 .profile-card {
   background-color: white ;
-  padding: 48px 52px;
+  padding: 48px 52px 28px 52px;
   display: flex;
   gap: 56px;
   align-items: flex-start;
@@ -92,6 +93,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  
 }
 
 .form-grid {
@@ -133,76 +135,35 @@ html, body {
   background-color: #fff;
 }
 
+.form-input:disabled{
+  background-color: #f0f0f0;
+  color: #403b3b;
+  border: 1.5px solid #d0d0d0;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.radioDisabled{
+	cursor: not-allowed;
+}
+
+.buttonGroup{
+	display:flex;
+	gap:20px;
+}
+
 .gender-group {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.radio-group {
-  display: flex;
-  gap: 28px;
-}
 
-.radio-label {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  cursor: pointer;
-  font-size: 14px;
-  color: #1a1a1a;
-  user-select: none;
-}
-
-.radio-label input[type="radio"] {
-  display: none;
-}
-
-.radio-custom {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid #a0a0a0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-
-.radio-custom::after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-  opacity: 0;
-  transition: opacity 0.22s ease;
-}
-
-.radio-label input[type="radio"]:checked + .radio-custom {
-  background: black;
-  border-color: black;
-}
-
-.radio-label input[type="radio"]:checked + .radio-custom::after {
-  opacity: 1;
-}
-
-.radio-text {
-  font-weight: 400;
-  color: #a0a0a0;
-  transition: color 0.22s ease;
-}
-
-.radio-label input[type="radio"]:checked ~ .radio-text {
-  color: black;
-  font-weight: 500;
-}
 
 .actions {
   display: flex;
   align-items: center;
+  margin-top: 20px;
 }
 
 .btn-edit {
@@ -217,7 +178,28 @@ html, body {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+  transition: all ease .4s;
+}
+
+.btn-cancel{
+	display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 26px;
+  background-color: white;
+  color: #CC2936 !important	;
+  border: 1.5px solid #D61D2D;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all ease .4s;
+}
+
+.btn-cancel:hover{
+  background-color: #D61D2D;
+  color: #fff !important;
+  
 }
 
 .btn-edit i {
@@ -226,7 +208,7 @@ html, body {
 
 .btn-edit:hover {
   background-color: black;
-  color: #fff;
+  color: #fff !important;
   border-color: black;
 }
 
@@ -238,51 +220,32 @@ html, body {
     align-items: stretch;
   }
 
- .sidebar {
-    width: 100%;
-    margin: 0;
-    padding: 20px;
-    margin-bottom: 20px;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .nav-item {
-    flex: 1;
-    min-width: 120px;
-    padding: 8px 10px;
-    font-size: 0.8rem;
-  }
-
-  .nav-item.active::before {
-    left: auto;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-  }
-
   .main-content {
     padding: 28px 20px;
+    align-items:  center;
   }
 
   .profile-card {
     flex-direction: column;
     gap: 24px;
     padding: 28px;
-  }
+    margin-bottom:  20px;
+    width: 100%;
+    max-width: 600px;   /* limits width */
+    margin-left: auto;
+    margin-right: auto; /* centers it */
+  } 
 
   .avatar-section {
     align-self: center;
   }
-
+  .form-section {
+    width: 100%;
+    align-items:  center;
+  }
   .form-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
+    width: 100%;
+    max-width: 500px;
   }
 
   .radio-group {
@@ -296,16 +259,6 @@ html, body {
 }
 
 @media (max-width: 640px) {
-  .sidebar {
-    padding: 18px 16px;
-  }
-
-  .nav-item {
-    min-width: 110px;
-    padding: 8px 8px;
-    font-size: 0.78rem;
-  }
-
   .main-content {
     padding: 18px 16px;
   }
@@ -340,20 +293,6 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  .sidebar {
-    padding: 14px 12px;
-  }
-
-  .sidebar-nav {
-    justify-content: center;
-  }
-
-  .nav-item {
-    min-width: 100px;
-    padding: 6px 8px;
-    font-size: 0.75rem;
-  }
-
   .main-content {
     padding: 16px 12px;
   }

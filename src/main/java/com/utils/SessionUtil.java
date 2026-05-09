@@ -5,12 +5,13 @@ import jakarta.servlet.http.HttpSession;
 
 public class SessionUtil {
 	 public static void setAttribute(HttpServletRequest request, String key, Object value) {
-	        HttpSession session = request.getSession(); // ✅ create if not exists
+	        HttpSession session = request.getSession(); 
+	        session.setMaxInactiveInterval(60 * 60);
 	        session.setAttribute(key, value);
 	    }
 
 	    public static Object getAttribute(HttpServletRequest request, String key) {
-	        HttpSession session = request.getSession(false); // don’t create new
+	        HttpSession session = request.getSession(false); 
 	        if (session != null) {
 	            return session.getAttribute(key);
 	        }

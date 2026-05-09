@@ -1,6 +1,7 @@
 package com.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -27,6 +28,7 @@ public class LoginDAO {
 		
 		
 	}
+	
 	
 	public UserModel getUserByEmail(String email) throws Exception {
         Connection con = DBconfig.getConnection();

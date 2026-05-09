@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login In</title>
+    <title>Gains & Gearss</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/login.css">
      <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,6 +16,10 @@
 </head>
 
 <body>
+	<c:if test="${not empty sessionScope.successMessage}">
+	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+	    <% session.removeAttribute("successMessage"); %>
+	</c:if>
     <div class="mainContainer">
    <!-- Left Panel -->
     <div class="loginFormContainer">
@@ -35,14 +39,14 @@
                     <input class="inputField" type="text" placeholder="Enter your email address" name="email" required>
               
                     <label class="inputLable" for="password">Password</label>
-                    <input class="inputField" type="text" placeholder="Enter your Password" name="password" required>
+                    <input class="inputField" type="password" placeholder="Enter your Password" name="password" required>
                       <c:if test="${not empty requestScope.errorMessage}">
             	<p class="errorMsg">${requestScope.errorMessage}</p>
         		</c:if>
-               <div class="checkboxArea" style="display: flex;">
+            <!--    <div class="checkboxArea" style="display: flex;">
                 <input  class="checkbox" type="checkbox"> <p>Remember me</p>
                </div>
-                
+                --> 
 
                 <button class="submitBtn" type="submit">Submit</button>
                 <p>Don't have an account? <a href="<%= request.getContextPath() %>/signUp">Register Now </a></p>
@@ -57,6 +61,15 @@
     </div>
     </div>
     <script src="https://kit.fontawesome.com/b4de01d1c5.js" crossorigin="anonymous"></script>
+    <script >
+    const sucessMsg = document.getElementById('sucessMsg');
+    if (sucessMsg) {
+        setTimeout(() => {
+        	sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
+        }, 2000); // shows for 3 seconds
+    }
+    </script>
 </body>
  
 

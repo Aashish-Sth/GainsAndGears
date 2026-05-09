@@ -6,36 +6,39 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-/**
- * Servlet implementation class ViewAllUsersController
- */
-@WebServlet(asyncSupported = true, urlPatterns = { "/admin/users" })
+import com.model.UserModel;
+import com.services.UserService;
+
+@WebServlet("/admin/users")
 public class ViewAllUsersController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ViewAllUsersController() {
-        super();
-        // TODO Auto-generated constructor stub
+    private static final long serialVersionUID = 1L;
+
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserService userService = new UserService();
+     
+        List<UserModel> allUsers = userService.getAllUsers();
+        
+     
+        String searchQuery = request.getParameter("search");
+        
+        List<UserModel> displayList = userService.filterUsers(allUsers, searchQuery);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+     
+        request.setAttribute("userList", displayList);
+        request.setAttribute("searchedName", searchQuery); 
+     
+        request.setAttribute("totalCount", allUsers.size());
+        request.setAttribute("activeCount", userService.countActive(allUsers));
+        request.setAttribute("inactiveCount", userService.countInactive(allUsers));
+        
 
+        request.getRequestDispatcher("/WEB-INF/pages/viewAllusers.jsp").forward(request, response);
+    }
 }

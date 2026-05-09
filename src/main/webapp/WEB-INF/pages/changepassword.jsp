@@ -10,50 +10,50 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
 <body>
-
+<jsp:include page="navbar.jsp"/>
   <div class="page-wrapper">
 	<!-- SIde bar -->
     <jsp:include page="sidebar.jsp" />
     <!-- Main content(Change Password) -->
-    <main class="main-content">
-  <div class="password-container">
-    <h2 class="password-title">Change Password</h2>
-    <hr class="title-divider"/>
-	<!-- Password Form -->
-    <div class="password-form">
-      <div class="form-group">
-        <label class="form-label">Current Password<span class="required">*</span></label>
-        <div class="input-wrapper">
-          <input type="password" class="form-input" id="currentPassword" placeholder="••••••••••" />
-          <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('currentPassword', this)"></i>
+     <div class="main-content">
+    <div class="password-container">
+      <h2 class="password-title">Change Password</h2>
+      <hr class="title-divider" />
+
+      <div class="password-form">
+
+        <div class="field">
+          <label>Current Password<span class="required">*</span></label>
+          <div class="input-wrapper">
+            <input type="password" id="currentPassword" placeholder="••••••••••" />
+            <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('currentPassword',this)"></i>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">New Password<span class="required">*</span></label>
-        <div class="input-wrapper">
-          <input type="password" class="form-input" id="newPassword" placeholder="••••••••••" />
-          <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('newPassword', this)"></i>
+        <div class="field">
+          <label>New Password<span class="required">*</span></label>
+          <div class="input-wrapper">
+            <input type="password" id="newPassword" placeholder="••••••••••" />
+            <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('newPassword',this)"></i>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="form-label">Confirm New Password<span class="required">*</span></label>
-        <div class="input-wrapper">
-          <input type="password" class="form-input" id="confirmPassword" placeholder="••••••••••" />
-          <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('confirmPassword', this)"></i>
+        <div class="field">
+          <label>Confirm New Password<span class="required">*</span></label>
+          <div class="input-wrapper">
+            <input type="password" id="confirmPassword" placeholder="••••••••••" />
+            <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('confirmPassword',this)"></i>
+          </div>
         </div>
-      </div>
 
-      <div class="form-actions">
-        <button class="btn-discard">Discard</button>
-        <button class="btn-apply">Apply Changes</button>
-      </div>
+        <div class="form-actions">
+          <button class="btn-discard">Discard</button>
+          <button class="btn-apply">Apply Changes</button>
+        </div>
 
+      </div>
     </div>
   </div>
-</main>
-
 <script>
   function togglePassword(id, icon) {
     const input = document.getElementById(id);
@@ -66,7 +66,7 @@
     }
   }
 </script>
-  </div>
-
+</div>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

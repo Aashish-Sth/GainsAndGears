@@ -2,7 +2,6 @@ package com.services;
 
 import com.model.UserModel;
 
-
 import java.sql.ResultSet;
 import com.utils.PasswordUtil;
 import com.dao.LoginDAO;
@@ -15,6 +14,16 @@ public class LoginService {
 		if(rs.next()) {
 			return PasswordUtil.checkPassword(user.getUser_password(), rs.getString("user_password"));
 	}
+		return false;
+}
+	
+	public Boolean  userActive(UserModel user)throws Exception {
+		
+		LoginDAO dao = new LoginDAO();
+		ResultSet rs =dao.checkUser(user);
+		if(rs.next()) {
+			return rs.getInt("user_status") == 1;
+			}
 		return false;
 }
 	
