@@ -1,5 +1,6 @@
 package com.services;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,14 +9,16 @@ import java.util.HashMap;
 import com.dao.ProductDAO;
 import com.model.ProductModel;
 
+
 public class ProductService {
 
     private ProductDAO dao = new ProductDAO();
 
-    /**
-     * Business Logic: Get all products and filter for supplements
-     */
-    
+    public List<ProductModel> getAllProducts() throws ClassNotFoundException {
+    	 List<ProductModel> allProducts = dao.getAllProducts();
+        return allProducts;
+    }
+
     
     
     public Map<String, List<ProductModel>> getHomePageData() throws ClassNotFoundException {
