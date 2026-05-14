@@ -13,8 +13,9 @@ public class UpdateProductDAO {
 	
 	public ProductModel getProductById(int product_id) throws Exception {
         Connection con = DBconfig.getConnection();
-        PreparedStatement pst = con.prepareStatement(
-                "SELECT * FROM products WHERE product_id = ?");
+        String query = "SELECT * FROM products WHERE product_id = ?";
+        PreparedStatement pst = con.prepareStatement(query);
+        
         pst.setInt(1, product_id);
         ResultSet rs = pst.executeQuery();
 
@@ -38,14 +39,19 @@ public class UpdateProductDAO {
             String product_brand, byte[] product_image) throws Exception {
 
         Connection con = DBconfig.getConnection();
-
+        String query1 = "UPDATE products SET "
+                + "product_name = ?, product_price = ?, category = ?, "
+                + "product_brand = ?, product_image = ? "
+                + "WHERE product_id = ?";
+        
+        String query2 = "UPDATE products SET "
+                + "product_name = ?, product_price = ?, category = ?, "
+                + "product_brand = ?"
+                + "WHERE product_id = ?";
+        
         if (product_image != null) {
-            // update image too
-            PreparedStatement pst = con.prepareStatement(
-                    "UPDATE products SET "
-                    + "product_name = ?, product_price = ?, category = ?, "
-                    + "product_brand = ?, product_image = ? "
-                    + "WHERE product_id = ?");
+            //if user updates image too
+            PreparedStatement pst = con.prepareStatement(query1);
             pst.setString(1, product_name);
             pst.setInt(2, product_price);
             pst.setString(3, category);
@@ -55,12 +61,8 @@ public class UpdateProductDAO {
             pst.executeUpdate();
             pst.close();
         } else {
-            // leave existing image untouched
-            PreparedStatement pst = con.prepareStatement(
-                    "UPDATE products SET "
-                    + "product_name = ?, product_price = ?, category = ?, "
-                    + "product_brand = ? "
-                    + "WHERE product_id = ?");
+            //if user does not updates image
+            PreparedStatement pst = con.prepareStatement(query2);
             pst.setString(1, product_name);
             pst.setInt(2, product_price);
             pst.setString(3, category);
@@ -72,25 +74,24 @@ public class UpdateProductDAO {
         con.close();
     }
 	
-	public void replaceVariants(int  product_id, List<String> attr1Values, List<String> attr2Values )
+	public void replaceVariants(int product_id, List<String> attr1Values, List<String> attr2Values )
 			throws Exception {
  
         Connection con = DBconfig.getConnection();
         con.setAutoCommit(false);
+        String delete = "DELETE FROM product_variant WHERE product_id = ?";
+        String insert = "INSERT INTO product_variant (product_id, attribute_1, attribute_2) "
+                + "VALUES (?, ?, ?)";
  
         try {
             //deleting the existing variants for this product
-            PreparedStatement pst1 = con.prepareStatement(
-                    "DELETE FROM product_variant WHERE product_id = ?");
+            PreparedStatement pst1 = con.prepareStatement(delete);
             pst1.setInt(1, product_id);
             pst1.executeUpdate();
             pst1.close();
  
             //inserting one row per (attr1, attr2) combination
-            PreparedStatement pst2 = con.prepareStatement(
-                    "INSERT INTO product_variant "
-                  + "(product_id, attribute_1, attribute_2) "
-                  + "VALUES (?, ?, ?)");
+            PreparedStatement pst2 = con.prepareStatement(insert);
  
             for (String a1 : attr1Values) {
                 for (String a2 : attr2Values) {
@@ -106,7 +107,7 @@ public class UpdateProductDAO {
             con.commit();
  
         } catch (Exception e) {
-            con.rollback();   // revert both delete and inserts on any error
+            con.rollback();   //reverts both delete and inserts on any error
             throw e;
         } finally {
             con.setAutoCommit(true);
@@ -114,31 +115,39 @@ public class UpdateProductDAO {
         }
     }
 	
-	private List<String> getDistinct(int product_id, String column) throws Exception {
-        Connection con = DBconfig.getConnection();
-        PreparedStatement pst = con.prepareStatement(
-                "SELECT DISTINCT " + column
-              + " FROM product_variant WHERE product_id = ?");
-        pst.setInt(1, product_id);
-        ResultSet rs = pst.executeQuery();
- 
-        List<String> values = new ArrayList<>();
-        while (rs.next()) {
-            values.add(rs.getString(1));
-        }
-        rs.close();
-        pst.close();
-        con.close();
-        return values;
-    }
-	
 	public List<String> getAttr1Values(int product_id) throws Exception {
-        return getDistinct(product_id, "attribute_1");
-    }
-	
+	    Connection con = DBconfig.getConnection();
+	    String query = "SELECT DISTINCT attribute_1 FROM product_variant WHERE product_id = ?";
+	    PreparedStatement pst = con.prepareStatement(query);
+
+	    pst.setInt(1, product_id);
+	    ResultSet rs = pst.executeQuery();
+
+	    List<String> attr1 = new ArrayList<>();
+	    while (rs.next()) {
+	    	attr1.add(rs.getString(1));
+	    }
+	    rs.close();
+	    pst.close();
+	    con.close();
+	    return attr1;
+	}
+
 	public List<String> getAttr2Values(int product_id) throws Exception {
-        return getDistinct(product_id, "attribute_2");
-    }
-	
-	
+	    Connection con = DBconfig.getConnection();
+	    String query = "SELECT DISTINCT attribute_2 FROM product_variant WHERE product_id = ?";
+	    PreparedStatement pst = con.prepareStatement(query);
+
+	    pst.setInt(1, product_id);
+	    ResultSet rs = pst.executeQuery();
+
+	    List<String> attr2 = new ArrayList<>();
+	    while (rs.next()) {
+	    	attr2.add(rs.getString(1));
+	    }
+	    rs.close();
+	    pst.close();
+	    con.close();
+	    return attr2;
+	}
 }
