@@ -170,19 +170,19 @@ function showCategory(category) {
     const womenLink = document.getElementById('women-link');
 
     if (category === 'men') {
-        // Show Men, Hide Women
-        menSection.style.display = 'grid'; // Use 'flex' or 'grid' depending on your .card CSS
+    
+        menSection.style.display = 'grid'; 
         womenSection.style.display = 'none';
         
-        // Update active link styles
+     
         menLink.classList.add('active');
         womenLink.classList.remove('active');
     } else {
-        // Show Women, Hide Men
+
         menSection.style.display = 'none';
         womenSection.style.display = 'grid';
         
-        // Update active link styles
+ 
         womenLink.classList.add('active');
         menLink.classList.remove('active');
     }

@@ -64,12 +64,19 @@
 
         </div>
 
-        <!-- Search Bar (desktop) -->
-        <div class="nav-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="What are you looking for...">
-        </div>
+<!-- Search Bar (desktop) -->
 
+<div class="nav-search">
+
+<div class="nav-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input type="text" placeholder="What are you looking for...">
+
+</div>
+
+</div>
         <!-- User Info -->
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
