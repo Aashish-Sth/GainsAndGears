@@ -14,19 +14,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
-    
 </head>
 
 <body>
 <c:if test="${not empty sessionScope.successMessage}">
-	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
-	    <% session.removeAttribute("successMessage"); %>
-	</c:if>
-	<jsp:include page="navbar.jsp" />
+    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+    <% session.removeAttribute("successMessage"); %>
+</c:if>
+<jsp:include page="navbar.jsp" />
+
     <!-- Main Section -->
     <div class="main-container">
-        <img src="<%=request.getContextPath()%>/assets/homebg.png" alt="Homepage">
+        <video autoplay loop muted playsinline preload="metadata">
+            <source src="<%=request.getContextPath()%>/assets/IndexVideo.mp4" type="video/mp4">
+        </video>
         <div class="shop-now">Shop Now</div>
+    </div>
+    <div class="scroll-arrow-wrap">
+        <div class="scroll-arrow" id="scrollArrow">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <!-- Brand Logos scroll -->
+    <div class="brand-logos">
+        <div class="brand-track">
+            <!-- First set -->
+            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+            <!-- Duplicate set for infinite loop -->
+            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+            <!-- Duplicate set for infinite loop -->
+            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+        </div>
     </div>
 
     <ul class="pages">
@@ -72,13 +103,12 @@
                 <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
             </div>
         </div>
-
     </div>
 
     <div class="all-btn">ALL FOR HIM</div>
 
 
-    <!-- Supplments Section -->
+    <!-- Supplements Section -->
     <div class="main-container-2">
         <img src="<%=request.getContextPath()%>/assets/homebg2.jpg" alt="Homepage">
         <div class="text">
@@ -129,7 +159,6 @@
                 <span class="rating"><i class="fa-solid fa-star"></i>4.8</span>
             </div>
         </div>
-
     </div>
 
     <div class="all-btn">VIEW SUPPLEMENTS</div>
@@ -139,7 +168,7 @@
     <div class="main-container-2">
         <img src="<%=request.getContextPath()%>/assets/homebg3.png" alt="Homepage">
         <div class="text">
-            <p>WAIT THERE’S <br>MORE…</p>
+            <p>WAIT THERE'S <br>MORE…</p>
             <div class="shop-now-3">Shop Now</div>
         </div>
     </div>
@@ -186,25 +215,33 @@
                 <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
             </div>
         </div>
-
     </div>
 
     <div class="all-btn">SHOP NOW</div>
 
-
-
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <jsp:include page="footer.jsp" />
-    <script >
+    
+    <script>
     const sucessMsg = document.getElementById('sucessMsg');
     if (sucessMsg) {
         setTimeout(() => {
-        	sucessMsg.classList.add('hide');
-            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
-        }, 2000); // shows for 3 seconds
+            sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600);
+        }, 2000);
+    }
+
+    const scrollArrow = document.getElementById('scrollArrow');
+    if (scrollArrow) {
+        scrollArrow.addEventListener('click', function () {
+            const card = document.querySelector('.card');
+            if (card) {
+                const yOffset = -90;
+                const y = card.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        });
     }
     </script>
 </body>
-
-
 </html>
