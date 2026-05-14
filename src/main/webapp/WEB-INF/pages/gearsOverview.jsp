@@ -25,16 +25,18 @@
         <a href="<%=request.getContextPath()%>/male" id="btn-him" class="filterBtn">For Him</a>
     </div>
 
-    <div class="card">
+  <div class="card">
         <c:forEach var="p" items="${products}">
-            <div class="card-item">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
+        <div class="card-item">
                 <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
                 <p>${p.product_name}</p>
                 <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
+        </a>
+            
         </c:forEach>
     </div>
-
 
 <jsp:include page="footer.jsp" />
 </body>

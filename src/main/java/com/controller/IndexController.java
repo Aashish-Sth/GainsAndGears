@@ -27,10 +27,10 @@ public class IndexController extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            // Get the "package" of home page data from service
+        
             Map<String, List<ProductModel>> homeData = productService.getHomePageData();
             
-            // Unpack the map into request attributes
+  
             request.setAttribute("mensProducts", homeData.get("mens"));
             request.setAttribute("womensProducts", homeData.get("womens"));
             request.setAttribute("supplementProducts", homeData.get("supplements"));
