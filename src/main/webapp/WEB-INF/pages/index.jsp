@@ -36,7 +36,8 @@
 
 <div id="men-section" class="card">
     <c:forEach var="p" items="${mensProducts}">
-        <div class="card-item">
+    <a>
+    <div class="card-item">
             <c:choose>
                 <c:when test="${not empty p.product_image}">
                     <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
@@ -51,6 +52,7 @@
                 <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
+    </a>  
     </c:forEach>
 </div>
 <div id="women-section" class="card" style="display: none;">
