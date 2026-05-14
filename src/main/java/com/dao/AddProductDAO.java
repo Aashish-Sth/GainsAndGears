@@ -22,6 +22,7 @@ public class AddProductDAO {
         pst1.setString(3, category);
         pst1.setInt(4, product_price);
         pst1.setString(5, product_brand);
+        System.out.println("DEBUG: Image bytes received in DAO: " + (product_image != null ? product_image.length : "NULL"));
         pst1.setBytes(6, product_image);
         pst1.executeUpdate();
         

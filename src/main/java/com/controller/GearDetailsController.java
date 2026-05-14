@@ -7,10 +7,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.services.ReviewService;
+import com.services.UpdateProductService;
+
 /**
  * Servlet implementation class GearDetails
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/gearDetails" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/product/detail" })
 public class GearDetailsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,8 +29,21 @@ public class GearDetailsController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		try {
+		 int product_id = Integer.parseInt(request.getParameter("id"));
+         UpdateProductService productService = new UpdateProductService();
+         ReviewService reviewService = new ReviewService();
+         
+         
+         productService.loadProductIntoRequest(product_id, request);
+         reviewService.returnOverview(product_id, request);
+         reviewService.returnLatestReviews(product_id, request);
+         
 		request.getRequestDispatcher("/WEB-INF/pages/gearDetail.jsp").forward(request, response);	
+		}catch(Exception e) {
+			 e.printStackTrace();
+			 response.sendRedirect(request.getContextPath() + "/admin/home");
+		}
 		}
 
 	/**

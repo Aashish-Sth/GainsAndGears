@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.Base64" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +16,12 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+   <body>
   <jsp:include page="navbar.jsp" />
     <div class="mainContainer">
       <div class="mainIamgeContainer">
-        <div class="imageSideBar">
-          <img class="optImg" src="<%=request.getContextPath()%>/assets/productPic1.png" alt="" />
-          <img class="optImg" src="<%=request.getContextPath()%>/assets/productPic2.webp" alt="" />
-          <img class="optImg" src="<%=request.getContextPath()%>/assets/productPic3.png" alt="" />
-          <img class="optImg" src="<%=request.getContextPath()%>/assets/productPic4.webp" alt="" />
-        </div>
-        <img class="mainImg" src="<%=request.getContextPath()%>/assets/productmain.png" alt="" />
+        
+        <img class="mainImg" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product.product_image)}" alt="${product.product_name}" alt="${product.product_name}" />
       </div>
 
       <div class="content">
@@ -33,33 +30,37 @@
           <i class="fa-solid fa-heart"></i>
         </label>
         <div class="brandHolder">
-          <img class="logoImg" src="<%=request.getContextPath()%>/assets/youngLA.png" alt="" />
-          <p class="brandName">YoungLA</p>
+          <img class="logoImg" 
+          src="${product.product_brand == 'youngLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
+          product.product_brand == 'gymshark' ? pageContext.request.contextPath.concat('/assets/gymshark.png') :
+          pageContext.request.contextPath.concat('/assets/fuaark.jpg')}" 
+          alt="" />
+          <p class="brandName">${product.product_brand}</p>
         </div>
-        <p class="productName">W4187 - Golds Iron Legacy Tank</p>
+        <p class="productName">${product.product_name}</p>
         <div class="ratingAndReview">
           <div>
             <i class="fa-solid fa-star"></i>
-            <p>4.8</p>
+            <p>${overview.avg_rating}</p>
           </div>
-          <p style="color: grey">50 reviews</p>
+          <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
-        <p class="price">Nrs.4400</p>
+        <p class="price">Nrs.${product.product_price}</p>
         <p class="pickerHead">Color</p>
         <div class="options">
-          <div class="option">Red</div>
-          <div class="option active">Green</div>
-          <div class="option">White</div>
-          <div class="option">Pink</div>
-          <div class="option">Black</div>
+        <c:forEach var="color" items="${attr2}">
+        	<label for="${color}"  class="option">${color}</label>
+         	<input hidden id="${color}" type="radio" name="color" value="${attr2}">   	
+        </c:forEach>
+         
+          
         </div>
         <p class="pickerHead">Size</p>
         <div class="options">
-          <div class="option">XSmall</div>
-          <div class="option active">Small</div>
-          <div class="option">Medium</div>
-          <div class="option">Large</div>
-          <div class="option">XLarge</div>
+          <c:forEach var="size" items="${attr1}">
+        	<label for="${size}"  class="option">${size}</label>
+         	<input hidden id="${size}" type="radio" name="size" value="${attr1}">   	
+        </c:forEach>
         </div>
         <div class="btn-container">
           <button class="btn">
@@ -79,6 +80,43 @@
         </div>
       </div>
     </div>
+    <div class="review-section">
+      <div class="display-reviews">
+        <div class="review-head">Reviews</div>
+        <div class="indi-review">
+          <img class="review-img" src="../../assets/suddu.jpg" alt="">
+          <div class="review-txt-section">
+            <div style="display: flex; gap: 25px;">
+              <p class="reviwer-name">Dilip Shrestha</p>
+              <p><i class="fa-solid fa-star"></i> 4.8</p>
+            </div>
+            <p class="review-date">March 22</p>
+            <p>Loved the chocolate chaos flavor!!</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="indi-review">
+          <img class="review-img" src="../../assets/suddu.jpg" alt="">
+          <div class="review-txt-section">
+            <div style="display: flex; gap: 25px;">
+              <p class="reviwer-name">Dilip Shrestha</p>
+              <p><i class="fa-solid fa-star"></i> 4.8</p>
+            </div>
+            <p class="review-date">March 22</p>
+            <p>Loved the chocolate chaos flavor!!</p>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <a href="" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+      </div>
+      <div class="add-reviews">
+        <p class="leave-review">Leave a review:</p>
+        <textarea placeholder="Share your experience with the product.." name="newReview" id="" class="review-txtarea"></textarea>
+        <button class="sub-btn">Submit</button>
+      </div>
+    </div>
+
+
     <div class="card">
         <div class="card-item">
             <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">

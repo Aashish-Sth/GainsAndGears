@@ -49,10 +49,11 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gears">Women</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gears">Men</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplements</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
+                  <li class="nav-link"><a href="<%=request.getContextPath()%>/home">Home</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/male">Men</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/female">Women</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplement</a></li>
+                 <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
             </ul>
         </div>
 
@@ -63,12 +64,19 @@
 
         </div>
 
-        <!-- Search Bar (desktop) -->
-        <div class="nav-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="What are you looking for...">
-        </div>
+<!-- Search Bar (desktop) -->
 
+<div class="nav-search">
+
+<div class="nav-search">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input type="text" placeholder="What are you looking for...">
+
+</div>
+
+</div>
         <!-- User Info -->
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
