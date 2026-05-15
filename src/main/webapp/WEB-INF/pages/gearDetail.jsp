@@ -23,6 +23,7 @@
 	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
 	    <% session.removeAttribute("successMessage"); %>
 	</c:if>
+	
 	<!-- Hidden data field to carry data over -->
 	 <input type="hidden" name="id" value="${param.id}" />
 	
@@ -33,12 +34,11 @@
       </div>
 	
       <div class="content">
-         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                    
-         <input type="hidden" name="product_id" value="${product.product_id}" />                                   
-         <button type="submit" name="action" class="favorite" value="wishlist">
+         <form action="${pageContext.request.contextPath}/cart?id=${param.id}" method="post"  >                                                                      
+         <button type="submit" name="action" class="favorite ${isWishlisted ? 'wishlisted' : ''}" value="wishlist">
 		    	<i class="fa-solid fa-heart"></i>
 		  	</button>
-        </label>
+
         <div class="brandHolder">
           <img class="logoImg" 
           src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
@@ -59,12 +59,16 @@
           </div>
           <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
+        <c:if test="${not empty sessionScope.errorMessage}">
+	        <p class="errorMsg">${sessionScope.errorMessage}</p>
+	         <c:remove var="errorMessage" scope="session"/>
+		</c:if>
         <p class="price">Nrs.${product.product_price}</p>
         <p class="pickerHead">${ product.category == 'supplement' ? 'Flavor' : 'Color' }</p>
         <div class="options">
         <c:forEach var="attribute2" items="${attr2}">
         	<label for="${attribute2}"  class="option">${attribute2}</label>
-         	<input hidden id="${attribute2}" type="radio" name="color" value="${attribute2}">   	
+         	<input hidden id="${attribute2}" type="radio" name="attribute2" value="${attribute2}">   	
         </c:forEach>
          
           
@@ -73,7 +77,7 @@
         <div class="options">
           <c:forEach var="attribute1" items="${attr1}">
         	<label for="${attribute1}"  class="option">${attribute1}</label>
-         	<input hidden id="${attribute1}" type="radio" name="size" value="${attribute1}">   	
+         	<input hidden id="${attribute1}" type="radio" name="attribute1" value="${attribute1}">   	
         </c:forEach>
         </div>
         <div class="btn-container">

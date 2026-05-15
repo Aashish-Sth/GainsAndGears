@@ -45,6 +45,11 @@ public class GearDetailsController extends HttpServlet {
          reviewService.returnOverview(product_id, request);
          reviewService.returnLatestReviews(product_id, user_id, request);
          reviewService.retriveUserReview(product_id, user_id, request);
+         
+         CartService cartService = new CartService();
+         request.setAttribute("isWishlisted", cartService.isInWishlist(user_id, product_id));
+         
+         
 		request.getRequestDispatcher("/WEB-INF/pages/gearDetail.jsp").forward(request, response);	
 		}catch(Exception e) {
 			 e.printStackTrace();

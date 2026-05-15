@@ -11,6 +11,7 @@ public class CartItemModel {
 	 private String product_name;
 	 private double product_price;
 	 private byte[] product_image;
+	 private int total;
 	 
 	 
 	public int getUser_Id() {
@@ -68,6 +69,14 @@ public class CartItemModel {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	
+	
 	 
 	 
 }
