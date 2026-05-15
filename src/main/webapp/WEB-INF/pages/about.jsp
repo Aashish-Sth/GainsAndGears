@@ -27,13 +27,13 @@
         </div>
     </section>
 
-    <section class="banner">
-        <div class="banner-content">
-            <blockquote>
-                “ Built for the Grind. <br> Fueled for the Gain. ”
-            </blockquote>
-        </div>
-    </section>
+<section class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%=request.getContextPath()%>/assets/about_us.png');">
+    <div class="banner-content">
+        <blockquote>
+            “ Built for the Grind. <br> Fueled for the Gain. ”
+        </blockquote>
+    </div>
+</section>
 
     <section class="team-section">
         <div class="container">
