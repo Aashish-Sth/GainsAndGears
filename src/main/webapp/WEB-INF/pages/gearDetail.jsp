@@ -18,6 +18,14 @@
   </head>
    <body>
   <jsp:include page="navbar.jsp" />
+  
+  <c:if test="${not empty sessionScope.successMessage}">
+	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+	    <% session.removeAttribute("successMessage"); %>
+	</c:if>
+	<!-- Hidden data field to carry data over -->
+	 <input type="hidden" name="id" value="${param.id}" />
+	
     <div class="mainContainer">
       <div class="mainIamgeContainer">
         
@@ -31,9 +39,13 @@
         </label>
         <div class="brandHolder">
           <img class="logoImg" 
-          src="${product.product_brand == 'youngLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
-          product.product_brand == 'gymshark' ? pageContext.request.contextPath.concat('/assets/gymshark.png') :
-          pageContext.request.contextPath.concat('/assets/fuaark.jpg')}" 
+          src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
+          product.product_brand == 'Gymshark' ? pageContext.request.contextPath.concat('/assets/gymshark.png') :
+          product.product_brand == 'Fuaark' ? pageContext.request.contextPath.concat('/assets/fuaark.jpg') :
+          product.product_brand == 'Ghost' ? pageContext.request.contextPath.concat('/assets/ghost.png') :
+          product.product_brand == 'Feral' ? pageContext.request.contextPath.concat('/assets/feral.png') :
+          pageContext.request.contextPath.concat('/assets/muscleBlaze.png')
+          }" 
           alt="" />
           <p class="brandName">${product.product_brand}</p>
         </div>
@@ -46,20 +58,20 @@
           <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
         <p class="price">Nrs.${product.product_price}</p>
-        <p class="pickerHead">Color</p>
+        <p class="pickerHead">${ product.category == 'supplement' ? 'Flavor' : 'Color' }</p>
         <div class="options">
-        <c:forEach var="color" items="${attr2}">
-        	<label for="${color}"  class="option">${color}</label>
-         	<input hidden id="${color}" type="radio" name="color" value="${attr2}">   	
+        <c:forEach var="attribute2" items="${attr2}">
+        	<label for="${attribute2}"  class="option">${attribute2}</label>
+         	<input hidden id="${attribute2}" type="radio" name="color" value="${attribute2}">   	
         </c:forEach>
          
           
         </div>
-        <p class="pickerHead">Size</p>
+        <p class="pickerHead">${ product.category == 'supplement' ? 'Quantity' : 'Size' }</p>
         <div class="options">
-          <c:forEach var="size" items="${attr1}">
-        	<label for="${size}"  class="option">${size}</label>
-         	<input hidden id="${size}" type="radio" name="size" value="${attr1}">   	
+          <c:forEach var="attribute1" items="${attr1}">
+        	<label for="${attribute1}"  class="option">${attribute1}</label>
+         	<input hidden id="${attribute1}" type="radio" name="size" value="${attribute1}">   	
         </c:forEach>
         </div>
         <div class="btn-container">
@@ -83,38 +95,45 @@
     <div class="review-section">
       <div class="display-reviews">
         <div class="review-head">Reviews</div>
-        <div class="indi-review">
-          <img class="review-img" src="../../assets/suddu.jpg" alt="">
+        <c:forEach var="rev" items="${review}">
+         <div class="indi-review">
+          <img class="review-img" src="<%=request.getContextPath()%>/uploads/${rev.userImg}" alt="">
           <div class="review-txt-section">
             <div style="display: flex; gap: 25px;">
-              <p class="reviwer-name">Dilip Shrestha</p>
-              <p><i class="fa-solid fa-star"></i> 4.8</p>
+              <p class="reviwer-name">${rev.reviewer_name }</p>
+              <p><i class="fa-solid fa-star"></i> ${rev.rating }</p>
             </div>
-            <p class="review-date">March 22</p>
-            <p>Loved the chocolate chaos flavor!!</p>
+            <p class="review-date">${rev.review_timestamp}</p>
+            <p>${rev.review_description}</p>
           </div>
         </div>
         <div class="divider"></div>
-        <div class="indi-review">
-          <img class="review-img" src="../../assets/suddu.jpg" alt="">
-          <div class="review-txt-section">
-            <div style="display: flex; gap: 25px;">
-              <p class="reviwer-name">Dilip Shrestha</p>
-              <p><i class="fa-solid fa-star"></i> 4.8</p>
-            </div>
-            <p class="review-date">March 22</p>
-            <p>Loved the chocolate chaos flavor!!</p>
-          </div>
-        </div>
-        <div class="divider"></div>
+        </c:forEach>
         <a href="" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
       </div>
-      <div class="add-reviews">
-        <p class="leave-review">Leave a review:</p>
-        <textarea placeholder="Share your experience with the product.." name="newReview" id="" class="review-txtarea"></textarea>
+    
+      <form action="${pageContext.request.contextPath}/product/detail?id=${param.id}" method="post" class="add-reviews">
+       <p class="leave-review">${not empty userReview.review_description ? 'Your Review' : 'Leave a review'}</p>
+        <div class="review-rating">
+          <div class="review-stars">
+            <button type="button" class="review-star" data-rating="1"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class="review-star" data-rating="2"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class="review-star" data-rating="3"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class="review-star" data-rating="4"><i class="fa-solid fa-star"></i></button>
+            <button type="button" class="review-star" data-rating="5"><i class="fa-solid fa-star"></i></button>
+          </div>
+          <p class="rating-text">0/5 stars</p>
+          <input type="hidden" name="rating" class="rating-input" value="${not empty userReview.rating ? userReview.rating : 0 }">
+        </div>
+        <textarea placeholder="Share your experience with the product.." name="newReview" id="" class="review-txtarea">${userReview.review_description}</textarea>
+        
         <button class="sub-btn">Submit</button>
+        
+      </form>
+       
+        
       </div>
-    </div>
+
 
 
     <div class="card">
@@ -164,5 +183,39 @@
       src="https://kit.fontawesome.com/b4de01d1c5.js"
       crossorigin="anonymous"
     ></script>
+     <script>
+      const reviewStars = document.querySelectorAll(".review-star");
+      const ratingText = document.querySelector(".rating-text");
+      const ratingInput = document.querySelector(".rating-input");
+
+      reviewStars.forEach((star) => {
+        star.addEventListener("click", () => {
+          const rating = Number(star.dataset.rating);
+
+          reviewStars.forEach((item) => {
+            item.classList.toggle("active", Number(item.dataset.rating) <= rating);
+          });
+
+          ratingText.textContent = rating + "/5 stars";
+          ratingInput.value = rating;
+        });
+      });
+      const existingRating = Number(ratingInput.value);
+      if (existingRating > 0) {
+          reviewStars.forEach((item) => {
+              item.classList.toggle("active", Number(item.dataset.rating) <= existingRating);
+          });
+          ratingText.textContent = existingRating + "/5 stars";
+      }
+    </script>
+    <script >
+    const sucessMsg = document.getElementById('sucessMsg');
+    if (sucessMsg) {
+        setTimeout(() => {
+        	sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
+        }, 2000); // shows for 3 seconds
+    }
+    </script>
   </body>
 </html>

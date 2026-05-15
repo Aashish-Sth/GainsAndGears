@@ -51,9 +51,9 @@
                         <label for="product_cloth_brand">Brand</label>
                         <select id="product_cloth_brand" name="product_cloth_brand">
                             <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''} >Select Brand</option>
-                            <option value="youngLA" ${product_brand == 'youngLA' ? 'selected' : ''}>YoungLA</option>
-                            <option value="gymshark" ${product_brand == 'gymshark' ? 'selected' : ''}>Gymshark</option>
-                            <option value="furaak" ${product_brand == 'furaak' ? 'selected' : ''}>Furaak</option>
+                            <option value="YoungLA" ${product_brand == 'YoungLA' ? 'selected' : ''}>YoungLA</option>
+                            <option value="Gymshark" ${product_brand == 'Gymshark' ? 'selected' : ''}>Gymshark</option>
+                            <option value="Fuaark" ${product_brand == 'Fuaark' ? 'selected' : ''}>Fuaark</option>
                         </select>
                     </div>
                     <!--Supplement Brand-->
@@ -61,9 +61,9 @@
                         <label for="product_supplement_brand">Brand</label>
                         <select id="product_supplement_brand" name="product_supplement_brand">
                             <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''}>Select Brand</option>
-                            <option value="ghost" ${product_brand == 'ghost' ? 'selected' : ''}>Ghost</option>
-                            <option value="feral" ${product_brand == 'feral' ? 'selected' : ''}>Feral</option>
-                            <option value="muscleblaze" ${product_brand == 'muscleblaze' ? 'selected' : ''}>MuscleBlaze</option>
+                            <option value="Ghost" ${product_brand == 'Ghost' ? 'selected' : ''}>Ghost</option>
+                            <option value="Feral" ${product_brand == 'Feral' ? 'selected' : ''}>Feral</option>
+                            <option value="MuscleBlaze" ${product_brand == 'MuscleBlaze' ? 'selected' : ''}>MuscleBlaze</option>
                         </select>
                     </div>
                 </div>
