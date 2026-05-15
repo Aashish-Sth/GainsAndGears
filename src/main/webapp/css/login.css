@@ -33,7 +33,19 @@
   height: 120px;
   width: auto;
 }
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
 
+.toggle-eye {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+}
 .welcomeContainer {
   margin-bottom: 40px;
   text-align: center;
