@@ -86,7 +86,7 @@
 			      Add to bag
 			    </button>
 			  
-	          <button class="btnInverted">
+	          <button type="submit" name="action" class="btnInverted" value="buyNow">
 	            <i
 	              style="margin-right: 4px"
 	              class="fa-solid fa-cart-arrow-down"

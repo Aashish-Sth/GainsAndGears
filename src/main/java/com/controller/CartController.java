@@ -78,6 +78,7 @@ public class CartController extends HttpServlet {
         CartService service = new CartService();
         
         String referer = request.getHeader("Referer");
+        HttpSession session = request.getSession();
 
         try {
         	//increase the product quantity
@@ -129,11 +130,30 @@ public class CartController extends HttpServlet {
 
             if ("wishlist".equals(action)) {
             	int product_id = Integer.parseInt(request.getParameter("id"));
-                // User clicked the Heart
-            	boolean success = service.addToWishlist(user_id, product_id);
-                if (success) {
+                // User clicked the wishlist 
+            	if (service.isInWishlist(user_id, product_id)) {
+                    service.removeFromWishlist(user_id, product_id);
+                    request.getSession().setAttribute("successMessage", "Removed from wishlist!");
+                } else {
+                    service.addToWishlist(user_id, product_id);
                     request.getSession().setAttribute("successMessage", "Added to wishlist!");
                 }
+            }
+            
+            // User clicked the buy bow button
+            if ("buyNow".equals(action)) {
+                int product_id = Integer.parseInt(request.getParameter("id"));
+                String attribute2 = request.getParameter("attribute2");
+                String attribute1 = request.getParameter("attribute1");
+
+                if (attribute1 == null || attribute2 == null) {
+                    request.getSession().setAttribute("errorMessage", "Please select size and color/flavor.");
+                    response.sendRedirect(request.getContextPath() + "/product/detail?id=" + product_id);
+                    return;
+                }
+
+                service.addItemToCart(user_id, product_id, attribute1, attribute2);
+                session.setAttribute("cartOpen", true);
             }
             
             //refreshing session data
@@ -146,13 +166,16 @@ public class CartController extends HttpServlet {
                 new_total += lineTotal;
             }
             
-            HttpSession session = request.getSession();
+            
             session.setAttribute("cartItems", updatedCart);
             session.setAttribute("wishlistItems", updatedWish);
             session.setAttribute("cartTotal", new_total);
             
             // Keep cart open after any cart action
-            session.setAttribute("cartOpen", true);
+            if ("increase".equals(action) || "decrease".equals(action) 
+            	    || "remove".equals(action) || "removeWishlist".equals(action)) {
+            	    session.setAttribute("cartOpen", true);
+            	}
             
             if (referer != null && !referer.isEmpty()) {
                 response.sendRedirect(referer);

@@ -19,7 +19,8 @@ public class CartDAO {
 	    String findQuery = "SELECT variant_id FROM product_variant " +
 	        "WHERE product_id = ? AND attribute_1 = ? AND attribute_2 = ?";
 
-	    String insertQuery = "INSERT IGNORE INTO cart (user_id, variant_id) VALUES (?, ?)";
+	    String insertQuery = "INSERT INTO cart (user_id, variant_id, quantity) VALUES (?, ?, 1) " +
+                "ON DUPLICATE KEY UPDATE quantity = quantity + 1";
 
 	    try (Connection conn = DBconfig.getConnection()) {
 	        
