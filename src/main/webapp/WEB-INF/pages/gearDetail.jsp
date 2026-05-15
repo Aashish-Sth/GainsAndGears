@@ -23,61 +23,65 @@
         
         <img class="mainImg" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product.product_image)}" alt="${product.product_name}" alt="${product.product_name}" />
       </div>
-
+	
       <div class="content">
-        <label class="favorite">
-          <input type="checkbox" hidden />
-          <i class="fa-solid fa-heart"></i>
-        </label>
-        <div class="brandHolder">
-          <img class="logoImg" 
-          src="${product.product_brand == 'youngLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
-          product.product_brand == 'gymshark' ? pageContext.request.contextPath.concat('/assets/gymshark.png') :
-          pageContext.request.contextPath.concat('/assets/fuaark.jpg')}" 
-          alt="" />
-          <p class="brandName">${product.product_brand}</p>
-        </div>
-        <p class="productName">${product.product_name}</p>
-        <div class="ratingAndReview">
-          <div>
-            <i class="fa-solid fa-star"></i>
-            <p>${overview.avg_rating}</p>
-          </div>
-          <p style="color: grey">${overview.total_reviews } reviews</p>
-        </div>
-        <p class="price">Nrs.${product.product_price}</p>
-        <p class="pickerHead">Color</p>
-        <div class="options">
-        <c:forEach var="color" items="${attr2}">
-        	<label for="${color}"  class="option">${color}</label>
-         	<input hidden id="${color}" type="radio" name="color" value="${attr2}">   	
-        </c:forEach>
-         
-          
-        </div>
-        <p class="pickerHead">Size</p>
-        <div class="options">
-          <c:forEach var="size" items="${attr1}">
-        	<label for="${size}"  class="option">${size}</label>
-         	<input hidden id="${size}" type="radio" name="size" value="${attr1}">   	
-        </c:forEach>
-        </div>
-        <div class="btn-container">
-          <button class="btn">
-            <i
-              style="margin-right: 4px"
-              class="fa-solid fa-basket-shopping"
-            ></i>
-            Add to bag
-          </button>
-          <button class="btnInverted">
-            <i
-              style="margin-right: 4px"
-              class="fa-solid fa-cart-arrow-down"
-            ></i>
-            Buy Now
-          </button>
-        </div>
+ 		<form action="${pageContext.request.contextPath}/product/detail" method="post"  >
+			
+		  	<input type="hidden" name="product_id" value="${product.product_id}" />
+		  	<!-- Wishlist Button -->
+		  	<button type="submit" name="action" class="favorite" value="wishlist">
+		    	<i class="fa-solid fa-heart"></i>
+		  	</button>
+		
+	        <div class="brandHolder">
+	          <img class="logoImg" 
+	          src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
+	          product.product_brand == 'Gymshark' ? pageContext.request.contextPath.concat('/assets/gymshark.png') :
+	          pageContext.request.contextPath.concat('/assets/fuaark.jpg')}" 
+	          alt="" />
+	          <p class="brandName">${product.product_brand}</p>
+	        </div>
+	        <p class="productName">${product.product_name}</p>
+	        <div class="ratingAndReview">
+	          <div>
+	            <i class="fa-solid fa-star"></i>
+	            <p>${overview.avg_rating}</p>
+	          </div>
+	          <p style="color: grey">${overview.total_reviews } reviews</p>
+	        </div>
+	        <p class="price">Nrs.${product.product_price}</p>
+	        <p class="pickerHead">Color</p>
+	        <div class="options">
+	        <c:forEach var="color" items="${attr2}">
+	        	<label for="${color}"  class="option">${color}</label>
+	         	<input id="${color}" type="radio" name="color" value="${attr2}" hidden>   	
+	        </c:forEach>
+	         
+	          
+	        </div>
+	        <p class="pickerHead">Size</p>
+	        <div class="options">
+	          <c:forEach var="size" items="${attr1}">
+	        	<label for="${size}"  class="option">${size}</label>
+	         	<input id="${size}" type="radio" name="size" value="${attr1}" hidden>   	
+	        </c:forEach>
+	        </div>
+	        <div class="btn-container">
+	        	<!-- Add to Bag Button -->
+			    <button type="submit" name="action" class="btn" value="cart">
+			      <i style="margin-right: 4px" class="fa-solid fa-basket-shopping"></i>
+			      Add to bag
+			    </button>
+			  
+	          <button class="btnInverted">
+	            <i
+	              style="margin-right: 4px"
+	              class="fa-solid fa-cart-arrow-down"
+	            ></i>
+	            Buy Now
+	          </button>
+	        </div>
+        </form>
       </div>
     </div>
     <div class="review-section">

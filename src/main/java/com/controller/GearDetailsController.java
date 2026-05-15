@@ -7,8 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.model.UserModel;
+import com.services.CartService;
 import com.services.ReviewService;
 import com.services.UpdateProductService;
+import com.utils.SessionUtil;
 
 /**
  * Servlet implementation class GearDetails
@@ -51,8 +54,34 @@ public class GearDetailsController extends HttpServlet {
 	 * vletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		UserModel loggedInUser = (UserModel) SessionUtil.getAttribute(request, "loggedInUser");
+        int user_id = loggedInUser.getUser_id();
+		String productIdRaw = request.getParameter("product_id");
+		String action = request.getParameter("action");
+		
+		CartService service = new CartService();
+		
+		try {
+			int product_id = Integer.parseInt(productIdRaw);
+			
+			if ("cart".equals(action)) {
+	            // User clicked "Add to bag"
+	            String color = request.getParameter("color");
+	            String size = request.getParameter("size");
+	            service.addItemToCart(user_id, product_id, size, color);
+	        }
+			
+			if ("wishlist".equals(action)) {
+	            // User clicked the Heart
+				service.addToWishlist(user_id, product_id);
+	        }
+		} catch(Exception e) {
+	        e.printStackTrace();
+	        response.sendRedirect(request.getContextPath() + "/home");
+	        return;
+	    }
+		response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productIdRaw);
 	}
-
 }
+
+
