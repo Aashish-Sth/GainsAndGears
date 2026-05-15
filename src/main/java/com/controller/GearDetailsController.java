@@ -33,8 +33,7 @@ public class GearDetailsController extends HttpServlet {
 		 int product_id = Integer.parseInt(request.getParameter("id"));
          UpdateProductService productService = new UpdateProductService();
          ReviewService reviewService = new ReviewService();
-         
-         
+
          productService.loadProductIntoRequest(product_id, request);
          reviewService.returnOverview(product_id, request);
          reviewService.returnLatestReviews(product_id, request);

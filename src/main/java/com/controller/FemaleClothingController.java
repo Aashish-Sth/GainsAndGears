@@ -27,6 +27,7 @@ public class FemaleClothingController extends HttpServlet {
             request.setAttribute("products", femaleProducts);
             
         } catch (ClassNotFoundException e) {
+        	
             e.printStackTrace();
         }
 
