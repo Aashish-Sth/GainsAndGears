@@ -151,7 +151,10 @@ button {
   font-size: 14px;
   line-height: 1.2;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .option:hover,
@@ -178,7 +181,9 @@ button {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .btn {
@@ -219,7 +224,9 @@ button {
 .favorite i {
   color: #777;
   font-size: 21px;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .favorite input:checked + i {
@@ -275,6 +282,31 @@ button {
   margin: 20px 0 42px;
   font-size: 22px;
   font-weight: 600;
+}
+
+.no-reviews {
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.no-review-img {
+  width: min(210px, 70%);
+  margin-bottom: 10px;
+}
+
+.no-review-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.no-review-text {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
 }
 
 .indi-review {
@@ -366,7 +398,9 @@ button {
   font-size: 22px;
   line-height: 1;
   cursor: pointer;
-  transition: color 0.25s ease, transform 0.25s ease;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
 }
 
 .review-star:hover,
@@ -408,7 +442,9 @@ button {
   color: #fff;
   font-size: 14px;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
 }
 
 .sub-btn:hover {
@@ -429,7 +465,10 @@ button {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .btn-edit {
@@ -524,7 +563,10 @@ button {
   font-weight: 500;
   cursor: pointer;
   text-align: center;
-  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .all-btn:hover {
@@ -702,6 +744,14 @@ button {
   .review-head {
     margin: 10px 0 28px;
     font-size: 20px;
+  }
+
+  .no-reviews {
+    min-height: 260px;
+  }
+
+  .no-review-img {
+    width: min(180px, 76%);
   }
 
   .indi-review {

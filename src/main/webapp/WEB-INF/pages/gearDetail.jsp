@@ -16,12 +16,14 @@
       rel="stylesheet"
     />
   </head>
-   <body>
+  <body>
   <jsp:include page="navbar.jsp" />
   
-  <c:if test="${not empty sessionScope.successMessage}">
-	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
-	    <% session.removeAttribute("successMessage"); %>
+	  <c:if test="${param.msg == 'review_added'}">
+	    <div class="sucessMsg" id="sucessMsg">Your review was successfully submitted</div>
+	</c:if>
+	<c:if test="${param.msg == 'review_updated'}">
+	    <div class="sucessMsg" id="sucessMsg">Your review was successfully updated</div>
 	</c:if>
 	<!-- Hidden data field to carry data over -->
 	 <input type="hidden" name="id" value="${param.id}" />
@@ -95,6 +97,16 @@
     <div id="review-section" class="review-section">
       <div class="display-reviews">
         <div class="review-head">Reviews</div>
+
+        <c:if test="${empty review}">
+          <div class="no-reviews">
+            <img class="no-review-img" src="<%=request.getContextPath()%>/assets/noReviews.png" alt="No reviews yet">
+            <p class="no-review-title">Whoops!</p>
+            <p class="no-review-text">There seem to be no reviews yet.</p>
+            <p class="no-review-text">Try leaving a review!</p>
+          </div>
+        </c:if>
+        
         <c:forEach var="rev" items="${review}">
          <div class="indi-review">
           <img class="review-img" src="<%=request.getContextPath()%>/uploads/${rev.userImg}" alt="">
@@ -109,7 +121,10 @@
         </div>
         <div class="divider"></div>
         </c:forEach>
-        <a href="" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+        
+        <c:if test="${not empty review}">
+        <a href="<%= request.getContextPath() %>/allReviews?id=${param.id}" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+        </c:if>
       </div>
     
       <form action="${pageContext.request.contextPath}/product/detail?id=${param.id}" method="post" class="add-reviews">
@@ -247,7 +262,8 @@
       const reviewStars = document.querySelectorAll(".review-star");
       const ratingText = document.querySelector(".rating-text");
       const ratingInput = document.querySelector(".rating-input");
-
+      
+     
       reviewStars.forEach((star) => {
         star.addEventListener("click", () => {
           const rating = Number(star.dataset.rating);
@@ -275,11 +291,17 @@
     <script >
     const sucessMsg = document.getElementById('sucessMsg');
     if (sucessMsg) {
+        // Clean URL so refresh won't show it again
+        const url = new URL(window.location);
+        url.searchParams.delete('msg');
+        window.history.replaceState({}, '', url);
+
         setTimeout(() => {
-        	sucessMsg.classList.add('hide');
-            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
-        }, 2000); // shows for 3 seconds
+            sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600);
+        }, 2000);
     }
+    
     </script>
   </body>
 </html>

@@ -35,6 +35,9 @@ public class GearDetailsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			HttpSession session = request.getSession();
+	        session.removeAttribute("successMessage");
+			
 		 int product_id = Integer.parseInt(request.getParameter("id"));
          UpdateProductService productService = new UpdateProductService();
          ReviewService reviewService = new ReviewService();
@@ -86,13 +89,11 @@ public class GearDetailsController extends HttpServlet {
 		if ("addReview".equals(action)) {
 		Boolean success=service.addReview(user_id, productId, review_description, rating);
 		if(success) {
-			  request.getSession().setAttribute("successMessage","Your review was sucessfully submitted");
-			  response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId);	
+			response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId + "&msg=review_added");
 		}
 		}else if("editReview".equals(action)) {
 			service.updateReview(user_id, productId, review_description, rating);
-			 request.getSession().setAttribute("successMessage","Your review was sucessfully updated");
-			  response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId);	
+		    response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId + "&msg=review_updated");
 		}
 		
 	}

@@ -19,9 +19,8 @@
 </head>
 
 <body>
-<c:if test="${not empty sessionScope.successMessage}">
-	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
-	    <% session.removeAttribute("successMessage"); %>
+<c:if test="${param.msg == 'success'}">
+	    <div class="sucessMsg" id="sucessMsg">Welcome back, ${sessionScope.loggedInUser.user_first_name}!</div>
 	</c:if>
 	<jsp:include page="navbar.jsp" />
     <!-- Main Section -->
@@ -143,11 +142,17 @@
     <script >
     const sucessMsg = document.getElementById('sucessMsg');
     if (sucessMsg) {
+        // Clean URL so refresh won't show it again
+        const url = new URL(window.location);
+        url.searchParams.delete('msg');
+        window.history.replaceState({}, '', url);
+
         setTimeout(() => {
-        	sucessMsg.classList.add('hide');
-            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
-        }, 2000); // shows for 3 seconds
+            sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600);
+        }, 2000);
     }
+    
     </script>
     
     <script>

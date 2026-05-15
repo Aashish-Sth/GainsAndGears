@@ -1,6 +1,7 @@
 package com.services;
 
 import java.net.Authenticator.RequestorType;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.dao.ReviewDAO;
@@ -19,10 +20,10 @@ public class ReviewService {
 		}	
 }
 	
-	public void returnAllReviews(int product_id, int user_id, HttpServletRequest request) {
+	public void returnAllReviews(int product_id, HttpServletRequest request) {
 		ReviewDAO dao = new ReviewDAO();
 		try {
-			List<ReviewModel> review = dao.retriveProductReview(product_id, user_id);
+			List<ReviewModel> review = dao.retriveAllReviews(product_id);
 			request.setAttribute("review", review);
 		}
 		catch(Exception e) {
@@ -73,6 +74,22 @@ public class ReviewService {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void filterReviews(int product_id, int star, HttpServletRequest request) {
+	    ReviewDAO dao = new ReviewDAO();
+	    try {
+	        List<ReviewModel> allReviews = dao.retriveAllReviews(product_id);
+	        List<ReviewModel> filtered = new ArrayList<>();
+	        for (ReviewModel r : allReviews) {
+	            if (r.getRating() == star) {
+	                filtered.add(r);
+	            }
+	        }
+	        request.setAttribute("review", filtered);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 }
