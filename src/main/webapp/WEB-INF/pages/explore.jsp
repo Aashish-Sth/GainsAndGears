@@ -16,11 +16,11 @@
             <p>NEW IN <br> GYMSHARK ONYX V5</p>
         </div>
     </div>
-<!--  
+
 	<div class="content-1">
-        <img src=<%=request.getContextPath()%>/assets/gymshark.png"></img>
+        <img src="<%=request.getContextPath()%>/assets/Gymshark_Limited_Logo.png"></img>
         <p>Forged in the dark. Built for the light.</p>
-    </div> -->
+    </div> 
 
    <div class="card">
         <c:forEach var="p" items="${gymsharkProducts}">
@@ -45,6 +45,11 @@
     </div>
     <br><br>
 
+	<div class="content-2">
+	        <img src="<%=request.getContextPath()%>/assets/youngla-logo.png"></img>
+	        <p>Built from hunger. Worn with purpose.</p>
+	    </div> 
+	    
      <div class="card">
         <c:forEach var="p" items="${younglaProducts}">
         <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
