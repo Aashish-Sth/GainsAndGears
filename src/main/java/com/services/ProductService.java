@@ -120,4 +120,24 @@ public class ProductService {
         }
         return maleProducts;
     }
+    
+    public List<ProductModel> getRecommendedProducts(String category, int currentProductId) throws ClassNotFoundException {
+        List<ProductModel> allProducts = dao.getAllProducts();
+        List<ProductModel> recommendations = new ArrayList<>();
+
+        if (allProducts != null && category != null) {
+            for (ProductModel p : allProducts) {
+               
+                if (p.getCategory() != null 
+                        && p.getCategory().equalsIgnoreCase(category) 
+                        && p.getProduct_id() != currentProductId) {
+                    recommendations.add(p);
+                }
+            }
+           
+            Collections.shuffle(recommendations);
+        }
+ // Return a maximum of 4 items safely
+        return recommendations.subList(0, Math.min(recommendations.size(), 4));
+    }
 }
