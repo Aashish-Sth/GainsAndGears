@@ -56,36 +56,39 @@
       </div>
 
       <!-- Right Form -->
-      <div class="contactForm">
-        <div class="formRow">
-          <div class="formGroup">
-            <label class="inputLabel">Your Name</label>
-            <input class="inputField" type="text" placeholder="Your full name" />
-          </div>
-          <div class="formGroup">
-            <label class="inputLabel">Email Address</label>
-            <input class="inputField" type="email" placeholder="Your email address" />
-          </div>
-        </div>
 
-        <div class="formGroup fullWidth">
-          <label class="inputLabel">Message</label>
-          <textarea class="textArea" placeholder="Write something..."></textarea>
-        </div>
-
-        <button class="btn">Send Message</button>
-      </div>
-
+<form action="mailto:gng@gmail.com?subject=Gains %26 Gears - Contact Inquiry" method="post" enctype="text/plain" class="contactForm">
+    <div class="formRow">
+    <div class="formGroup">
+      <label class="inputLabel">Your Name</label>
+     
+      <input class="inputField" type="text" name="Visitor Name" placeholder="Your full name" required />
     </div>
-
-    <!-- Down Shop Now -->
-    <div class="shopNowSection">
-        <img src="../<%=request.getContextPath()%>/assets/shopNow.svg" alt="Gym Banner" class="shopNowImage" />
-        <div class="shopNowContent">
-            <h2 class="shopNowText">WAIT THERE’S<br />MORE</h2>
-            <a href="/products.html" class="shopNowBtn">SHOP NOW</a>
-        </div>
+    <div class="formGroup">
+      <label class="inputLabel">Email Address</label>
+      <input class="inputField" type="email" name="Reply-To Email" placeholder="Your email address" required />
     </div>
+  </div>
+
+  <div class="formGroup fullWidth">
+    <label class="inputLabel">Message</label>
+  
+    <textarea class="textArea" name="Message Details" placeholder="Write something..." required></textarea>
+  </div>
+
+  <button type="submit" class="btn">Send Message</button>
+
+</form>
+</div>
+
+<div class="shopNowSection">
+    <img src="<%=request.getContextPath()%>/assets/homebg3.svg" alt="Gym Banner" class="shopNowImage">
+    <div class="shopNowContent">
+        <h2 class="shopNowText">DON'T MISS<br />THIS</h2>
+       
+        <a href="<%=request.getContextPath()%>/products.jsp" class="shopNowBtn">Shop Now</a>
+    </div>
+</div>
     <jsp:include page="footer.jsp" />
   </body>
 </html>
