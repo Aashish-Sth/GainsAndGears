@@ -25,6 +25,7 @@
 	<c:if test="${param.msg == 'review_updated'}">
 	    <div class="sucessMsg" id="sucessMsg">Your review was successfully updated</div>
 	</c:if>
+	
 	<!-- Hidden data field to carry data over -->
 	 <input type="hidden" name="id" value="${param.id}" />
 	 <input type="hidden" name="isActive" value="${ reviewDone}">
@@ -35,11 +36,11 @@
       </div>
 	
       <div class="content">
-         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                                                 
-         <button type="submit" name="action" class="favorite" value="wishlist">
+         <form action="${pageContext.request.contextPath}/cart?id=${param.id}" method="post"  >                                                                      
+         <button type="submit" name="action" class="favorite ${isWishlisted ? 'wishlisted' : ''}" value="wishlist">
 		    	<i class="fa-solid fa-heart"></i>
 		  	</button>
-       
+
         <div class="brandHolder">
           <img class="logoImg" 
           src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
@@ -60,6 +61,10 @@
           </div>
           <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
+        <c:if test="${not empty sessionScope.errorMessage}">
+	        <p class="errorMsg">${sessionScope.errorMessage}</p>
+	         <c:remove var="errorMessage" scope="session"/>
+		</c:if>
         <p class="price">Nrs.${product.product_price}</p>
         <p class="pickerHead">${ product.category == 'supplement' ? 'Flavor' : 'Color' }</p>
         <div class="options">

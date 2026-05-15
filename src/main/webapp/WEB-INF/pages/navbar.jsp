@@ -112,7 +112,14 @@
     hamburger.addEventListener('click', openBar);
     LeftBarClose.addEventListener('click', closeBar);
     LeftBarOverlay.addEventListener('click', closeBar);
+    
+    if ('${sessionScope.cartOpen}' === 'true') {
+        openCart();
+    }
 </script>
+
+<c:remove var="cartOpen" scope="session"/>
+
 </body>
 
 
