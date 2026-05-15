@@ -6,11 +6,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.List;
 
-import com.dao.ProductDAO;
+
 import com.model.ProductModel;
+import com.services.ProductService;
 
 /**
  * Servlet implementation class GainsOverviewController
@@ -30,30 +31,22 @@ public class GainsOverviewController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    private ProductService productService = new ProductService();
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDAO dao = new ProductDAO();
-        
         try {
-            //
-            List<ProductModel> allProducts = dao.getAllProducts();
+   
+            List<ProductModel> supplementProducts = productService.getSupplementProducts();
             
-           
-            List<ProductModel> gainProducts = new ArrayList<>();
-            for (ProductModel p : allProducts) {
-                String cat = p.getCategory().toLowerCase();
-                if (cat.equals("supplement")) {
-                	gainProducts.add(p);
-                }
-            }
-            
-           
-            request.setAttribute("supplementProducts", gainProducts);
+     
+            request.setAttribute("supplementProducts", supplementProducts);
             
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+       
         }
 
-       
+
         request.getRequestDispatcher("/WEB-INF/pages/gainsOverview.jsp").forward(request, response);
     }
 
@@ -61,7 +54,7 @@ public class GainsOverviewController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO 
 		doGet(request, response);
 	}
 

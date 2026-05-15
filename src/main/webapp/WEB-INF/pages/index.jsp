@@ -34,46 +34,34 @@
     <li><a href="javascript:void(0)" id="women-link" onclick="showCategory('women')">FOR HER</a></li>
 </ul>
 
+
+
 <div id="men-section" class="card">
-    <c:forEach var="p" items="${mensProducts}">
-    <a>
-    <div class="card-item">
-            <c:choose>
-                <c:when test="${not empty p.product_image}">
-                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
-                </c:when>
-                <c:otherwise>
-                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
-                </c:otherwise>
-            </c:choose>
-            <p>${p.product_name}</p>
-            <div class="info">
-                <span class="price">Rs ${p.product_price}</span>
-                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
-            </div>
-        </div>
-    </a>  
-    </c:forEach>
-</div>
-<div id="women-section" class="card" style="display: none;">
-    <c:forEach var="p" items="${womensProducts}">
+        <c:forEach var="p" items="${mensProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
-            <c:choose>
-                <c:when test="${not empty p.product_image}">
-                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
-                </c:when>
-                <c:otherwise>
-                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
-                </c:otherwise>
-            </c:choose>
-            <p>${p.product_name}</p>
-            <div class="info">
-                <span class="price">Rs ${p.product_price}</span>
-                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
-    </c:forEach>
-</div>
+        </a>
+            
+        </c:forEach>
+    </div>
+
+
+<div id="women-section" class="card" style="display: none;">
+        <c:forEach var="p" items="${womensProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
+        <div class="card-item">
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
+            </div>
+        </a>
+            
+        </c:forEach>
+    </div>
 
 
     <div class="all-btn">ALL FOR HIM</div>
@@ -92,25 +80,21 @@
         <h2>Recover Faster, Go Harder</h2>
     </div>
     
-<div class="card">
-    <c:forEach var="p" items="${supplementProducts}">
+  <div class="card">
+        <c:forEach var="p" items="${supplementProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
-            <c:choose>
-                <c:when test="${not empty p.product_image}">
-                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
-                </c:when>
-                <c:otherwise>
-                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
-                </c:otherwise>
-            </c:choose>
-            <p>${p.product_name}</p>
-            <div class="info">
-                <span class="price">Rs ${p.product_price}</span>
-                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
-    </c:forEach>
-</div>
+        </a>
+            
+        </c:forEach>
+    </div>
+
+
+
 
     <div class="all-btn">VIEW SUPPLEMENTS</div>
 
@@ -130,6 +114,7 @@
 
    <div class="card">
     <c:forEach var="p" items="${newCollections}">
+       <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
             <c:choose>
                 <c:when test="${not empty p.product_image}">
@@ -145,6 +130,7 @@
                 <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
             </div>
         </div>
+               </a>
     </c:forEach>
 </div>
 
@@ -172,19 +158,19 @@ function showCategory(category) {
     const womenLink = document.getElementById('women-link');
 
     if (category === 'men') {
-        // Show Men, Hide Women
-        menSection.style.display = 'grid'; // Use 'flex' or 'grid' depending on your .card CSS
+    
+        menSection.style.display = 'grid'; 
         womenSection.style.display = 'none';
         
-        // Update active link styles
+     
         menLink.classList.add('active');
         womenLink.classList.remove('active');
     } else {
-        // Show Women, Hide Men
+
         menSection.style.display = 'none';
         womenSection.style.display = 'grid';
         
-        // Update active link styles
+ 
         womenLink.classList.add('active');
         menLink.classList.remove('active');
     }

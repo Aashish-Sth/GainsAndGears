@@ -20,25 +20,19 @@
     	<a href="<%=request.getContextPath()%>/gears" class="brandName ">GEARS</a>
     </div>
     <!-- Brand header -->
- <div class="card">
-    <c:forEach var="p" items="${supplementProducts}">
+  <div class="card">
+        <c:forEach var="p" items="${supplementProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
-            <c:choose>
-                <c:when test="${not empty p.product_image}">
-                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
-                </c:when>
-                <c:otherwise>
-                    <img src="${pageContext.request.contextPath}/assets/default-product.jpg" alt="No Image">
-                </c:otherwise>
-            </c:choose>
-            <p>${p.product_name}</p>
-            <div class="info">
-                <span class="price">Rs ${p.product_price}</span>
-                <span class="rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
-    </c:forEach>
-</div>
+        </a>
+            
+        </c:forEach>
+    </div>
+
 
 
 </body>

@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.model.UserModel;
+import com.services.CartService;
 import com.services.ReviewService;
 import com.services.UpdateProductService;
 import com.utils.SessionUtil;
@@ -69,5 +70,6 @@ public class GearDetailsController extends HttpServlet {
 		response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId);
 		
 	}
-
 }
+
+

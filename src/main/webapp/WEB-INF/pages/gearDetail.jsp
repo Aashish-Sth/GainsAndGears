@@ -31,11 +31,13 @@
         
         <img class="mainImg" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product.product_image)}" alt="${product.product_name}" alt="${product.product_name}" />
       </div>
-
+	
       <div class="content">
-        <label class="favorite">
-          <input type="checkbox" hidden />
-          <i class="fa-solid fa-heart"></i>
+         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                    
+         <input type="hidden" name="product_id" value="${product.product_id}" />                                   
+         <button type="submit" name="action" class="favorite" value="wishlist">
+		    	<i class="fa-solid fa-heart"></i>
+		  	</button>
         </label>
         <div class="brandHolder">
           <img class="logoImg" 
@@ -75,21 +77,20 @@
         </c:forEach>
         </div>
         <div class="btn-container">
-          <button class="btn">
-            <i
-              style="margin-right: 4px"
-              class="fa-solid fa-basket-shopping"
-            ></i>
-            Add to bag
-          </button>
-          <button class="btnInverted">
-            <i
-              style="margin-right: 4px"
-              class="fa-solid fa-cart-arrow-down"
-            ></i>
-            Buy Now
-          </button>
+          <button type="submit" name="action" class="btn" value="cart">
+			      <i style="margin-right: 4px" class="fa-solid fa-basket-shopping"></i>
+			      Add to bag
+			    </button>
+			  
+	          <button class="btnInverted">
+	            <i
+	              style="margin-right: 4px"
+	              class="fa-solid fa-cart-arrow-down"
+	            ></i>
+	            Buy Now
+	          </button>
         </div>
+      </form>
       </div>
     </div>
     <div class="review-section">

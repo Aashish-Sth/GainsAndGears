@@ -15,11 +15,24 @@
 
             <h1 class="title">Products</h1>
 			 
+			 <!-- Success Message -->
 			<c:if test="${param.success == 'true'}">
-	            <div class="success">
+	            <div class="success" id="status">
 	                <i class="fa-solid fa-check-circle"></i> Successfully changed the product's status!
 	            </div>
 	        </c:if>
+			
+			<c:if test="${param.success == 'updated'}">
+			    <div class="success" id="update">
+			        <i class="fa-solid fa-circle-check"></i> Product updated successfully!
+			    </div>
+			</c:if>
+			
+			<c:if test="${param.success == 'added'}">
+			    <div class="success" id="add">
+			        <i class="fa-solid fa-circle-check"></i> Product added successfully!
+			    </div>
+			</c:if>
 			
             <div class="main-card">
                 <div class="card">
@@ -104,7 +117,31 @@
 		        if (confirm("Are you sure you want to make this product " + nextText + "?")) {
 		            document.getElementById('statusForm-' + product_id).submit();
 		        }
-	    }
+	    	}
+		    
+		    const sucessMsg = document.getElementById('status');
+		    if (sucessMsg) {
+		        setTimeout(() => {
+		        	sucessMsg.classList.add('hide');
+		            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
+		        }, 2000); // shows for 3 seconds
+		    }
+		    
+		    const updateMsg = document.getElementById('update');
+		    if (updateMsg) {
+		        setTimeout(() => {
+		            updateMsg.classList.add('hide');
+		            setTimeout(() => updateMsg.remove(), 600); // remove after fade
+		        }, 2000); // shows for 3 seconds
+		    }
+		    
+		    const addMsg = document.getElementById('add');
+		    if (addMsg) {
+		        setTimeout(() => {
+		        	addMsg.classList.add('hide');
+		            setTimeout(() => addMsg.remove(), 600); // remove after fade
+		        }, 2000); // shows for 3 seconds
+		    }
 	    </script>
 
     </body>

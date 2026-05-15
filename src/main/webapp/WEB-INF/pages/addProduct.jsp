@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/addProduct.css">
 </head>
 <body>
-<jsp:include page="adminSideBar.jsp" />
+
 <a href="<%=request.getContextPath()%>/admin/products" class="back"><i class="fa-solid fa-chevron-left"></i></a>
     <div class="page-content">
 
