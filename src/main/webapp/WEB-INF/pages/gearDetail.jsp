@@ -25,7 +25,7 @@
 	</c:if>
 	<!-- Hidden data field to carry data over -->
 	 <input type="hidden" name="id" value="${param.id}" />
-	
+	 <input type="hidden" name="isActive" value="${ reviewDone}">
     <div class="mainContainer">
       <div class="mainIamgeContainer">
         
@@ -33,12 +33,11 @@
       </div>
 	
       <div class="content">
-         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                    
-         <input type="hidden" name="product_id" value="${product.product_id}" />                                   
+         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                                                 
          <button type="submit" name="action" class="favorite" value="wishlist">
 		    	<i class="fa-solid fa-heart"></i>
 		  	</button>
-        </label>
+       
         <div class="brandHolder">
           <img class="logoImg" 
           src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
@@ -64,7 +63,7 @@
         <div class="options">
         <c:forEach var="attribute2" items="${attr2}">
         	<label for="${attribute2}"  class="option">${attribute2}</label>
-         	<input hidden id="${attribute2}" type="radio" name="color" value="${attribute2}">   	
+         	<input hidden id="${attribute2}" type="radio" name="attribute2" value="${attribute2}">   	
         </c:forEach>
          
           
@@ -73,7 +72,7 @@
         <div class="options">
           <c:forEach var="attribute1" items="${attr1}">
         	<label for="${attribute1}"  class="option">${attribute1}</label>
-         	<input hidden id="${attribute1}" type="radio" name="size" value="${attribute1}">   	
+         	<input hidden id="${attribute1}" type="radio" name="attribute1" value="${attribute1}">   	
         </c:forEach>
         </div>
         <div class="btn-container">
@@ -93,7 +92,7 @@
       </form>
       </div>
     </div>
-    <div class="review-section">
+    <div id="review-section" class="review-section">
       <div class="display-reviews">
         <div class="review-head">Reviews</div>
         <c:forEach var="rev" items="${review}">
@@ -114,21 +113,81 @@
       </div>
     
       <form action="${pageContext.request.contextPath}/product/detail?id=${param.id}" method="post" class="add-reviews">
+      
+      <input type="hidden" name="action" value="${param.mode == 'edit' ? 'editReview' : 'addReview'}">
+      
        <p class="leave-review">${not empty userReview.review_description ? 'Your Review' : 'Leave a review'}</p>
         <div class="review-rating">
           <div class="review-stars">
-            <button type="button" class="review-star" data-rating="1"><i class="fa-solid fa-star"></i></button>
-            <button type="button" class="review-star" data-rating="2"><i class="fa-solid fa-star"></i></button>
-            <button type="button" class="review-star" data-rating="3"><i class="fa-solid fa-star"></i></button>
-            <button type="button" class="review-star" data-rating="4"><i class="fa-solid fa-star"></i></button>
-            <button type="button" class="review-star" data-rating="5"><i class="fa-solid fa-star"></i></button>
+            <button 
+            type="button" 
+            class="review-star" data-rating="1" 
+            ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}>
+            <i class="fa-solid fa-star"></i>
+            </button>
+            <button 
+            type="button" 
+            class="review-star" 
+            data-rating="2" 
+            ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}>
+            <i class="fa-solid fa-star"></i>
+            </button>
+            <button 
+            type="button" 
+            class="review-star" 
+            data-rating="3" 
+            ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}>
+            <i class="fa-solid fa-star"></i>
+            </button>
+            <button 
+            type="button" 
+            class="review-star" 
+            data-rating="4" 
+            ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}>
+            <i class="fa-solid fa-star"></i>
+            </button>
+            <button 
+            type="button" 
+            class="review-star" 
+            data-rating="5" 
+            ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}>
+            <i class="fa-solid fa-star"></i>
+            </button>
           </div>
           <p class="rating-text">0/5 stars</p>
-          <input type="hidden" name="rating" class="rating-input" value="${not empty userReview.rating ? userReview.rating : 0 }">
+          <input type="hidden" name="rating" class="rating-input" value="${not empty persistedRating ? persistedRating : not empty userReview.rating ? userReview.rating : 0}">
         </div>
-        <textarea placeholder="Share your experience with the product.." name="newReview" id="" class="review-txtarea">${userReview.review_description}</textarea>
+        <textarea 
+        ${!reviewDone || param.mode == 'edit' ? '' : 'disabled'}
+        placeholder="Share your experience with the product.." 
+        name="newReview" id="" 
+        class="review-txtarea">${not empty persistedReview ? persistedReview : userReview.review_description}</textarea>
         
+        <c:if test="${not empty requestScope.errorMessage}">
+            	<p class="errorMsg">${requestScope.errorMessage}</p>
+        </c:if>
+        <c:if test="${!reviewDone}">
         <button class="sub-btn">Submit</button>
+        </c:if>
+        <c:if test="${reviewDone}">
+        <c:if test="${param.mode != 'edit'}">
+        <a href="?id=${param.id }&mode=edit#review-section" class="btn-edit">
+            <i class="fa-solid fa-pen"></i>
+            Edit Review
+        </a>
+    	</c:if>
+    	<c:if test="${param.mode == 'edit'}">
+        <div class="buttonGroup">
+        <button type="submit" class="btn-edit">
+            <i class="fa-solid fa-save"></i>
+            Update Review
+        </button>
+        <a class="btn-cancel" href="?id=${param.id }#review-section" class="btn-cancel">
+           <i class="fa-solid fa-xmark"></i> Cancel
+        </a>
+        </div>
+    	</c:if>
+        </c:if>
         
       </form>
        
@@ -207,6 +266,10 @@
               item.classList.toggle("active", Number(item.dataset.rating) <= existingRating);
           });
           ratingText.textContent = existingRating + "/5 stars";
+      }
+      const errorMsg = document.querySelector(".errorMsg");
+      if (errorMsg) {
+          document.getElementById("review-section").scrollIntoView({ behavior: "smooth" });
       }
     </script>
     <script >

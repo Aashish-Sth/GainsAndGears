@@ -1,5 +1,6 @@
 package com.services;
 
+import java.net.Authenticator.RequestorType;
 import java.util.List;
 
 import com.dao.ReviewDAO;
@@ -51,13 +52,27 @@ public class ReviewService {
 	    }
 	}
 	
-	public void retriveUserReview(int product_id, int user_id, HttpServletRequest request) {
+	public Boolean retriveUserReview(int product_id, int user_id, HttpServletRequest request) {
 		ReviewDAO dao = new ReviewDAO();
 		try {
 			ReviewModel userReview = dao.retriveUserReview(product_id, user_id);
 			request.setAttribute("userReview", userReview);
+			return userReview != null;
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public void updateReview(int user_id, int product_id, String review_description, double rating) {
+		ReviewDAO dao = new ReviewDAO();
+		try {
+			dao.updateReview(user_id, product_id, review_description, rating); 
 		}
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-	}}
+	}
+	
+}

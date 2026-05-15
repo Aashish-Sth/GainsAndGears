@@ -108,4 +108,26 @@ public class ReviewDAO {
 		return review;
 	}
 	
+	public boolean updateReview(int user_id, int product_id, String review_description, double rating) throws Exception {
+	    Connection con = DBconfig.getConnection();
+
+	    String query = "UPDATE reviews "
+	                 + "SET review_description = ?, rating = ?, review_timestamp = CURDATE() "
+	                 + "WHERE user_id = ? AND product_id = ?";
+
+	    PreparedStatement pst = con.prepareStatement(query);
+
+	    pst.setString(1, review_description);
+	    pst.setDouble(2, rating);
+	    pst.setInt(3, user_id);
+	    pst.setInt(4, product_id);
+
+	    int rowsUpdated = pst.executeUpdate();
+
+	    pst.close();
+	    con.close();
+
+	    return rowsUpdated > 0;
+	}
+	
 }
