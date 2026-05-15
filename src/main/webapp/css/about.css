@@ -54,7 +54,7 @@ body {
 
 
 .banner {
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('about_us.png');
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%=request.getContextPath()%>/assets/about_us.png');
     background-size: cover;
     background-position: center;
     height: 450px;

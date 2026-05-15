@@ -45,7 +45,7 @@
                     
                     <div class="team-card">
                         <div class="member-img">
-                             <img src="T1.jpg" alt="Dilip Shrestha">
+                            <img src="<%=request.getContextPath()%>/assets/T1.jpg" alt="Dilip Shrestha">
                         </div>
                          <div class="member-info">
                             <h3>Dilip Shrestha</h3>
@@ -60,7 +60,8 @@
 
                     <div class="team-card">
                         <div class="member-img">
-                             <img src="T2.jpg" alt="Asheesh Shrestha">
+                             <img src="<%=request.getContextPath()%>/assets/T2.jpg" alt="Asheesh Shrestha">
+                         
                         </div>
                          <div class="member-info">
                             <h3>Asheesh Shrestha</h3>
@@ -75,7 +76,7 @@
 
                     <div class="team-card active">
                         <div class="member-img">
-                             <img src="T3.jpg" alt="Upakar Shrestha">
+                           <img src="<%=request.getContextPath()%>/assets/T3.jpg" alt="Upakar Shrestha">
                         </div>
                         <div class="member-info">
                             <h3>Upakar Shrestha</h3>
@@ -90,7 +91,7 @@
 
                     <div class="team-card">
                         <div class="member-img">
-                            <img src="T4.jpg" alt="Arshnav KC">
+                          <img src="<%=request.getContextPath()%>/assets/T4.jpg" alt="Arshnav KC">
                         </div>
                          <div class="member-info">
                             <h3>Arshnav KC</h3>
@@ -104,7 +105,7 @@
                     </div>
                      <div class="team-card">
                         <div class="member-img">
-                             <img src="T5.jpg" alt="Krish Shrestha">
+                        <img src="<%=request.getContextPath()%>/assets/T5.jpg" alt="Krish Shrestha">
                         </div>
                          <div class="member-info">
                             <h3>Krish Shrestha</h3>
