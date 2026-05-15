@@ -11,6 +11,8 @@ public class ReviewModel {
 	private double avg_rating;
 	private int total_reviews;
 	private String userImg;
+	private int[] ratingDist;
+	private double[] ratingPct;
 	
 	public int getReview_id() {
 		return review_id;
@@ -59,6 +61,18 @@ public class ReviewModel {
 	}
 	public void setUserImg(String userImg) {
 		this.userImg = userImg;
+	}
+	public int[] getRatingDist() {
+		return ratingDist;
+	}
+	public void setRatingDist(int[] ratingDist) {
+		this.ratingDist = ratingDist;
+	}
+	public double[] getRatingPct() {
+		return ratingPct;
+	}
+	public void setRatingPct(double[] ratingPct) {
+		this.ratingPct = ratingPct;
 	}
 	
 	
