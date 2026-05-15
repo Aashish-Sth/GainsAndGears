@@ -75,7 +75,7 @@
                             <option value="" disabled="disabled" hidden="hidden">Select Brand</option>
                             <option value="YoungLA" ${product.product_brand == 'YoungLA' ? 'selected' : ''}>YoungLA</option>
                             <option value="Gymshark" ${product.product_brand == 'Gymshark' ? 'selected' : ''}>Gymshark</option>
-                            <option value="Furaak" ${product.product_brand == 'Furaak' ? 'selected' : ''}>Furaak</option>
+                            <option value="Fuaark" ${product.product_brand == 'Fuaark' ? 'selected' : ''}>Fuaark</option>
                         </select>
                     </div>
                     <!--Supplement Brand-->

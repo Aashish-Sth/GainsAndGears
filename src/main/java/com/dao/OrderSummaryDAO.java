@@ -10,7 +10,7 @@ public class OrderSummaryDAO {
 	public ResultSet fetchFullOrderSummary(int orderId) throws Exception{
 		Connection con = DBconfig.getConnection();
 		
-		String query ="SELECT \r\n"
+		String query ="SELECT "
 				+ "    CONCAT(u.user_first_name, ' ', u.user_last_name) AS full_name, "
 				+ "    u.user_email, "
 				+ "    u.user_phone_number, "

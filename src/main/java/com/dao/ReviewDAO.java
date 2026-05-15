@@ -9,7 +9,7 @@ import com.model.ReviewModel;
 import com.utils.DBconfig;
 
 public class ReviewDAO {
-	public ArrayList<ReviewModel> retriveProductReview(int productId) throws Exception{
+	public ArrayList<ReviewModel> retriveProductReview(int product_id,int user_id) throws Exception{
 		Connection con = DBconfig.getConnection();
 		String query = "SELECT "
 				+ "    r.review_id, "
@@ -21,10 +21,12 @@ public class ReviewDAO {
 				+ "FROM reviews r "
 				+ "JOIN users u ON r.user_id = u.user_id "
 				+ "WHERE r.product_id = ? "
+				+ "AND r.user_id <> ? "
 				+ "ORDER BY r.review_timestamp DESC";
 		
 		PreparedStatement pst = con.prepareStatement(query);
-		pst.setInt(1, productId);
+		pst.setInt(1, product_id);
+		pst.setInt(2, user_id);
 		ResultSet rs = pst.executeQuery();
 		ArrayList<ReviewModel> ratings = new ArrayList<>();
 		ReviewModel review = null;
@@ -58,4 +60,52 @@ public class ReviewDAO {
 		}
 		return overview;
 	}
+	
+	public void addReview(int user_id, int product_id, String review_description, double rating) throws Exception {
+	    Connection con = DBconfig.getConnection();
+	    String query = "INSERT INTO reviews (user_id, product_id, review_description, review_timestamp, rating) "
+	                 + "VALUES (?, ?, ?, CURDATE(), ?)";
+	    PreparedStatement pst = con.prepareStatement(query);
+	    pst.setInt(1, user_id);
+	    pst.setInt(2, product_id);
+	    pst.setString(3, review_description);
+	    pst.setDouble(4, rating);
+	    pst.executeUpdate();
+	    pst.close();
+	    con.close();
+}
+	
+	public ReviewModel retriveUserReview(int product_id,int user_id) throws Exception{
+		Connection con = DBconfig.getConnection();
+		String query = "SELECT "
+				+ "    r.review_id, "
+				+ "    r.rating, "
+				+ "    r.review_description, "
+				+ "    r.review_timestamp, "
+				+ "    CONCAT(u.user_first_name, ' ', u.user_last_name) AS reviewer_name, "
+				+ "    u.user_img "
+				+ "FROM reviews r "
+				+ "JOIN users u ON r.user_id = u.user_id "
+				+ "WHERE r.product_id = ? "
+				+ "AND r.user_id = ? "
+				+ "ORDER BY r.review_timestamp DESC";
+		
+		PreparedStatement pst = con.prepareStatement(query);
+		pst.setInt(1, product_id);
+		pst.setInt(2, user_id);
+		ResultSet rs = pst.executeQuery();
+		ReviewModel review = null;
+		if(rs.next())
+		{
+			review = new ReviewModel();
+			review.setReview_id(rs.getInt("review_id"));
+			review.setRating(rs.getDouble("rating"));
+			review.setReview_description(rs.getString("review_description"));
+			review.setReview_timestamp(rs.getDate("review_timestamp"));
+			review.setReviewer_name(rs.getString("reviewer_name"));
+			review.setUserImg(rs.getString("user_img"));
+		}
+		return review;
+	}
+	
 }
