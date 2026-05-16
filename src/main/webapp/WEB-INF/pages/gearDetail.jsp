@@ -62,7 +62,7 @@
           <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
         <c:if test="${not empty sessionScope.errorMessage}">
-	        <p class="errorMsg">${sessionScope.errorMessage}</p>
+	        <p class="errorMessage">${sessionScope.errorMessage}</p>
 	         <c:remove var="errorMessage" scope="session"/>
 		</c:if>
         <p class="price">Nrs.${product.product_price}</p>
@@ -288,6 +288,7 @@
           });
           ratingText.textContent = existingRating + "/5 stars";
       }
+      
       const errorMsg = document.querySelector(".errorMsg");
       if (errorMsg) {
           document.getElementById("review-section").scrollIntoView({ behavior: "smooth" });
