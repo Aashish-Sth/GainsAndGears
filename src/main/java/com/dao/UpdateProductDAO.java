@@ -74,46 +74,43 @@ public class UpdateProductDAO {
         con.close();
     }
 	
-	public void replaceVariants(int product_id, List<String> attr1Values, List<String> attr2Values )
-			throws Exception {
- 
-        Connection con = DBconfig.getConnection();
-        con.setAutoCommit(false);
-        String delete = "DELETE FROM product_variant WHERE product_id = ?";
-        String insert = "INSERT INTO product_variant (product_id, attribute_1, attribute_2) "
-                + "VALUES (?, ?, ?)";
- 
-        try {
-            //deleting the existing variants for this product
-            PreparedStatement pst1 = con.prepareStatement(delete);
-            pst1.setInt(1, product_id);
-            pst1.executeUpdate();
-            pst1.close();
- 
-            //inserting one row per (attr1, attr2) combination
-            PreparedStatement pst2 = con.prepareStatement(insert);
- 
-            for (String a1 : attr1Values) {
-                for (String a2 : attr2Values) {
-                	pst2.setInt   (1, product_id);
-                	pst2.setString(2, a1);
-                	pst2.setString(3, a2);
-                	pst2.addBatch();
-                }
-            }
-            pst2.executeBatch();
-            pst2.close();
- 
-            con.commit();
- 
-        } catch (Exception e) {
-            con.rollback();   //reverts both delete and inserts on any error
-            throw e;
-        } finally {
-            con.setAutoCommit(true);
-            con.close();
-        }
-    }
+	public void replaceVariants(int product_id, List<String> attr1Values, List<String> attr2Values)
+	        throws Exception {
+
+	    Connection con = DBconfig.getConnection();
+	    con.setAutoCommit(false);
+	    String delete = "DELETE FROM product_variant WHERE product_id = ?";
+	    String insert = "INSERT INTO product_variant (product_id, attribute_1, attribute_2) "
+	            + "VALUES (?, ?, ?)";
+
+	    try {
+	        PreparedStatement pst1 = con.prepareStatement(delete);
+	        pst1.setInt(1, product_id);
+	        pst1.executeUpdate();
+	        pst1.close();
+
+	        PreparedStatement pst2 = con.prepareStatement(insert);
+	        for (String a1 : attr1Values) {
+	            for (String a2 : attr2Values) {
+	                pst2.setInt(1, product_id);
+	                pst2.setString(2, a1);
+	                pst2.setString(3, a2);
+	                pst2.addBatch();
+	            }
+	        }
+	        pst2.executeBatch();
+	        pst2.close();
+
+	        con.commit();
+
+	    } catch (Exception e) {
+	        con.rollback();
+	        throw e;
+	    } finally {
+	        con.setAutoCommit(true);
+	        con.close();
+	    }
+	}
 	
 	public List<String> getAttr1Values(int product_id) throws Exception {
 	    Connection con = DBconfig.getConnection();

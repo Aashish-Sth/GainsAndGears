@@ -72,58 +72,67 @@ body {
   gap: 6px;
 }
 
-.sucessMsg{
-	position: fixed;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #1a7a4a;
-    color: #fff;
-    padding: 0.9rem 1.5rem;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    opacity: 1;
-    transition: all 0.6s ease;
-    z-index: 100;
-    white-space: nowrap;
+.sucessMsg {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1a7a4a;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: all 0.6s ease;
+  z-index: 100;
+  white-space: nowrap;
 }
 
 .sucessMsg.hide {
-    opacity: 0;
+  opacity: 0;
 }
 
 .select-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-size: 12px;
-    font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
 }
 
 .select-wrapper .fa-chevron-down {
-    font-size: 10px;
-    pointer-events: none;
+  font-size: 10px;
+  pointer-events: none;
 }
 
 .status-select {
-    border: none;
-    background: transparent;
-    font-family: "Poppins", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-.completed-badge { background-color: #d4edda; color: #155724; }
-.shipped-badge   { background-color: #e8d5f5; color: #6a1b9a; }
-.confirmed-badge { background-color: #fff3cd; color: #856404; }
+.completed-badge {
+  background-color: #d4edda;
+  color: #155724;
+}
+.shipped-badge {
+  background-color: #e8d5f5;
+  color: #6a1b9a;
+}
+.confirmed-badge {
+  background-color: #fff3cd;
+  color: #856404;
+}
 .number {
   font-size: 28px;
   font-weight: 600;
@@ -264,9 +273,9 @@ body {
   cursor: pointer;
 }
 
-.activeBtn{
-	background-color: black;
-	color: #ffffff;
+.activeBtn {
+  background-color: black;
+  color: #ffffff;
 }
 
 .btn:hover {
@@ -320,4 +329,105 @@ body {
 .emptyOrderText p.main {
   color: grey;
   font-weight: 500;
+}
+
+@media (max-width: 1100px) {
+  .page-content {
+    margin-left: 270px;
+    margin-right: 16px;
+  }
+
+  .page-title,
+  .main-card,
+  .table-container {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-card {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .page-content {
+    margin: 86px 14px 28px;
+  }
+
+  .page-title {
+    margin: 0 0 16px;
+    font-size: 20px;
+  }
+
+  .main-card,
+  .table-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .main-card {
+    gap: 12px;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 8px);
+  }
+
+  .table-container {
+    padding: 16px;
+  }
+
+  .table-top {
+    align-items: stretch;
+  }
+
+  .choice {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1 1 calc(50% - 10px);
+    min-width: 120px;
+  }
+
+  .sucessMsg {
+    top: 72px;
+    width: calc(100% - 28px);
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .page-content {
+    margin-top: 78px;
+  }
+
+  .main-card {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-width: 0;
+  }
+
+  .number {
+    font-size: 24px;
+  }
+
+  .table-container {
+    padding: 12px;
+  }
+
+  .btn {
+    flex-basis: 100%;
+  }
 }
