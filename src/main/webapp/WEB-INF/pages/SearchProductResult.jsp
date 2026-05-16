@@ -11,10 +11,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <jsp:include page="navbar.jsp" />
+    <style>
+ 
+.no-reviews {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+.matching {
+    text-align: center;     
+    font-size: 28px;         
+    font-weight: 600;        
+    color: #222222;          
+    margin: 40px auto 20px; 
+    font-family: 'Poppins', sans-serif;
+}
+
+.no-review-img {
+    width: 100%;
+    max-width: 200px; 
+    margin-bottom: 20px;
+}
+
+
+.no-review-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0 0 10px 0;
+}
+
+
+.no-review-text {
+    font-size: 16px;
+    color: #666666;
+    margin: 0;
+    line-height: 1.5;
+}
+</style>
 </head>
 <body>
 
+<c:if test="${empty productList}">
+          <div class="no-reviews">
+            <img class="no-review-img" src="<%=request.getContextPath()%>/assets/noReviews.png" alt="No reviews yet">
+            <p class="no-review-title">Whoops!</p>
+            <p class="no-review-text">There seem to be no matching products</p>
+          </div>
+        </c:if>
+        
+<c:if test="${not empty productList}">
 
+            <p class="matching">Here's what we found for you</p>
+         
+    
+        </c:if>
+        
      <div class="card">
         <c:forEach var="p" items="${productList}">
         <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
