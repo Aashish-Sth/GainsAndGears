@@ -23,6 +23,14 @@
     <div class="tabSection" id="bagSection">
         <c:choose>
         
+        	<c:when test="${empty sessionScope.loggedInUser}">
+	            <div class="emptyMsg">
+	                <i class="fa-regular fa-circle-user" style="font-size: 40px; margin-bottom: 12px; color: #ccc;"></i>
+	                <p>Please log in to view your bag</p>
+	                <a href="${pageContext.request.contextPath}/login" class="login">LOG IN</a>
+	            </div>
+	        </c:when>
+        
             <c:when test="${empty cartItems}">
                 <p class="emptyMsg">Your bag is empty.</p>
             </c:when>
@@ -82,7 +90,8 @@
                 </c:forEach>
             </c:otherwise>
         </c:choose>
-
+        
+		<c:if test="${not empty sessionScope.loggedInUser}">
         <div class="cartFooter">
             <div class="footerRow">
                 <p class="footerLabel">Total</p>
@@ -97,12 +106,20 @@
             </form>
             
         </div>
+        </c:if>
     </div>
 
 
 	<!-- Wishlist Section -->
     <div class="tabSection" id="wishSection" style="display: none;">
         <c:choose>
+        	<c:when test="${empty sessionScope.loggedInUser}">
+	            <div class="emptyMsg">
+	                <i class="fa-regular fa-heart" style="font-size: 40px; margin-bottom: 12px; color: #ccc;"></i>
+	                <p>Please log in to view your wishlist</p>
+	                <a href="${pageContext.request.contextPath}/login" class="login">LOG IN</a>
+	            </div>
+	        </c:when>
             <c:when test="${empty wishlistItems}">
                 <p class="emptyMsg">Your wishlist is empty.</p>
             </c:when>

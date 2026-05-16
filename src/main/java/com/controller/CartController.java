@@ -115,16 +115,16 @@ public class CartController extends HttpServlet {
                 String attribute1 = request.getParameter("attribute1");
                 
                 if (attribute1 == null || attribute2 == null) {
-                    request.getSession().setAttribute("errorMessage", "Please select size and color/flavor.");
+                	session.setAttribute("errorMessage", "Please select size and color/flavor.");
                     response.sendRedirect(request.getContextPath() + "/product/detail?id=" + product_id);
                     return;
                 }
                 
                 boolean success = service.addItemToCart(user_id, product_id, attribute1, attribute2);
                 if (success) {
-                    request.getSession().setAttribute("successMessage", "Item added to bag successfully!");
+                	session.setAttribute("successMessage", "Item added to bag successfully!");
                 } else {
-                    request.getSession().setAttribute("successMessage", "Please select all options before adding to bag.");
+                	session.setAttribute("successMessage", "Please select all options before adding to bag.");
                 }
             }
 
@@ -133,10 +133,10 @@ public class CartController extends HttpServlet {
                 // User clicked the wishlist 
             	if (service.isInWishlist(user_id, product_id)) {
                     service.removeFromWishlist(user_id, product_id);
-                    request.getSession().setAttribute("successMessage", "Removed from wishlist!");
+                    session.setAttribute("successMessage", "Removed from wishlist!");
                 } else {
                     service.addToWishlist(user_id, product_id);
-                    request.getSession().setAttribute("successMessage", "Added to wishlist!");
+                    session.setAttribute("successMessage", "Added to wishlist!");
                 }
             }
             
@@ -147,7 +147,7 @@ public class CartController extends HttpServlet {
                 String attribute1 = request.getParameter("attribute1");
 
                 if (attribute1 == null || attribute2 == null) {
-                    request.getSession().setAttribute("errorMessage", "Please select size and color/flavor.");
+                    session.setAttribute("errorMessage", "Please select size and color/flavor.");
                     response.sendRedirect(request.getContextPath() + "/product/detail?id=" + product_id);
                     return;
                 }
