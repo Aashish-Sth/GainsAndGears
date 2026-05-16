@@ -22,6 +22,9 @@
 <c:if test="${param.msg == 'success'}">
 	    <div class="sucessMsg" id="sucessMsg">Welcome back, ${sessionScope.loggedInUser.user_first_name}!</div>
 	</c:if>
+	<c:if test="${param.msg == 'orderplaced'}">
+    <div class="sucessMsg" id="sucessMsg">Your order was successfully placed!</div>
+</c:if>
 	<jsp:include page="navbar.jsp" />
     <!-- Main Section -->
     <div class="main-container">

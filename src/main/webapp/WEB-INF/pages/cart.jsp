@@ -92,7 +92,10 @@
                 <p class="footerLabel">Shipping</p>
                 <p class="footerShipping">Cost will appear on check out</p>
             </div>
+            <form action="${pageContext.request.contextPath}/Checkout" method="get">
             <button class="checkoutBtn">CHECKOUT</button>
+            </form>
+            
         </div>
     </div>
 

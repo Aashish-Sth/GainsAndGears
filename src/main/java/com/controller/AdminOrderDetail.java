@@ -31,7 +31,9 @@ public class AdminOrderDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 
 		 String orderIdParam = request.getParameter("orderId");
+		 System.out.println("DEBUG orderIdParam: " + orderIdParam);
 		 if (orderIdParam == null || orderIdParam.isEmpty()) {
+			 System.out.println("DEBUG: orderIdParam is null/empty, redirecting");
 		        response.sendRedirect(request.getContextPath() + "/admin/orders");
 		        return;
 		 }
@@ -39,7 +41,9 @@ public class AdminOrderDetail extends HttpServlet {
 		    int orderId = Integer.parseInt(request.getParameter("orderId"));
 		    OrderSummaryService service = new OrderSummaryService();
 		    OrderSummaryModel order = service.retriveOrderSummary(orderId);
+		    System.out.println("DEBUG order: " + order);
 		    if (order == null) {
+		    	System.out.println("DEBUG order: " + order);
 		        // order exists in orders table but has no details — redirect back
 		        response.sendRedirect(request.getContextPath() + "/admin/orders");
 		        return;

@@ -107,8 +107,7 @@
           <div class="no-reviews">
             <img class="no-review-img" src="<%=request.getContextPath()%>/assets/noReviews.png" alt="No reviews yet">
             <p class="no-review-title">Whoops!</p>
-            <p class="no-review-text">There seem to be no reviews yet.</p>
-            <p class="no-review-text">Try leaving a review!</p>
+            <p class="no-review-text">There seem to be no reviews from other's yet.</p>
           </div>
         </c:if>
         
