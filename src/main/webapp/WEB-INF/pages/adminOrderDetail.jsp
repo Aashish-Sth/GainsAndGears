@@ -33,6 +33,7 @@
           <input disabled value="${order.fullName}" type="text" />
         </div>
         <div class="field">
+        <label>Email <span>*</span></label>
           <input disabled value="${order.userEmail}" type="email" />
         </div>
       </div>

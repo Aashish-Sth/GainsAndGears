@@ -31,6 +31,7 @@ public class ChangePasswordController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("pageKey", "password");
 		request.getRequestDispatcher("/WEB-INF/pages/changepassword.jsp").forward(request, response);
 	}
 

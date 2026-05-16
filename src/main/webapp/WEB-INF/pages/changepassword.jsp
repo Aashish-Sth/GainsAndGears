@@ -57,7 +57,7 @@
 
          <div class="form-actions">
           <button type="button" class="btn-discard" onclick="window.history.back()">Discard</button>
-          <button type="submit" class="btn-apply">Apply Changes</button>
+          <button type="submit" class="btn-apply">Update Password</button>
         </div>
 
       </div>
