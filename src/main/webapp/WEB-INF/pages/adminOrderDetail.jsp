@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,6 @@
           <input disabled value="${order.fullName}" type="text" />
         </div>
         <div class="field">
-          <label>Email</label>
           <input disabled value="${order.userEmail}" type="email" />
         </div>
       </div>
@@ -64,19 +64,19 @@
 
       <div class="payment">
         <label class="pay-card ">
-          <input type="radio" name="pay" ${order.paymentMethod == 'QR' ? 'checked' : ''} />
+          <input disabled type="radio" name="pay" ${order.paymentMethod == 'QR' ? 'checked' : ''} />
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="3" height="3"/><rect x="18" y="14" width="3" height="3"/><rect x="14" y="18" width="3" height="3"/><rect x="18" y="18" width="3" height="3"/></svg>
           <p>Qr Payment</p>
         </label>
 
         <label class="pay-card">
-          <input type="radio" name="pay" ${order.paymentMethod == 'Credit/Debit' ? 'checked' : ''} />
+          <input disabled type="radio" name="pay" ${order.paymentMethod == 'Credit/Debit' ? 'checked' : ''} />
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
           <p>Cash On Delivery</p>
         </label>
 
         <label class="pay-card">
-          <input type="radio" name="pay"  ${order.paymentMethod == 'COD' ? 'checked' : ''} />
+          <input disabled type="radio" name="pay"  ${order.paymentMethod == 'COD' ? 'checked' : ''} />
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/><rect x="6" y="14" width="4" height="2"/></svg>
           <p>Credit/Debit Card</p>
         </label>
@@ -89,7 +89,8 @@
       <p class="summary-title">Order Summary</p>
       <c:forEach var="item" items="${order.items}">
       <div class="item">
-        <img src="../<%=request.getContextPath()%>/assets/wheyXtrix.png" alt="product" />
+      
+         <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(item.productImage)}" alt="${item.productName}" />
         <div class="item-info">
           <p class="item-name">${item.productName}</p>
            <p class="item-size">${item.attribute1} - ${item.attribute2}</p>
@@ -103,18 +104,18 @@
       <div class ="product-info">
       <div class="divider"></div>
 
-      <div class="total-row">
-        <span>Sub Total</span>
-        <span>NRS ${order.totalPrice}</span>
-      </div>
-      <div class="total-row">
-        <span>Shipping</span>
-        <span>NRS 00.00</span>
-      </div>
-      <div class="total-row bold">
-        <span>Total</span>
-        <span>NRS ${order.totalPrice}</span>
-      </div>
+	      <div class="total-row">
+	    <span>Sub Total</span>
+	    <span>NRS ${order.totalPrice - order.shippingCost}</span>
+	</div>
+	<div class="total-row">
+	    <span>Shipping</span>
+	    <span>NRS ${order.shippingCost}</span>
+	</div>
+	<div class="total-row bold">
+	    <span>Total</span>
+	    <span>NRS ${order.totalPrice}</span>
+	</div>
 
     </div>
 </div>

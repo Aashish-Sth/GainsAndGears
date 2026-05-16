@@ -71,6 +71,17 @@ public class AdminOrderController extends HttpServlet {
 		AdminOrderService service = new AdminOrderService();
 		
 		try {
+			String updateOrderId = request.getParameter("updateOrderId");
+	        if (updateOrderId != null && !updateOrderId.isEmpty()) {
+	            int orderId = Integer.parseInt(updateOrderId);
+	            String newStatus = request.getParameter("newStatus");
+	            service.updateOrderStatus(orderId, newStatus);
+	            request.getSession().setAttribute("successMessage", "Order status updated successfully!");
+	            response.sendRedirect(request.getContextPath() + "/admin/orders");
+	            return;
+	        }
+			
+			
 			String filter = request.getParameter("filter");
 			if(filter == null || filter.isEmpty()) {
 				filter = "all";

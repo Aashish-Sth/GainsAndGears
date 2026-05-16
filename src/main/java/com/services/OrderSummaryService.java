@@ -27,11 +27,16 @@ public class OrderSummaryService {
 			generalDetail.setLandmark(rs.getString("landmark"));
 			generalDetail.setPaymentMethod(rs.getString("payment_method"));
 			generalDetail.setTotalPrice(rs.getInt("total_price"));
+			if (generalDetail != null) {
+			    generalDetail.setItems(items);
+			    generalDetail.setShippingCost(399);
+			}
 		}
 		OrderItemModel item = new OrderItemModel();
         item.setProductName(rs.getString("product_name"));
         item.setAttribute1(rs.getString("attribute_1"));
         item.setAttribute2(rs.getString("attribute_2"));
+        item.setProductImage(rs.getBytes("product_image"));
         item.setQuantity(rs.getInt("quantity"));
         item.setPrice(rs.getInt("price"));
         items.add(item);

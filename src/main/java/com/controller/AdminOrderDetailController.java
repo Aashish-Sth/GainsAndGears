@@ -14,13 +14,13 @@ import com.services.OrderSummaryService;
  * Servlet implementation class AdminOrderDetail
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/admin/orders/detail" })
-public class AdminOrderDetail extends HttpServlet {
+public class AdminOrderDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminOrderDetail() {
+    public AdminOrderDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }

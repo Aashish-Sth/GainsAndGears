@@ -20,6 +20,10 @@
 
 <body>
 <jsp:include page="adminSideBar.jsp" />
+	<c:if test="${not empty sessionScope.successMessage}">
+	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
+	    <c:remove var="successMessage" scope="session" />
+	</c:if>
     <div class="page-content">
         <h1 class="page-title">Orders</h1>
 		<c:if test="${not empty orderList}">
@@ -92,11 +96,23 @@
                     <td>${order.fullName}</td>
                     <td><span class="badge ${order.paymentStatus == 'Success' ? 'success-badge' : 'cod-badge'}">${order.paymentStatus}</span></td>
                     <td>${order.orderDate}</td>
-                    <td><span 
-                    class="badge ${order.orderStatus == 'Completed' ? 'completed-badge' :
-                     order.orderStatus == 'Shipped' ? 'shipped-badge' : 'confirmed-badge'
-                     } "
-                    >${order.orderStatus}</span></td>
+                    <td>
+					    <form action="${pageContext.request.contextPath}/admin/orders" method="post">
+					        <input type="hidden" name="updateOrderId" value="${order.orderId}" />
+					        <div class="select-wrapper ${order.orderStatus == 'Completed' ? 'completed-badge' :
+					            order.orderStatus == 'Shipped' ? 'shipped-badge' : 'confirmed-badge'}">
+					            <select 
+					                name="newStatus" 
+					                class="status-select"
+					                onchange="this.form.submit()">
+					                <option value="Confirmed"  ${order.orderStatus == 'Confirmed'  ? 'selected' : ''}>Confirmed</option>
+					                <option value="Shipped"    ${order.orderStatus == 'Shipped'    ? 'selected' : ''}>Shipped</option>
+					                <option value="Completed"  ${order.orderStatus == 'Completed'  ? 'selected' : ''}>Completed</option>
+					            </select>
+					            <i class="fa-solid fa-chevron-down"></i>
+					        </div>
+					    </form>
+					</td>
                     <td><a style="color:black" href="${pageContext.request.contextPath}/admin/orders/detail?orderId=${order.orderId}"><i class="fa-solid fa-chevron-right"></i></a></td>
                 </tr>
                 </c:forEach>
@@ -121,5 +137,17 @@
 
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
+    <script>
+	const sucessMsg = document.getElementById('sucessMsg');
+	if (sucessMsg) {
+	    const url = new URL(window.location);
+	    url.searchParams.delete('msg');
+	    window.history.replaceState({}, '', url);
+	    setTimeout(() => {
+	        sucessMsg.classList.add('hide');
+	        setTimeout(() => sucessMsg.remove(), 600);
+	    }, 2000);
+	}
+	</script>
 </body>
 </html>

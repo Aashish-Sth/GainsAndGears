@@ -24,4 +24,23 @@ public class AdminOrdersDAO {
 		ResultSet rs = pst.executeQuery();
 		return rs;
 	}
+	
+	
+	public void updateOrderStatus(int orderId, String newStatus) throws Exception {
+	    Connection con = DBconfig.getConnection();
+	    String query;
+	    
+	    if (newStatus.equals("Completed")) {
+	        query = "UPDATE orders SET order_status = ?, payment_status = 'Success' WHERE order_id = ?";
+	    } else {
+	        query = "UPDATE orders SET order_status = ? WHERE order_id = ?";
+	    }
+	    
+	    PreparedStatement pst = con.prepareStatement(query);
+	    pst.setString(1, newStatus);
+	    pst.setInt(2, orderId);
+	    pst.executeUpdate();
+	    pst.close();
+	    con.close();
+	}
 }
