@@ -161,10 +161,25 @@
                 </div>
 
                 <div class="product">
-                    <label for="product_image">Image</label>
-                    <input type="file" id="product_image" name="product_image" hidden>
-                    <label for="product_image" class="upload-btn">Upload Product Photo</label>
-                </div>
+				    <label>Product Photo</label>
+				    
+				    <div class="photo-container">
+				        <c:choose>
+				            <c:when test="${not empty product_image_bytes}">
+				                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product_image_bytes)}" 
+				                     id="photoPreview" class="photo-preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
+				            </c:when>
+				            <c:otherwise>
+				                <img src="<%=request.getContextPath()%>/assets/default-product.jpg" 
+				                     id="photoPreview" class="photo-preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
+				            </c:otherwise>
+				        </c:choose>
+				    </div>
+				
+				    <!-- File Input -->
+				    <input type="file" id="product_image" name="product_image" hidden accept="image/*">
+				    <label for="product_image" class="upload-btn">Upload Product Photo</label>
+				</div>
 
             </form>
         </div>
@@ -205,6 +220,19 @@
 
 
         update();
+        
+     	// Live photo preview
+	    const fileInput = document.getElementById('product_image');
+	    if (fileInput) {
+	        fileInput.addEventListener('change', function () {
+	            const file = this.files[0];
+	            if (file) {
+	                const reader = new FileReader();
+	                reader.onload = e => document.getElementById('photoPreview').src = e.target.result;
+	                reader.readAsDataURL(file);
+	            }
+	        });
+	    }
     </script>
 </body>
 </html>
