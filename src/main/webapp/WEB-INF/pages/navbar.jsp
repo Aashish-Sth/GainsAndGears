@@ -68,15 +68,21 @@
 
 <div class="nav-search">
 
-<div class="nav-search">
 
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<input type="text" placeholder="What are you looking for...">
+ <form action="result" method="POST" class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="search" placeholder="Search by name..." value="${searchedName}">
+                    <button type="submit" style="display:none"></button>
+                </form>
 
 </div>
 
-</div>
+
+
+
+
+      
+
         <!-- User Info -->
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>

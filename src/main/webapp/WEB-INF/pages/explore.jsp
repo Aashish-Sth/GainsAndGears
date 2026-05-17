@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Base64" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,112 +11,59 @@
 <body>
 	<jsp:include page="navbar.jsp" />
     <div class="main-container">
-        <video src="<%=request.getContextPath()%>/assets/explorevideo.mp4" loop autoplay muted></video>
+        <video src="<%=request.getContextPath()%>/assets/gymsharkexplore.mp4" loop autoplay muted></video>
         <div class="main-content">
             <p>NEW IN <br> GYMSHARK ONYX V5</p>
-            <div class="shop-now">Check it out</div>
         </div>
     </div>
 
-    <div class="content-1">
-        <h2>ONYX</h2>
+	<div class="content-1">
+        <img src="<%=request.getContextPath()%>/assets/Gymshark_Limited_Logo.png"></img>
         <p>Forged in the dark. Built for the light.</p>
+    </div> 
+
+   <div class="card">
+        <c:forEach var="p" items="${gymsharkProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
+        <div class="card-item">
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
+            </div>
+        </a>
+            
+        </c:forEach>
     </div>
-
-    <div class="card">
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
-                <p>Gymshark - Graphic T-Shirt</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-    </div>
-    <div class="all-btn">CHCEK IT OUT</div>
+    
 
     <!-- Limited Stock Section -->
     <div class="main-container-2">
-        <img src="<%=request.getContextPath()%>/assets/homebg4.png" alt="Homepage">
+        <video src="<%=request.getContextPath()%>/assets/younglaexplore.mp4" loop autoplay muted></video>
         <div class="text">
             <p>SHORTS AS VERSATILE <br>AS YOUR TRAINING</p>
-            <div class="check-2">CHECK IT OUT</div>
         </div>
     </div>
     <br><br>
 
-    <div class="card">
+	<div class="content-2">
+	        <img src="<%=request.getContextPath()%>/assets/youngla-logo.png"></img>
+	        <p>Built from hunger. Worn with purpose.</p>
+	    </div> 
+	    
+     <div class="card">
+        <c:forEach var="p" items="${younglaProducts}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
-                <p>Gymshark - Graphic T-Shirt</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
+        </a>
+            
+        </c:forEach>
     </div>
 
-    <div class="all-btn">SHOP NOW</div>
+    
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <jsp:include page="footer.jsp" />

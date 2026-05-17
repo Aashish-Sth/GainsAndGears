@@ -6,6 +6,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
+import com.model.ProductModel;
+import com.services.ProductService;
 
 /**
  * Servlet implementation class ExploreController
@@ -25,10 +29,24 @@ public class ExploreController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/pages/explore.jsp").forward(request, response);
-	}
+    private ProductService productService = new ProductService();
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+           
+            List<ProductModel> younglaProducts = productService.getYounglaProducts();
+            List<ProductModel> gymsharkProducts = productService.getGymsharkProducts();
+            
+            request.setAttribute("younglaProducts", younglaProducts);
+            request.setAttribute("gymsharkProducts", gymsharkProducts);
+            
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        request.getRequestDispatcher("/WEB-INF/pages/explore.jsp").forward(request, response);
+    }
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
