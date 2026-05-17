@@ -34,13 +34,17 @@ public class OrderDAO {
 
     public void insertOrderDetails(int orderId, List<CartItemModel> items) throws Exception {
         Connection con = DBconfig.getConnection();
-        String query = "INSERT INTO order_details (order_id, variant_id, quantity, price) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO order_details (order_id, quantity, price, product_name, attribute_1, attribute_2, product_image) "
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pst = con.prepareStatement(query);
         for (CartItemModel item : items) {
             pst.setInt(1, orderId);
-            pst.setInt(2, item.getVariant_Id());
-            pst.setInt(3, item.getQuantity());
-            pst.setInt(4, (int)(item.getProduct_price() * item.getQuantity()));
+            pst.setInt(2, item.getQuantity());
+            pst.setInt(3, (int)(item.getProduct_price() * item.getQuantity()));
+            pst.setString(4, item.getProduct_name());
+            pst.setString(5, item.getAttribute_1());
+            pst.setString(6, item.getAttribute_2());
+            pst.setBytes(7, item.getProduct_image());
             pst.addBatch();
         }
         pst.executeBatch();

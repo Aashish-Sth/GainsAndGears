@@ -30,90 +30,55 @@ public class AdminOrderController extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdminOrderService service = new AdminOrderService();
-		try {
-		List <OrderModel> orderList = service.fetchOrders();
-		if(orderList == null) {
-			response.sendRedirect(request.getContextPath() + "/admin/orders?state=empty");
-		}
-		else
-		{
-		int totalOrders = service.totalNoOfOrders(orderList);
-		int completedOrders = service.noOfCompletedOrders(orderList);
-		int shippedOrders = service.noOfShippedOrders(orderList);
-		int confirmedOrders = service.noOfConfirmedOrders(orderList);
-		
-		request.setAttribute("activeFilter", "all");
-		request.setAttribute("orderList", orderList);
-		request.setAttribute("totalOrder", totalOrders);
-		request.setAttribute("completedOrders", completedOrders);
-		request.setAttribute("shippedOrders", shippedOrders);
-		request.setAttribute("confirmedOrders", confirmedOrders);
-		
-		
-		
-		request.getRequestDispatcher("/WEB-INF/pages/adminOrder.jsp").forward(request, response);
-		}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			response.getWriter().println("Error: " + e.getMessage());
-		}
-		
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AdminOrderService service = new AdminOrderService();
+        try {
+            List<OrderModel> orderList = service.fetchOrders();
+            
+            request.setAttribute("activeFilter", "all");
+            request.setAttribute("orderList", orderList);
+            request.setAttribute("totalOrder", service.totalNoOfOrders(orderList));
+            request.setAttribute("completedOrders", service.noOfCompletedOrders(orderList));
+            request.setAttribute("shippedOrders", service.noOfShippedOrders(orderList));
+            request.setAttribute("confirmedOrders", service.noOfConfirmedOrders(orderList));
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AdminOrderService service = new AdminOrderService();
-		
-		try {
-			String updateOrderId = request.getParameter("updateOrderId");
-	        if (updateOrderId != null && !updateOrderId.isEmpty()) {
-	            int orderId = Integer.parseInt(updateOrderId);
-	            String newStatus = request.getParameter("newStatus");
-	            service.updateOrderStatus(orderId, newStatus);
-	            request.getSession().setAttribute("successMessage", "Order status updated successfully!");
-	            response.sendRedirect(request.getContextPath() + "/admin/orders");
-	            return;
-	        }
-			
-			
-			String filter = request.getParameter("filter");
-			if(filter == null || filter.isEmpty()) {
-				filter = "all";
-			}
-			List <OrderModel> OrderList = service.fetchOrders();
-			
-			if(OrderList == null || OrderList.isEmpty()) {
-				response.sendRedirect(request.getContextPath() + "/admin/orders?state=empty");
-				return;
-			}
-			
-			List <OrderModel> filteredList;
-			
-			if(filter.equals("all")) {
-				filteredList = OrderList;
-			}
-			else {
-				filteredList = service.filterOrders(OrderList, filter);
-			}
-			
-			 request.setAttribute("activeFilter", filter);
-	         request.setAttribute("orderList", filteredList);
-	         request.setAttribute("totalOrder", service.totalNoOfOrders(OrderList));
-	         request.setAttribute("completedOrders", service.noOfCompletedOrders(OrderList));
-	         request.setAttribute("shippedOrders", service.noOfShippedOrders(OrderList));
-	         request.setAttribute("confirmedOrders", service.noOfConfirmedOrders(OrderList));
-	         
-	         request.getRequestDispatcher("/WEB-INF/pages/adminOrder.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/pages/adminOrder.jsp").forward(request, response);
 
-		} catch (Exception e) {
+        } catch(Exception e) {
             e.printStackTrace();
         }
-	}
+    }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        AdminOrderService service = new AdminOrderService();
+        try {
+            String updateOrderId = request.getParameter("updateOrderId");
+            if (updateOrderId != null && !updateOrderId.isEmpty()) {
+                int orderId = Integer.parseInt(updateOrderId);
+                String newStatus = request.getParameter("newStatus");
+                service.updateOrderStatus(orderId, newStatus);
+                request.getSession().setAttribute("successMessage", "Order status updated successfully!");
+                response.sendRedirect(request.getContextPath() + "/admin/orders");
+                return;
+            }
+
+            String filter = request.getParameter("filter");
+            if (filter == null || filter.isEmpty()) filter = "all";
+
+            List<OrderModel> allOrders = service.fetchOrders();
+            List<OrderModel> filteredList = filter.equals("all") ? allOrders : service.filterOrders(allOrders, filter);
+
+            request.setAttribute("activeFilter", filter);
+            request.setAttribute("orderList", filteredList);
+            request.setAttribute("totalOrder", service.totalNoOfOrders(allOrders));
+            request.setAttribute("completedOrders", service.noOfCompletedOrders(allOrders));
+            request.setAttribute("shippedOrders", service.noOfShippedOrders(allOrders));
+            request.setAttribute("confirmedOrders", service.noOfConfirmedOrders(allOrders));
+
+            request.getRequestDispatcher("/WEB-INF/pages/adminOrder.jsp").forward(request, response);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

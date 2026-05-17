@@ -210,6 +210,12 @@ body {
   font-size: 12px;
   font-weight: 500;
 }
+.no-filter-result {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+    font-size: 14px;
+}
 
 .success-badge {
   color: #16a34a;
