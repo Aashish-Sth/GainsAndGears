@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ page import="java.util.Base64" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Gains & Gears</title>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/updateProduct.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gains & Gears</title>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/updateProduct.css">
 </head>
 <body>
-<jsp:include page="adminSideBar.jsp" />
+
 <a href="<%=request.getContextPath()%>/admin/products" class="back"><i class="fa-solid fa-chevron-left"></i></a>
     <div class="page-content">
 
@@ -72,9 +74,9 @@
                         <label>Brand</label>
                         <select id="product_cloth_brand" name="product_cloth_brand" ${param.mode == 'edit' ? '' : 'disabled'}>
                             <option value="" disabled="disabled" hidden="hidden">Select Brand</option>
-                            <option value="youngLA" ${product.product_brand == 'youngLA' ? 'selected' : ''}>YoungLA</option>
-                            <option value="gymshark" ${product.product_brand == 'gymshark' ? 'selected' : ''}>Gymshark</option>
-                            <option value="furaak" ${product.product_brand == 'furaak' ? 'selected' : ''}>Furaak</option>
+                            <option value="YoungLA" ${product.product_brand == 'YoungLA' ? 'selected' : ''}>YoungLA</option>
+                            <option value="Gymshark" ${product.product_brand == 'Gymshark' ? 'selected' : ''}>Gymshark</option>
+                            <option value="Fuaark" ${product.product_brand == 'Fuaark' ? 'selected' : ''}>Fuaark</option>
                         </select>
                     </div>
                     <!--Supplement Brand-->
@@ -82,9 +84,9 @@
                         <label>Brand</label>
                         <select id="product_supplement_brand" name="product_supplement_brand" ${param.mode == 'edit' ? '' : 'disabled'}>
                             <option value="" disabled="disabled" hidden="hidden">Select Brand</option>
-                            <option value="ghost" ${product.product_brand == 'ghost' ? 'selected' : ''}>Ghost</option>
-                            <option value="feral" ${product.product_brand == 'feral' ? 'selected' : ''}>Feral</option>
-                            <option value="muscleblaze" ${product.product_brand == 'muscleblaze' ? 'selected' : ''}>MuscleBlaze</option>
+                            <option value="Ghost" ${product.product_brand == 'Ghost' ? 'selected' : ''}>Ghost</option>
+                            <option value="Feral" ${product.product_brand == 'Feral' ? 'selected' : ''}>Feral</option>
+                            <option value="MuscleBlaze" ${product.product_brand == 'MuscleBlaze' ? 'selected' : ''}>MuscleBlaze</option>
                         </select>
                     </div>
                 </div>
@@ -187,8 +189,18 @@
 
                 <div class="product">
                     <label>Photo</label>
-                    <img src="<%=request.getContextPath()%>/admin/products/image?id=${product.product_id}" 
-                         class="photo-preview">
+                    
+					<c:choose>
+				        <c:when test="${not empty product.product_image}">
+				            <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product.product_image)}" 
+				                 id="photoPreview" class="photo-preview">
+				        </c:when>
+				        <c:otherwise>
+				            <img src="<%=request.getContextPath()%>/assets/default-product.jpg" 
+				                 id="photoPreview" class="photo-preview">
+				        </c:otherwise>
+				    </c:choose>
+
                     <!-- Upload only available in edit mode -->
                     <c:if test="${param.mode == 'edit'}">
                         <input type="file" id="product_image" name="product_image" hidden>

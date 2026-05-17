@@ -26,10 +26,10 @@
         <a href="<%=request.getContextPath()%>/admin/users"><i class="fa-solid fa-users"></i>Users</a>
         <a href="<%=request.getContextPath()%>/admin/products"><i class="fa-solid fa-box-open"></i>Products</a>
         <div class="bottom-nav">
-        <div class="admin-pfp">
+        <a href="<%=request.getContextPath()%>/user" class="admin-pfp">
         <i class="fa-solid fa-user"></i>
         <span class="">Admin</span>
-        </div>
+        </a>
         <a href="${pageContext.request.contextPath}/login?action=logout" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
         </div>
       </nav>

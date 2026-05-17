@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Base64" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,134 +14,30 @@
 </head>
 <body>
 
-    <!-- Brand header -->
     <div class="brandHeader">
         <a href="<%=request.getContextPath()%>/gains" class="brandName">GAINS</a>
     	<a href="<%=request.getContextPath()%>/gears" class="brandName active">GEARS</a>
     </div>
 
-    <!-- Filter tabs -->
     <div class="filterTabs">
-        <a href="<%=request.getContextPath()%>/gearsOverview" class="filterBtn active">All</a>
-        <a href="<%=request.getContextPath()%>/productGearsHer" class="filterBtn">For Her</a>
-        <a href="<%=request.getContextPath()%>/productGearsHim" class="filterBtn">For Him</a>
+        <a href="<%=request.getContextPath()%>/gains" id="btn-all" class="filterBtn active">All</a>
+        <a href="<%=request.getContextPath()%>/female" id="btn-her" class="filterBtn" >For Her</a>
+        <a href="<%=request.getContextPath()%>/male" id="btn-him" class="filterBtn">For Him</a>
     </div>
 
-    <!-- Product grid -->
-    <div class="card">
-
+  <div class="card">
+        <c:forEach var="p" items="${products}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
         <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product1.jpg" alt="Gymshark - Element Sleeve">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product2.jpg" alt="Gymshark - Compression T-Shirt">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product3.jpg" alt="Gymshark - Graphic T-Shirt">
-            <p>Gymshark - Graphic T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product4.jpg" alt="Gymshark - Oversized T-Shirt">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product1.jpg" alt="Gymshark - Element Sleeve">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product2.jpg" alt="Gymshark - Compression T-Shirt">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product3.jpg" alt="Gymshark - Graphic T-Shirt">
-            <p>Gymshark - Graphic T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product4.jpg" alt="Gymshark - Oversized T-Shirt">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product1.jpg" alt="Gymshark - Element Sleeve">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product2.jpg" alt="Gymshark - Compression T-Shirt">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product3.jpg" alt="Gymshark - Graphic T-Shirt">
-            <p>Gymshark - Graphic T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="../<%=request.getContextPath()%>/assets/product4.jpg" alt="Gymshark - Oversized T-Shirt">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-        
-
+        </a>
+            
+        </c:forEach>
     </div>
 
-</body>
 <jsp:include page="footer.jsp" />
+</body>
 </html>

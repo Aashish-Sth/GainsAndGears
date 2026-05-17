@@ -49,10 +49,11 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
                 </li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gears">Women</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gears">Men</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplements</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
+                  <li class="nav-link"><a href="<%=request.getContextPath()%>/home">Home</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/male">Men</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/female">Women</a></li>
+                <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplement</a></li>
+                 <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
             </ul>
         </div>
 
@@ -63,17 +64,30 @@
 
         </div>
 
-        <!-- Search Bar (desktop) -->
-        <div class="nav-search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="What are you looking for...">
-        </div>
+<!-- Search Bar (desktop) -->
+
+<div class="nav-search">
+
+
+ <form action="result" method="POST" class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="search" placeholder="Search by name..." value="${searchedName}">
+                    <button type="submit" style="display:none"></button>
+                </form>
+
+</div>
+
+
+
+
+
+      
 
         <!-- User Info -->
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i></a>
-            <a><i class="fa-regular fa-heart"></i></a>
+            <a onclick="openCart(); switchTab('wish');"><i class="fa-regular fa-heart"></i></a>
             <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
             </c:if>
@@ -104,7 +118,14 @@
     hamburger.addEventListener('click', openBar);
     LeftBarClose.addEventListener('click', closeBar);
     LeftBarOverlay.addEventListener('click', closeBar);
+    
+    if ('${sessionScope.cartOpen}' === 'true') {
+        openCart();
+    }
 </script>
+
+<c:remove var="cartOpen" scope="session"/>
+
 </body>
 
 

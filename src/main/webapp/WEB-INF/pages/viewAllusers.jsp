@@ -21,8 +21,6 @@
         </div>
 
         <h1 class="page-title">Users</h1>
-
-
         <c:if test="${param.success == 'true'}">
             <div class="success-alert" style="color: green; background: #e6ffed; padding: 15px; border: 1px solid green; border-radius: 8px; margin-bottom: 20px; font-weight: 500;">
                 <i class="fa-solid fa-check-circle"></i> Successfully changed the user's status!

@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gains & Gears</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/addProduct.css">
 </head>
 <body>
-<jsp:include page="adminSideBar.jsp" />
+
 <a href="<%=request.getContextPath()%>/admin/products" class="back"><i class="fa-solid fa-chevron-left"></i></a>
     <div class="page-content">
 
@@ -51,9 +52,9 @@
                         <label for="product_cloth_brand">Brand</label>
                         <select id="product_cloth_brand" name="product_cloth_brand">
                             <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''} >Select Brand</option>
-                            <option value="youngLA" ${product_brand == 'youngLA' ? 'selected' : ''}>YoungLA</option>
-                            <option value="gymshark" ${product_brand == 'gymshark' ? 'selected' : ''}>Gymshark</option>
-                            <option value="furaak" ${product_brand == 'furaak' ? 'selected' : ''}>Furaak</option>
+                            <option value="YoungLA" ${product_brand == 'YoungLA' ? 'selected' : ''}>YoungLA</option>
+                            <option value="Gymshark" ${product_brand == 'Gymshark' ? 'selected' : ''}>Gymshark</option>
+                            <option value="Fuaark" ${product_brand == 'Fuaark' ? 'selected' : ''}>Fuaark</option>
                         </select>
                     </div>
                     <!--Supplement Brand-->
@@ -61,9 +62,9 @@
                         <label for="product_supplement_brand">Brand</label>
                         <select id="product_supplement_brand" name="product_supplement_brand">
                             <option value="" disabled="disabled" hidden="hidden" ${empty product_brand ? 'selected' : ''}>Select Brand</option>
-                            <option value="ghost" ${product_brand == 'ghost' ? 'selected' : ''}>Ghost</option>
-                            <option value="feral" ${product_brand == 'feral' ? 'selected' : ''}>Feral</option>
-                            <option value="muscleblaze" ${product_brand == 'muscleblaze' ? 'selected' : ''}>MuscleBlaze</option>
+                            <option value="Ghost" ${product_brand == 'Ghost' ? 'selected' : ''}>Ghost</option>
+                            <option value="Feral" ${product_brand == 'Feral' ? 'selected' : ''}>Feral</option>
+                            <option value="MuscleBlaze" ${product_brand == 'MuscleBlaze' ? 'selected' : ''}>MuscleBlaze</option>
                         </select>
                     </div>
                 </div>
@@ -161,10 +162,25 @@
                 </div>
 
                 <div class="product">
-                    <label for="product_image">Image</label>
-                    <input type="file" id="product_image" name="product_image" hidden>
-                    <label for="product_image" class="upload-btn">Upload Product Photo</label>
-                </div>
+				    <label>Product Photo</label>
+				    
+				    <div class="photo-container">
+				        <c:choose>
+				            <c:when test="${not empty product_image_bytes}">
+				                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(product_image_bytes)}" 
+				                     id="photoPreview" class="photo-preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
+				            </c:when>
+				            <c:otherwise>
+				                <img src="<%=request.getContextPath()%>/assets/default-product.jpg" 
+				                     id="photoPreview" class="photo-preview" style="max-width: 200px; display: block; margin-bottom: 10px;">
+				            </c:otherwise>
+				        </c:choose>
+				    </div>
+				
+				    <!-- File Input -->
+				    <input type="file" id="product_image" name="product_image" hidden accept="image/*">
+				    <label for="product_image" class="upload-btn">Upload Product Photo</label>
+				</div>
 
             </form>
         </div>
@@ -205,6 +221,19 @@
 
 
         update();
+        
+     	// Live photo preview
+	    const fileInput = document.getElementById('product_image');
+	    if (fileInput) {
+	        fileInput.addEventListener('change', function () {
+	            const file = this.files[0];
+	            if (file) {
+	                const reader = new FileReader();
+	                reader.onload = e => document.getElementById('photoPreview').src = e.target.result;
+	                reader.readAsDataURL(file);
+	            }
+	        });
+	    }
     </script>
 </body>
 </html>
