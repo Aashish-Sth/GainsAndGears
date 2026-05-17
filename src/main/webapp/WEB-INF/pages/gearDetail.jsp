@@ -127,7 +127,9 @@
         </c:forEach>
         
         <c:if test="${not empty review}">
-        <a href="<%= request.getContextPath() %>/allReviews?id=${param.id}" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+       <a href="<%= request.getContextPath() %>/allReviews?id=${param.id}" class="view-all">
+    	View all <i class="fa-solid fa-chevron-down"></i>
+		</a>
         </c:if>
       </div>
     
@@ -216,12 +218,13 @@
 
     
 <!-- Recommended Products Section Header -->
-<div class="review-head"">
+
+ 
+<div class="recommended-head"">
     Recommended For You
 </div>
- 
-
 <div class="card">
+
     <c:forEach var="p" items="${products}">
         <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
             <div class="card-item">

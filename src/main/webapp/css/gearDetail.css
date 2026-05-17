@@ -230,7 +230,7 @@ button {
 }
 
 .favorite.wishlisted i {
-    color: red;
+  color: red;
 }
 
 .errorMsg {
@@ -327,6 +327,14 @@ button {
   min-width: 0;
   display: flex;
   flex-direction: column;
+}
+
+.recommended-head {
+  width: min(1180px, calc(100% - 40px));
+  margin: 64px auto 24px;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: left;
 }
 
 .review-txt-section > div {
@@ -451,30 +459,29 @@ button {
   color: #000;
 }
 
-
-.sucessMsg{
-	position: fixed;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #1a7a4a;
-    color: #fff;
-    padding: 0.9rem 1.5rem;
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    opacity: 1;
-    transition: all 0.6s ease;
-    z-index: 100;
-    white-space: nowrap;
+.sucessMsg {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1a7a4a;
+  color: #fff;
+  padding: 0.9rem 1.5rem;
+  border-radius: 8px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: all 0.6s ease;
+  z-index: 100;
+  white-space: nowrap;
 }
 
 .sucessMsg.hide {
-    opacity: 0;
+  opacity: 0;
 }
 
-.errorMsg{
+.errorMsg {
   color: #ff3333 !important;
   font-size: 13px;
   width: 100%;
@@ -483,7 +490,7 @@ button {
   text-align: left !important;
 }
 
-.errorMessage{
+.errorMessage {
   color: #ff3333 !important;
   font-size: 13px;
   width: 100%;
@@ -680,7 +687,18 @@ button {
   .review-section {
     width: min(560px, calc(100% - 28px));
     flex-direction: column;
+    align-items: stretch;
     gap: 28px;
+  }
+
+  .display-reviews,
+  .add-reviews {
+    flex: none;
+    width: 100%;
+  }
+
+  .no-reviews {
+    min-height: 220px;
   }
 
   .add-reviews {

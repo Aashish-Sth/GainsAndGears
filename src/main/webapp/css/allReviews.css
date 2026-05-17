@@ -132,6 +132,13 @@ body {
   margin: 0;
 }
 
+.no-filter-result {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    font-size: 14px;
+}
+
 .active-tab {
   background-color: black;
   color: white !important;

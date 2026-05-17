@@ -26,7 +26,7 @@
 
     <!-- Main Section -->
     <div class="main-container">
-        <video autoplay loop muted playsinline preload="metadata">
+        <video autoplay loop muted playsinline preload="auto">
             <source src="<%=request.getContextPath()%>/assets/IndexVideo.mp4" type="video/mp4">
         </video>
         <div class="shop-now">Shop Now</div>

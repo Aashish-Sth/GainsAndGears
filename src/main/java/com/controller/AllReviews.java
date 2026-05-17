@@ -30,6 +30,7 @@ public class AllReviews extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewService service = new ReviewService();
 		 int product_id = Integer.parseInt(request.getParameter("id"));
+		 request.setAttribute("productId", product_id);
 		 String starValue = request.getParameter("star"); 
 		 if (starValue != null && !starValue.isEmpty()) {
 		        int star = Integer.parseInt(starValue);

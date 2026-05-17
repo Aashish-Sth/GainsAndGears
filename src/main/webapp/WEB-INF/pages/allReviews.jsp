@@ -40,27 +40,31 @@
 	
 	     
 	      <div id="review-list">
-	      
-	      
-	      <c:forEach var="rev" items="${review}">
-	      <div class="indi-review">
-	          <div class="avatar">
-	          <img class="review-img" src="<%=request.getContextPath()%>/uploads/${rev.userImg}" alt="">
-	          </div>
-	          <div class="review-txt-section">
-	            <div class="review-top">
-	              <p class="reviewer-name">${rev.reviewer_name }</p>
-	              <p class="review-rating"><i class="fa-solid fa-star"></i> ${rev.rating }</p>
-	            </div>
-	            <p class="review-date">${rev.review_timestamp}</p>
-	            <p class="review-text">${rev.review_description}</p>
-	          </div>
-	        </div>
-	        <div class="divider"></div>
-	      </c:forEach>
-	        
-	
-	      </div>
+			    <c:if test="${empty review}">
+			        <p class="no-filter-result">
+			            <c:if test="${activeStar == 'all'}">No reviews yet.</c:if>
+			            <c:if test="${activeStar != 'all'}">No ${activeStar} star reviews found.</c:if>
+			        </p>
+			    </c:if>
+			    <c:if test="${not empty review}">
+			        <c:forEach var="rev" items="${review}">
+			            <div class="indi-review">
+			                <div class="avatar">
+			                    <img class="review-img" src="<%=request.getContextPath()%>/uploads/${rev.userImg}" alt="">
+			                </div>
+			                <div class="review-txt-section">
+			                    <div class="review-top">
+			                        <p class="reviewer-name">${rev.reviewer_name}</p>
+			                        <p class="review-rating"><i class="fa-solid fa-star"></i> ${rev.rating}</p>
+			                    </div>
+			                    <p class="review-date">${rev.review_timestamp}</p>
+			                    <p class="review-text">${rev.review_description}</p>
+			                </div>
+			            </div>
+			            <div class="divider"></div>
+			        </c:forEach>
+			    </c:if>
+			</div>
 	
 	    </div>
 	
