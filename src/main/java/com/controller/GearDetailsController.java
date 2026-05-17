@@ -5,10 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
+import com.model.UserModel;
+import com.services.CartService;
 import com.services.ReviewService;
 import com.services.UpdateProductService;
+import com.utils.SessionUtil;
 
 /**
  * Servlet implementation class GearDetails
@@ -30,19 +35,31 @@ public class GearDetailsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			HttpSession session = request.getSession();
+	        session.removeAttribute("successMessage");
+			
 		 int product_id = Integer.parseInt(request.getParameter("id"));
          UpdateProductService productService = new UpdateProductService();
          ReviewService reviewService = new ReviewService();
-
+         UserModel loggedInUser = (UserModel) SessionUtil.getAttribute(request, "loggedInUser");
+ 		int user_id = loggedInUser.getUser_id();
+         
          productService.loadProductIntoRequest(product_id, request);
          reviewService.returnOverview(product_id, request);
-         reviewService.returnLatestReviews(product_id, request);
+         reviewService.returnLatestReviews(product_id, user_id, request);
+         reviewService.retriveUserReview(product_id, user_id, request);
          
+         CartService cartService = new CartService();
+         request.setAttribute("isWishlisted", cartService.isInWishlist(user_id, product_id));
+         
+         
+         Boolean reviewDone =reviewService.retriveUserReview(product_id, user_id, request);
+         request.setAttribute("reviewDone", reviewDone);
 		request.getRequestDispatcher("/WEB-INF/pages/gearDetail.jsp").forward(request, response);	
+		
 		}catch(Exception e) {
 			 e.printStackTrace();
-			 response.sendRedirect(request.getContextPath() + "/admin/home");
-		}
+			}
 		}
 
 	/**
@@ -50,8 +67,42 @@ public class GearDetailsController extends HttpServlet {
 	 * vletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		UserModel loggedInUser = (UserModel) SessionUtil.getAttribute(request, "loggedInUser");
+		int user_id = loggedInUser.getUser_id();
+		int productId = Integer.parseInt(request.getParameter("id"));
+		String review_description = request.getParameter("newReview");
+		double rating = Double.parseDouble(request.getParameter("rating"));
+		String action = request.getParameter("action");
+		
+		if (review_description == null || review_description.trim().isEmpty()) {
+		    request.setAttribute("errorMessage", "Review cannot be empty.");
+		    request.setAttribute("persistedReview", review_description);
+		    request.setAttribute("persistedRating", rating);
+		    doGet(request, response);
+		    return;
+		}
+		if (rating == 0) {
+		    request.setAttribute("errorMessage", "Please select a star rating.");
+		    request.setAttribute("persistedReview", review_description);
+		    request.setAttribute("persistedRating", rating);
+		    doGet(request, response);
+		    return;
+		}
+		
+		
+		ReviewService service = new ReviewService();
+			
+		if ("addReview".equals(action)) {
+		Boolean success=service.addReview(user_id, productId, review_description, rating);
+		if(success) {
+			response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId + "&msg=review_added");
+		}
+		}else if("editReview".equals(action)) {
+			service.updateReview(user_id, productId, review_description, rating);
+		    response.sendRedirect(request.getContextPath() + "/product/detail?id=" + productId + "&msg=review_updated");
+		}
+		
 	}
-
 }
+
+

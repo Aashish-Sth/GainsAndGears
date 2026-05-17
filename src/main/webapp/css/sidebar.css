@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* ─── SIDEBAR BASE STYLES ─── */
 .sidebar {
   width: 200px;
   margin-top: 50px;
@@ -18,35 +17,51 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  width: calc(100% + 52px);
+  min-height: 60px;
+  margin-left: -26px;
+  margin-right: -26px;
+  padding: 11px 40px;
+  box-sizing: border-box;
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 400;
   color: #6b6b6b;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
   position: relative;
   border-radius: 4px;
 }
 
 .nav-item:hover {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   color: #1a1a1a;
 }
 
+.nav-item.active {
+  color: #1a1a1a;
+  font-weight: 500;
+  background-color: #f7f7f7;
+}
+
 .nav-item.active::before {
-  content: '';
+  content: "";
   position: absolute;
-  left: 172px;
+  right: 0;
+  top: 50%;
   width: 5px;
   height: 30px;
   border-radius: 2px;
-  background: #6B4F4F;
+  background: #6b4f4f;
+  transform: translateY(-50%);
 }
 
 .nav-icon {
@@ -79,6 +94,10 @@
 
   .nav-item {
     flex: 1;
+    width: auto;
+    min-height: 44px;
+    margin-left: 0;
+    margin-right: 0;
     min-width: 120px;
     padding: 8px 10px;
     font-size: 0.8rem;
@@ -98,6 +117,7 @@
     height: 100%;
     width: 4px;
     border-radius: 0;
+    transform: none;
   }
 }
 
@@ -154,7 +174,7 @@
   }
 
   .nav-item.active {
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
   }
 }
 
@@ -183,8 +203,45 @@
 
 /* ─── ACCESSIBILITY ─── */
 .nav-item:focus {
-  outline: 2px solid #6B4F4F;
+  outline: 2px solid #6b4f4f;
   outline-offset: 2px;
+}
+
+.sidebar .sidebar-nav {
+  width: 100%;
+}
+
+.sidebar .nav-item {
+  width: calc(100% + 52px);
+  min-height: 60px;
+  margin-left: -26px;
+  margin-right: -26px;
+  padding: 11px 40px;
+  box-sizing: border-box;
+}
+
+.sidebar .nav-item.active::before {
+  left: auto;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 992px) {
+  .sidebar .nav-item {
+    width: auto;
+    min-height: 44px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 8px 10px;
+  }
+
+  .sidebar .nav-item.active::before {
+    left: auto;
+    right: 0;
+    top: 0;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

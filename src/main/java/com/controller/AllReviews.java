@@ -5,27 +5,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-import java.util.List;
 
-import com.model.CartItemModel;
-import com.model.UserModel;
-import com.services.CartService;
-import com.utils.SessionUtil;
+import com.services.ReviewService;
 
 /**
- * Servlet implementation class navbarController
+ * Servlet implementation class AllReviews
  */
-@WebServlet("/navbar")
-public class NavbarController extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/allReviews" })
+public class AllReviews extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NavbarController() {
+    public AllReviews() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +28,20 @@ public class NavbarController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/pages/navbar.jsp").forward(request, response);
+		ReviewService service = new ReviewService();
+		 int product_id = Integer.parseInt(request.getParameter("id"));
+		 String starValue = request.getParameter("star"); 
+		 if (starValue != null && !starValue.isEmpty()) {
+		        int star = Integer.parseInt(starValue);
+		        service.filterReviews(product_id, star, request);
+		        request.setAttribute("activeStar", starValue);
+		    } else {
+		        service.returnAllReviews(product_id, request);
+		        request.setAttribute("activeStar", "all");
+		    }
+		 
+		 service.returnOverview(product_id, request);
+		 request.getRequestDispatcher("/WEB-INF/pages/allReviews.jsp").forward(request, response);
 	}
 
 	/**

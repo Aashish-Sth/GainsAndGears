@@ -12,6 +12,7 @@ public class OrderSummaryModel {
 	private String paymentMethod;
 	private List<OrderItemModel> items;  
 	private int totalPrice;
+	private int shippingCost;
 	public String getFullName() {
 		return fullName;
 	}
@@ -65,6 +66,12 @@ public class OrderSummaryModel {
 	}
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public int getShippingCost() {
+		return shippingCost;
+	}
+	public void setShippingCost(int shippingCost) {
+		this.shippingCost = shippingCost;
 	}
 	
 	

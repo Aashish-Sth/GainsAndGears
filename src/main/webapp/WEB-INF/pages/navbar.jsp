@@ -87,7 +87,7 @@
         <div class="info">
             <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i></a>
-            <a><i class="fa-regular fa-heart"></i></a>
+            <a onclick="openCart(); switchTab('wish');"><i class="fa-regular fa-heart"></i></a>
             <c:if test="${empty sessionScope.loggedInUser}">
             <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
             </c:if>
@@ -118,7 +118,14 @@
     hamburger.addEventListener('click', openBar);
     LeftBarClose.addEventListener('click', closeBar);
     LeftBarOverlay.addEventListener('click', closeBar);
+    
+    if ('${sessionScope.cartOpen}' === 'true') {
+        openCart();
+    }
 </script>
+
+<c:remove var="cartOpen" scope="session"/>
+
 </body>
 
 

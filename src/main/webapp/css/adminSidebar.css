@@ -11,12 +11,13 @@
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 }
 
-.left-nav{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+.left-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .left-nav a {
@@ -28,10 +29,13 @@
   align-items: center;
   gap: 10px;
   padding: 10px 50px;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .left-nav a:hover {
   color: #000;
+  background-color: #f7f7f7;
 }
 
 .logo {
@@ -52,23 +56,257 @@
   font-size: 16px;
 }
 
-.bottom-nav{
-    margin-top: auto;
-    padding: 20px;
+.bottom-nav {
+  margin-top: auto;
+  padding: 20px;
 }
 
-.admin-pfp{
-    display: flex;
+.admin-pfp {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 50px;
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 50px;
+}
+@media (max-width: 768px) {
+  .left-bar {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    min-height: 60px;
+  }
+
+  .logo {
+    margin: 0;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    width: 70px;
+    height: auto;
+  }
+
+  .left-nav {
+    flex-direction: row;
     flex: 1;
+    justify-content: space-between;
+    margin: 0;
     align-items: center;
-    gap: 10px;
-    padding: 10px 50px;
-    margin-bottom: 20px;
-}
+    gap: 6px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
 
-.logout-btn{
+  .left-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .left-nav a {
+    margin: 0;
+    padding: 4px 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-direction: column;
+    text-align: center;
+    gap: 2px;
+    flex: 0 1 auto;
+    min-width: 0;
+    border-radius: 6px;
+  }
+
+  .left-nav a i {
+    font-size: 16px;
+  }
+
+  .bottom-nav {
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 50px;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .admin-pfp,
+  .logout-btn {
+    padding: 4px 6px;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .admin-pfp i,
+  .logout-btn i {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .left-bar {
+    padding: 6px 10px;
+    min-height: 55px;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+
+  .logo img {
+    width: 65px;
+  }
+
+  .left-nav {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .left-nav a {
+    font-size: 11px;
+    padding: 4px 5px;
+    gap: 1px;
+    flex-shrink: 1;
+  }
+
+  .left-nav a i {
+    font-size: 14px;
+  }
+
+  .bottom-nav {
+    margin-left: 10px;
+  }
+
+  .admin-pfp,
+  .logout-btn {
+    padding: 4px 6px;
+    gap: 1px;
+  }
+
+  .admin-pfp i,
+  .logout-btn i {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-bar {
+    padding: 6px 10px;
+    min-height: 55px;
+  }
+
+  .logo img {
+    width: 65px;
+  }
+
+  .left-nav a {
+    font-size: 12px;
+    padding: 4px 6px;
+    gap: 1px;
+  }
+
+  .left-nav a i {
+    font-size: 14px;
+  }
+
+  .bottom-nav {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .admin-pfp,
+  .logout-btn {
+    font-size: 12px;
+    padding: 4px 6px;
+    gap: 1px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .admin-pfp span,
+  .logout-btn span {
+    display: none;
+  }
+
+  .admin-pfp i,
+  .logout-btn i {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 430px) {
+  .left-bar {
+    padding: 4px 8px;
+    min-height: 50px;
+  }
+
+  .logo {
+    margin-right: 8px;
+  }
+
+  .logo img {
+    width: 55px;
+  }
+
+  .left-nav {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
+
+  .left-nav a {
+    font-size: 0;
+    padding: 6px 7px;
+    gap: 0px;
+    flex-shrink: 1;
+  }
+
+  .left-nav a i {
+    font-size: 15px;
+  }
+
+  .bottom-nav {
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .admin-pfp,
+  .logout-btn {
+    padding: 6px 7px;
+    gap: 0px;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .admin-pfp span,
+  .logout-btn span {
+    display: none;
+  }
+
+  .admin-pfp i,
+  .logout-btn i {
+    font-size: 15px;
+  }
 }

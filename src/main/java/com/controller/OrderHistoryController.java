@@ -27,6 +27,7 @@ public class OrderHistoryController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setAttribute("pageKey", "orders");
 		request.getRequestDispatcher("/WEB-INF/pages/orderhistory.jsp").forward(request, response);
 	}
 

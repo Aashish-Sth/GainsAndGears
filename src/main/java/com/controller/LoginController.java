@@ -71,8 +71,7 @@ public class LoginController extends HttpServlet {
              	CookieUtil.addCookie(response, "user_email", email, 60*60);
              	 UserModel sessionUser = service.getUserByEmail(email);
                  SessionUtil.setAttribute(request, "loggedInUser", sessionUser);
-                 request.getSession().setAttribute("successMessage", "Welcome back, " + sessionUser.getUser_first_name() + "!");
-                 response.sendRedirect(request.getContextPath() + "/home");
+                 response.sendRedirect(request.getContextPath() + "/home?msg=success");
                  return;
         		 }else {
         			 request.setAttribute("errorMessage", "Your account has yet not been activated");

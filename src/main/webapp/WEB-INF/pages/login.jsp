@@ -39,7 +39,10 @@
                     <input class="inputField" type="text" placeholder="Enter your email address" name="email" required>
               
                     <label class="inputLable" for="password">Password</label>
-                    <input class="inputField" type="password" placeholder="Enter your Password" name="password" required>
+                    <div class="input-wrapper">
+                    <input class="inputField" type="password" placeholder="Enter your Password" id="password" name="password" required>
+                    <i class="fa-regular fa-eye toggle-eye" onclick="togglePassword('password',this)"></i>
+                    </div>
                       <c:if test="${not empty requestScope.errorMessage}">
             	<p class="errorMsg">${requestScope.errorMessage}</p>
         		</c:if>
@@ -61,6 +64,18 @@
     </div>
     </div>
     <script src="https://kit.fontawesome.com/b4de01d1c5.js" crossorigin="anonymous"></script>
+    <script>
+  function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      input.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+  }
+</script>
     <script >
     const sucessMsg = document.getElementById('sucessMsg');
     if (sucessMsg) {
