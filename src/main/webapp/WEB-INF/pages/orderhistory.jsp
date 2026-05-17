@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8" isELIgnored="false"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.util.Base64" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,76 +15,81 @@
 <body>
 <jsp:include page="navbar.jsp"/>
   <div class="page-wrapper">
-<!-- Sidebar -->
     <jsp:include page="sidebar.jsp" />
-    
-     <!-- Main content(Orders) -->
-     <div class="main-content">
-    <div class="orders-container">
 
-      <h2 class="orders-title">My Orders</h2>
+    <div class="main-content">
+      <div class="orders-container">
 
-      <div class="filter-tabs">
-        <button class="tab-btn active">All</button>
-        <button class="tab-btn">Shipped</button>
-        <button class="tab-btn">To review</button>
-      </div>
+        <h2 class="orders-title">My Orders</h2>
 
-      <div class="search-wrapper">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" placeholder="Search by product id, order id etc." />
-      </div>
-
-      <div class="order-card">
-        <div class="order-header">
-          <div class="brand-info">
-            <img src="../../assets/youngla.png" alt="YoungLA logo" class="brand-logo" />
-            <span class="brand-name">YoungLA</span>
-          </div>
-          <span class="order-status completed">Completed</span>
+        <%-- Filter tabs --%>
+        <div class="filter-tabs">
+          <a href="<%=request.getContextPath()%>/OrderHistory?filter=all"
+             class="tab-btn ${activeFilter == 'all' ? 'active' : ''}">All</a>
+          <a href="<%=request.getContextPath()%>/OrderHistory?filter=Completed"
+             class="tab-btn ${activeFilter == 'Completed' ? 'active' : ''}">Completed</a>
+          <a href="<%=request.getContextPath()%>/OrderHistory?filter=Shipped"
+             class="tab-btn ${activeFilter == 'Shipped' ? 'active' : ''}">Shipped</a>
+          <a href="<%=request.getContextPath()%>/OrderHistory?filter=Confirmed"
+             class="tab-btn ${activeFilter == 'Confirmed' ? 'active' : ''}">Confirmed</a>
         </div>
-        <div class="order-body">
-          <img src="../../assets/zipup.png" alt="Kove Zip Hoodie" class="product-img" />
-          <div class="product-info">
-            <p class="product-name">W5215 - Kove Zip Hoodie</p>
-            <p class="product-variant">Size - Small</p>
-            <p class="product-quantity">Quantity: 1</p>
-          </div>
-          <p class="product-price">Nrs 2800</p>
-        </div>
-      </div>
 
-      <div class="order-card">
-        <div class="order-header">
-          <div class="brand-info">
-            <img src="../../assets/feralsupps.png" alt="Ferral Supps logo" class="brand-logo" />
-            <span class="brand-name">Ferral Supps</span>
+        <%-- Empty state --%>
+        <c:if test="${empty orders}">
+          <div class="empty-orders">
+            <i class="fa-solid fa-box-open"></i>
+            <p>No ${activeFilter == 'all' ? '' : activeFilter} orders found.</p>
           </div>
-          <span class="order-status cancelled">Cancelled</span>
-        </div>
-        <div class="order-body">
-          <img src="../../assets/fruity.png" alt="Feral Isolate" class="product-img" />
-          <div class="product-info">
-            <p class="product-name">Feral Isolate - Fruity cereal</p>
-            <p class="product-variant">Quantity - 250g</p>
-            <p class="product-quantity">Quantity: 1</p>
-          </div>
-          <p class="product-price">Nrs 2800</p>
-        </div>
-      </div>
+        </c:if>
 
-      <div class="pagination">
-        <button class="page-btn nav-arrow"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="page-btn active">1</button>
-        <button class="page-btn">2</button>
-        <button class="page-btn">3</button>
-        <button class="page-btn nav-arrow"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
+        <%-- Order cards --%>
+        <c:if test="${not empty orders}">
+          <c:forEach var="order" items="${orders}">
+            <div class="order-card">
+              <div class="order-header">
+                <div class="brand-info">
+                  <img src="<%=request.getContextPath()%>/${
+                      order.productBrand == 'YoungLA' ? 'assets/youngLA.png' :
+                      order.productBrand == 'Gymshark' ? 'assets/gymshark.png' :
+                      order.productBrand == 'Fuaark' ? 'assets/fuaark.jpg' :
+                      order.productBrand == 'Ghost' ? 'assets/ghost.png' :
+                      order.productBrand == 'Feral' ? 'assets/feral.png' :
+                      'assets/muscleBlaze.png'
+                  }" alt="${order.productBrand}" class="brand-logo" />
+                  <span class="brand-name">${order.productBrand}</span>
+                </div>
+                <span class="order-status ${
+                    order.orderStatus == 'Completed' ? 'completed' :
+                    order.orderStatus == 'Shipped' ? 'shipped' : 'confirmed'
+                }">${order.orderStatus}</span>
+              </div>
 
+              <div class="order-body">
+                <c:choose>
+                  <c:when test="${not empty order.productImage}">
+                    <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(order.productImage)}"
+                         alt="${order.productName}" class="product-img" />
+                  </c:when>
+                  <c:otherwise>
+                    <img src="<%=request.getContextPath()%>/assets/default-product.jpg"
+                         alt="product" class="product-img" />
+                  </c:otherwise>
+                </c:choose>
+
+                <div class="product-info">
+                  <p class="product-name">${order.productName}</p>
+                  <p class="product-variant">${order.attribute1} - ${order.attribute2}</p>
+                  <p class="product-quantity">Quantity: ${order.quantity}</p>
+                </div>
+                <p class="product-price">NRS ${order.price}</p>
+              </div>
+            </div>
+          </c:forEach>
+        </c:if>
+
+      </div>
     </div>
   </div>
-
-</div>
 <jsp:include page="footer.jsp"/>
 </body>
 </html>

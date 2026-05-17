@@ -1,18 +1,19 @@
 @charset "UTF-8";
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-
-html, body {
+html,
+body {
   height: 100%;
-  background-color: #F7F7F7;;
+  background-color: #f5f5f5;
   font-family: "Poppins", sans-serif;
-  color:#1a1a1a ;
-  
+  color: #1a1a1a;
 }
 
 .page-wrapper {
@@ -21,98 +22,62 @@ html, body {
   gap: 0;
 }
 
-.sidebar {
-  width: 200px;
-  margin-top: 50px;
-  margin-left: 20px;
-  height: 100%;
-  background-color: #ffff;
-  padding: 30px 26px;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.nav-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 11px 14px;
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 400;
-  color: #6b6b6b;
-  transition: background 0.3s, color 0.3s;
-  position: relative;
-}
-
-.nav-item:hover {
-  background-color: #F7F7F7;
-  color: #1a1a1a;;
-}
-
-.nav-item.active::before {
-  content: '';
-  position: absolute;
-  left: 172px;
-  width: 5px;
-  height: 30px;
-  border-radius: 2px;
-  background: #6B4F4F;
-}
-
 .main-content {
   flex: 1;
-  padding: 20px 16px;
+  min-width: 0;
+  padding: 49px 52px;
 }
 
 .orders-title {
   font-size: 15px;
   font-weight: 600;
   color: #1a1a1a;
-  margin: 10px;
-  margin-bottom: 10px;
+  margin: 0 0 16px;
 }
-
 
 .orders-container {
-margin-top: 30px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 24px 20px;
   overflow: hidden;
+  border: 1px solid #f0f0f0;
 }
 
-
 .filter-tabs {
-  width: 250px;
+  width: 360px;
   display: flex;
-  gap: 4px;
-  border-bottom: none; 
-  padding: 6px 8px;
-  background-color: #f0f0f0;
-  margin: 0 16px 12px 16px;
+  gap: 0;
+  border-bottom: none;
+  padding: 4px;
+  background-color: #efefef;
+  margin: 0 0 30px;
+  border-radius: 10px;
 }
 
 .tab-btn {
-  padding: 10px 14px;
+  flex: 1;
+  padding: 8px 12px;
   border: none;
   background: transparent;
   font-size: 15px;
   font-family: "Poppins", sans-serif;
-  color: black;
+  color: #1a1a1a;
+  font-weight: 400;
   cursor: pointer;
   position: relative;
-  transition: color 0.2s;
-  border-radius: 6px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tab-btn::after {
-  display: none; 
+  display: none;
 }
 
 .tab-btn:hover {
@@ -121,33 +86,18 @@ margin-top: 30px;
 
 .tab-btn.active {
   color: #1a1a1a;
-  font-weight: 500;
+  font-weight: 600;
   background-color: #ffffff;
-  border-radius: 6px;
-}
-
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background-color: transparent;
-  border-bottom: 1.5px solid #efefef;
-  border-radius: 0;
-  padding: 9px 16px;
-  margin-bottom: 0;
-}
-
-.search-icon {
-  color: #cccccc;
-  font-size: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
 }
 
 .order-card {
-  border: 1.5px solid #efefef;
-  border-bottom: 1.5px solid #efefef;
+  border: 1px solid #e8e8e8;
   border-radius: 0;
   padding: 14px 16px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  background: #ffffff;
 }
 
 .order-card:last-of-type {
@@ -183,16 +133,31 @@ margin-top: 30px;
 .order-status {
   font-size: 0.78rem;
   font-weight: 400;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid currentColor;
+  min-width: 110px;
+  text-align: center;
+  background: #ffffff;
 }
 
 .order-status.completed {
-  color: #3a8c3f;
+  color: #16a34a;
+  border-color: #16a34a;
+  background-color: #f0fdf4;
 }
 
-.order-status.cancelled {
-  color: #b94040;
+.order-status.shipped {
+  color: #8a38f5;
+  border-color: #8a38f5;
+  background-color: #f5f0ff;
 }
 
+.order-status.confirmed {
+  color: #ff950a;
+  border-color: #ff950a;
+  background-color: #fff7ed;
+}
 
 .order-body {
   display: flex;
@@ -229,6 +194,7 @@ margin-top: 30px;
 .product-quantity {
   font-size: 0.75rem;
   color: #6b6b6b;
+  font-weight: 400;
   margin-top: 4px;
 }
 
@@ -240,6 +206,19 @@ margin-top: 30px;
   align-self: center;
 }
 
+.empty-orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 60px 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.empty-orders i {
+  font-size: 40px;
+}
 
 .pagination {
   display: flex;
@@ -271,8 +250,8 @@ margin-top: 30px;
 }
 
 .page-btn.active {
-  background-color: #D9D9D9;
-  border-color: #D9D9D9;
+  background-color: #d9d9d9;
+  border-color: #d9d9d9;
   color: black;
 }
 
@@ -285,83 +264,47 @@ margin-top: 30px;
 @media (max-width: 992px) {
   .page-wrapper {
     flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    margin: 0;
+    gap: 20px;
     padding: 20px;
-    margin-bottom: 20px;
-  }
-
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .nav-item {
-    flex: 1;
-    min-width: 120px;
-    padding: 8px 10px;
-    font-size: 0.8rem;
-  }
-
-  .nav-item.active::before {
-    left: auto;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
   }
 
   .main-content {
-    padding: 20px;
+    padding: 0;
   }
 
   .orders-container {
-    padding: 15px;
+    padding: 18px 14px;
   }
 
   .filter-tabs {
     width: 100%;
-    margin: 0 0 12px 0;
-    padding: 6px;
+    margin: 0 0 24px;
   }
 
   .tab-btn {
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
-  .search-wrapper {
-    padding: 8px 12px;
+    font-size: 0.85rem;
+    padding: 8px 10px;
   }
 
   .order-card {
     padding: 12px;
+    margin-bottom: 10px;
   }
 
   .order-body {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 16px;
+  }
+
+  .product-price {
+    align-self: flex-start;
   }
 }
 
 @media (max-width: 480px) {
-  .sidebar {
-    padding: 15px;
-  }
-
-  .nav-item {
-    min-width: 100px;
-    padding: 6px 8px;
-    font-size: 0.75rem;
-  }
-
   .main-content {
-    padding: 15px;
+    padding: 0;
   }
 
   .orders-title {
@@ -369,17 +312,12 @@ margin-top: 30px;
   }
 
   .orders-container {
-    padding: 10px;
-    margin-top: 20px;
+    padding: 12px 10px;
   }
 
   .tab-btn {
-    font-size: 13px;
-    padding: 6px 10px;
-  }
-
-  .search-wrapper {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
+    padding: 7px 8px;
   }
 
   .order-card {
@@ -391,7 +329,9 @@ margin-top: 30px;
   }
 
   .order-status {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    min-width: 100px;
+    padding: 5px 10px;
   }
 
   .product-name {
@@ -400,7 +340,7 @@ margin-top: 30px;
 
   .product-variant,
   .product-quantity {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .product-price {

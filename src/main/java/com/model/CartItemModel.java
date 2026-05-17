@@ -12,6 +12,7 @@ public class CartItemModel {
 	 private double product_price;
 	 private byte[] product_image;
 	 private int total;
+	 private String product_brand;
 	 
 	 
 	public int getUser_Id() {
@@ -74,6 +75,12 @@ public class CartItemModel {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public String getProduct_brand() {
+		return product_brand;
+	}
+	public void setProduct_brand(String product_brand) {
+		this.product_brand = product_brand;
 	}
 	
 	

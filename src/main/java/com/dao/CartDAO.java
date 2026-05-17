@@ -77,11 +77,11 @@ public class CartDAO {
 	public List<CartItemModel> getCartItem(int user_id) throws Exception {
 		List<CartItemModel> items = new ArrayList<>();
 		String query = "SELECT c.user_id, c.variant_id, c.quantity, pv.product_id, pv.attribute_1, "
-				+ "pv.attribute_2, p.product_name, p.product_price, p.product_image "
-				+ "FROM cart c "
-				+ "JOIN product_variant pv ON c.variant_id = pv.variant_id "
-				+ "JOIN products p ON pv.product_id = p.product_id "
-				+ "WHERE c.user_id = ? ";
+		        + "pv.attribute_2, p.product_name, p.product_price, p.product_image, p.product_brand "
+		        + "FROM cart c "
+		        + "JOIN product_variant pv ON c.variant_id = pv.variant_id "
+		        + "JOIN products p ON pv.product_id = p.product_id "
+		        + "WHERE c.user_id = ? ";
 		
 		try (Connection con = DBconfig.getConnection();
 		         PreparedStatement pst = con.prepareStatement(query)) {
@@ -102,6 +102,7 @@ public class CartDAO {
 		            item.setAttribute_2(rs.getString("attribute_2"));
 		            item.setProduct_name(rs.getString("product_name"));
 		            item.setProduct_price(rs.getDouble("product_price"));
+		            item.setProduct_brand(rs.getString("product_brand"));
 		            item.setProduct_image(rs.getBytes("product_image"));
 
 		            items.add(item);
