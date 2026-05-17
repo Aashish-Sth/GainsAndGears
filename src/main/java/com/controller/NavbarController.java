@@ -5,7 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+import java.util.List;
+
+import com.model.CartItemModel;
+import com.model.UserModel;
+import com.services.CartService;
+import com.utils.SessionUtil;
 
 /**
  * Servlet implementation class navbarController
@@ -26,7 +34,6 @@ public class NavbarController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/pages/navbar.jsp").forward(request, response);
 	}
 

@@ -6,6 +6,8 @@ public class OrderItemModel {
 	private String attribute2;
 	private int quantity;
 	private int price;
+	private byte[] productImage;
+	
 	public String getProductName() {
 		return productName;
 	}
@@ -35,6 +37,12 @@ public class OrderItemModel {
 	}
 	public void setPrice(int price) {
 		this.price = price;
+	}
+	public byte[] getProductImage() {
+		return productImage;
+	}
+	public void setProductImage(byte[] productImage) {
+		this.productImage = productImage;
 	}
 	
 	

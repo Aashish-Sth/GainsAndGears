@@ -16,13 +16,16 @@
       rel="stylesheet"
     />
   </head>
-   <body>
+  <body>
   <jsp:include page="navbar.jsp" />
   
-  <c:if test="${not empty sessionScope.successMessage}">
-	    <div class="sucessMsg" id="sucessMsg">${sessionScope.successMessage}</div>
-	    <% session.removeAttribute("successMessage"); %>
+	  <c:if test="${param.msg == 'review_added'}">
+	    <div class="sucessMsg" id="sucessMsg">Your review was successfully submitted</div>
 	</c:if>
+	<c:if test="${param.msg == 'review_updated'}">
+	    <div class="sucessMsg" id="sucessMsg">Your review was successfully updated</div>
+	</c:if>
+	
 	<!-- Hidden data field to carry data over -->
 	 <input type="hidden" name="id" value="${param.id}" />
 	 <input type="hidden" name="isActive" value="${ reviewDone}">
@@ -33,11 +36,11 @@
       </div>
 	
       <div class="content">
-         <form action="${pageContext.request.contextPath}/product/detail" method="post"  >                                                                 
-         <button type="submit" name="action" class="favorite" value="wishlist">
+         <form action="${pageContext.request.contextPath}/cart?id=${param.id}" method="post"  >                                                                      
+         <button type="submit" name="action" class="favorite ${isWishlisted ? 'wishlisted' : ''}" value="wishlist">
 		    	<i class="fa-solid fa-heart"></i>
 		  	</button>
-       
+
         <div class="brandHolder">
           <img class="logoImg" 
           src="${product.product_brand == 'YoungLA' ? pageContext.request.contextPath.concat('/assets/youngLA.png') : 
@@ -58,6 +61,10 @@
           </div>
           <p style="color: grey">${overview.total_reviews } reviews</p>
         </div>
+        <c:if test="${not empty sessionScope.errorMessage}">
+	        <p class="errorMessage">${sessionScope.errorMessage}</p>
+	         <c:remove var="errorMessage" scope="session"/>
+		</c:if>
         <p class="price">Nrs.${product.product_price}</p>
         <p class="pickerHead">${ product.category == 'supplement' ? 'Flavor' : 'Color' }</p>
         <div class="options">
@@ -81,7 +88,7 @@
 			      Add to bag
 			    </button>
 			  
-	          <button class="btnInverted">
+	          <button type="submit" name="action" class="btnInverted" value="buyNow">
 	            <i
 	              style="margin-right: 4px"
 	              class="fa-solid fa-cart-arrow-down"
@@ -95,6 +102,15 @@
     <div id="review-section" class="review-section">
       <div class="display-reviews">
         <div class="review-head">Reviews</div>
+
+        <c:if test="${empty review}">
+          <div class="no-reviews">
+            <img class="no-review-img" src="<%=request.getContextPath()%>/assets/noReviews.png" alt="No reviews yet">
+            <p class="no-review-title">Whoops!</p>
+            <p class="no-review-text">There seem to be no reviews from other's yet.</p>
+          </div>
+        </c:if>
+        
         <c:forEach var="rev" items="${review}">
          <div class="indi-review">
           <img class="review-img" src="<%=request.getContextPath()%>/uploads/${rev.userImg}" alt="">
@@ -109,7 +125,10 @@
         </div>
         <div class="divider"></div>
         </c:forEach>
-        <a href="" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+        
+        <c:if test="${not empty review}">
+        <a href="<%= request.getContextPath() %>/allReviews?id=${param.id}" class="view-all">View all <i class="fa-solid fa-chevron-down"></i></a>
+        </c:if>
       </div>
     
       <form action="${pageContext.request.contextPath}/product/detail?id=${param.id}" method="post" class="add-reviews">
@@ -229,7 +248,8 @@
       const reviewStars = document.querySelectorAll(".review-star");
       const ratingText = document.querySelector(".rating-text");
       const ratingInput = document.querySelector(".rating-input");
-
+      
+     
       reviewStars.forEach((star) => {
         star.addEventListener("click", () => {
           const rating = Number(star.dataset.rating);
@@ -249,6 +269,7 @@
           });
           ratingText.textContent = existingRating + "/5 stars";
       }
+      
       const errorMsg = document.querySelector(".errorMsg");
       if (errorMsg) {
           document.getElementById("review-section").scrollIntoView({ behavior: "smooth" });
@@ -257,11 +278,17 @@
     <script >
     const sucessMsg = document.getElementById('sucessMsg');
     if (sucessMsg) {
+        // Clean URL so refresh won't show it again
+        const url = new URL(window.location);
+        url.searchParams.delete('msg');
+        window.history.replaceState({}, '', url);
+
         setTimeout(() => {
-        	sucessMsg.classList.add('hide');
-            setTimeout(() => sucessMsg.remove(), 600); // remove after fade
-        }, 2000); // shows for 3 seconds
+            sucessMsg.classList.add('hide');
+            setTimeout(() => sucessMsg.remove(), 600);
+        }, 2000);
     }
+    
     </script>
   </body>
 </html>

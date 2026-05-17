@@ -74,4 +74,13 @@ public class AdminOrderService {
 		}
 		return filteredOrders;
 	}
+	
+	public void updateOrderStatus(int orderId, String newStatus) {
+	    AdminOrdersDAO dao = new AdminOrdersDAO();
+	    try {
+	        dao.updateOrderStatus(orderId, newStatus);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }

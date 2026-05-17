@@ -280,292 +280,462 @@ a {
 
 
 
-
-
-
-
-
+/* Cart */
 .cartPanel {
-	position:fixed;
-    background-color: #fff;
-    width: 540px;
-    min-height: 100vh;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    padding: 28px 28px 0 28px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    z-index: 999;
-    right:0;
-    top:0;
-    transform: translateX(100%);        
-    transition: transform 0.55s ease;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: min(540px, 100vw);
+  height: 100vh;
+  height: 100dvh;
+  padding: 28px 28px 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 16px 0 0 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transform: translateX(100%);
+  transition: transform 0.55s ease;
 }
 
 .cartPanel.open {
-    transform: translateX(0);           /* slides in */
+  transform: translateX(0);
 }
 
 .cartOverlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 998;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
+  position: fixed;
+  inset: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
 }
 
 .cartOverlay.active {
-    opacity: 1;
-    pointer-events: all;
+  opacity: 1;
+  pointer-events: all;
 }
 
-/* ── Top bar ── */
 .cartNavBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 32px;
 }
 
 .cartTitle {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    color: #111;
+  min-width: 0;
+  margin: 0;
+  color: #111;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 .togglePill {
-    display: flex;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 50px;
-    padding: 5px;
-    gap: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  border-radius: 50px;
 }
 
 .toggleBtn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: none;
-    background: transparent;
-    color: #999;
-    font-size: 17px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #999;
+  font-size: 17px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .toggleBtn.active {
-    background-color: #111;
-    color: #fff;
+  background-color: #111;
+  color: #fff;
 }
 
 .closeBtn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    color: #aaa;
-    cursor: pointer;
-    transition: color 0.2s ease;
+  border: none;
+  background: none;
+  color: #aaa;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .closeBtn:hover {
-    color: #111;
+  color: #111;
 }
 
-/* ── Tab section ── */
 .tabSection {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
 }
 
-/* ── Item card ── */
 .itemCard {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 18px 0;
-    border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 18px 0;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .itemImg {
-    width: 90px;  
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-    flex-shrink: 0;
-    background-color: #f5f5f5;
+  flex-shrink: 0;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  background-color: #f5f5f5;
+  border-radius: 8px;
 }
 
 .itemDetails {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
 }
 
 .itemName {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .itemMeta {
-    font-size: 12px;
-    color: #aaa;
+  margin: 0;
+  color: #aaa;
+  font-size: 12px;
 }
 
 .itemPrice {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111;
+  margin: 0;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .itemQty {
-    font-size: 13px;
-    color: #555;
+  color: #555;
+  font-size: 13px;
 }
 
 .itemRight {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-    flex-shrink: 0;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
 }
 
 .removeBtn {
-    background: none;
-    border: none;
-    color: #ccc;
-    font-size: 14px;
-    cursor: pointer;
-    transition: color 0.2s ease;
+  border: none;
+  background: none;
+  color: #ccc;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .removeBtn:hover {
-    color: #e00;
+  color: #e00;
 }
 
 .viewLink {
-    font-size: 13px;
-    color: #111;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-weight: 500;
+  color: #111;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-/* ── Cart footer ── */
 .cartFooter {
-    margin-top: auto;
-    border-top: 1px solid #e0e0e0;
-    padding: 20px 0 28px 0;
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 20px 0 28px;
+  background-color: #fff;
+  border-top: 1px solid #e0e0e0;
 }
 
 .footerRow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 6px;
 }
 
 .footerLabel {
-    font-size: 14px;
-    font-weight: 700;
-    color: #111;
+  color: #111;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .footerTotal {
-    font-size: 15px;
-    font-weight: 700;
-    color: #111;
+  color: #111;
+  font-size: 15px;
+  font-weight: 700;
 }
 
 .footerShipping {
-    font-size: 13px;
-    color: #aaa;
+  color: #aaa;
+  font-size: 13px;
+  text-align: right;
 }
 
 .checkoutBtn {
-    margin-top: 16px;
-    width: 100%;
-    padding: 16px;
-    background-color: #111;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
+  width: 100%;
+  margin-top: 16px;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #111;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
 .checkoutBtn:hover {
-    background-color: #fff;
-    color: #111;
-    outline: 2px solid #111;
+  background-color: #fff;
+  color: #111;
+  outline: 2px solid #111;
+}
+
+.login {
+  margin: auto auto 30px auto;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login:hover {
+  background-color: #f0f0f0;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.qtyControl form {
+  margin: 0;
+  padding: 0;
+}
+
+.qtyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f5f5f5;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.qtyBtn:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.qtyValue {
+  min-width: 20px;
+  color: #111;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.emptyMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 360px;
+  margin: 0;
+  padding: 32px 20px 80px;
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.emptyMsg p {
+  margin: 0 0 14px;
+}
+
+.emptyMsg i {
+  font-size: 52px !important;
+  margin-bottom: 18px !important;
+}
+
+.emptyMsg .login {
+  margin: 0;
 }
 
 @media (max-width: 900px) {
-    .cartPanel {
-        width: 90%;
-        max-width: 500px;
-        min-height: auto;
-        padding: 24px;
-        margin: 20px;
-    }
-
-    .cartNavBar {
-        justify-content: space-between;
-    }
-
-    .itemCard {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-    }
-
-    .itemRight {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
+  .cartPanel {
+    width: min(500px, 92vw);
+    padding: 24px 24px 0;
+  }
 }
 
 @media (max-width: 600px) {
-    body {
-        padding: 12px;
-    }
+  .cartPanel {
+    width: 100vw;
+    padding: 20px 22px 0;
+    border-radius: 0;
+  }
 
-    .cartPanel {
-        width: 100%;
-        margin: 0;
-        padding: 18px;
-        border-radius: 12px;
-    }
+  .cartNavBar {
+    display: grid;
+    grid-template-columns: minmax(104px, 1fr) auto minmax(36px, 1fr);
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
 
-    .itemImg {
-        width: 100%;
-        max-width: 140px;
-        height: auto;
-    }
+  .cartTitle {
+    max-width: none;
+    padding-left: 2px;
+    font-size: 15px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
 
-    .footerRow {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-    }
+  .togglePill {
+    justify-self: center;
+  }
 
-    .checkoutBtn {
-        padding: 14px;
-        font-size: 14px;
-    }
+  .closeBtn {
+    justify-self: end;
+  }
+
+  .togglePill {
+    padding: 4px;
+  }
+
+  .toggleBtn {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .itemCard {
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+  }
+
+  .itemImg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .itemName,
+  .itemPrice {
+    font-size: 13px;
+  }
+
+  .qtyControl {
+    gap: 8px;
+  }
+
+  .qtyBtn {
+    width: 26px;
+    height: 26px;
+    font-size: 14px;
+  }
+
+  .removeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .checkoutBtn {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .emptyMsg {
+    min-height: 420px;
+    padding: 24px 18px 96px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .cartNavBar {
+    grid-template-columns: minmax(112px, 1fr) auto minmax(32px, 1fr);
+    gap: 8px;
+  }
+
+  .cartTitle {
+    font-size: 14px;
+  }
+
+  .itemCard {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: start;
+  }
+
+  .itemImg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .itemRight {
+    gap: 8px;
+  }
+
+  .footerShipping {
+    max-width: 160px;
+  }
 }

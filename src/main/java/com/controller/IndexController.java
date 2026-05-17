@@ -5,14 +5,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
 import java.util.Map;
 
-
+import com.model.CartItemModel;
 import com.model.ProductModel;
+import com.model.UserModel;
+import com.services.CartService;
 import com.services.ProductService;
+import com.utils.SessionUtil;
 
 /**
  * Servlet implementation class IndexController
@@ -35,6 +40,8 @@ public class IndexController extends HttpServlet {
             request.setAttribute("womensProducts", homeData.get("womens"));
             request.setAttribute("supplementProducts", homeData.get("supplements"));
             request.setAttribute("newCollections", homeData.get("newCollections"));
+            
+            
 
         } catch (Exception e) {
             e.printStackTrace();
