@@ -38,72 +38,74 @@
         
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="nav-bar">
-
-        <!-- Navigation List -->
-        <div class="nav-list">
-            <ul style="list-style: none;">
-                <li class="hamburger-item">
-                    <button class="hamburger" id="hamburger">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </li>
-                  <li class="nav-link"><a href="<%=request.getContextPath()%>/home">Home</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/male">Men</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/female">Women</a></li>
-                <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplement</a></li>
-                 <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
-            </ul>
-        </div>
-
-        <!-- Logo -->
-        <div class="logo">
-
-            <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="Logo">
-
-        </div>
-
-<!-- Search Bar (desktop) -->
-
-<div class="nav-search">
-
-
- <form action="result" method="POST" class="search-box">
+    <!-- Navigation Bar Wrapper -->
+    <div class="nav-wrapper">
+        <nav class="nav-bar">
+    
+            <!-- Navigation List -->
+            <div class="nav-list">
+                <ul style="list-style: none;">
+                    <li class="hamburger-item">
+                        <button class="hamburger" id="hamburger">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </li>
+                    <li class="nav-link"><a href="<%=request.getContextPath()%>/home">Home</a></li>
+                    <li class="nav-link"><a href="<%=request.getContextPath()%>/male">Men</a></li>
+                    <li class="nav-link"><a href="<%=request.getContextPath()%>/female">Women</a></li>
+                    <li class="nav-link"><a href="<%=request.getContextPath()%>/gains">Supplement</a></li>
+                    <li class="nav-link"><a href="<%=request.getContextPath()%>/explore">Explore</a></li>
+                </ul>
+            </div>
+    
+            <!-- Logo -->
+            <div class="logo">
+                <img src="<%=request.getContextPath()%>/assets/gngLogo.png" alt="Logo">
+            </div>
+    
+            <!-- Search Bar (desktop) -->
+            <div class="nav-search">
+                       <form action="<%=request.getContextPath()%>/result" method="POST" class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" name="search" placeholder="Search by name..." value="${searchedName}">
                     <button type="submit" style="display:none"></button>
                 </form>
-
-</div>
-
-
-
-
-
-      
-
-        <!-- User Info -->
-        <div class="info">
-            <a href="" class="search-icon-mobile"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i></a>
-            <a onclick="openCart(); switchTab('wish');"><i class="fa-regular fa-heart"></i></a>
-            <c:if test="${empty sessionScope.loggedInUser}">
-            <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
-            </c:if>
-            <c:if test="${not empty sessionScope.loggedInUser}">
-            <a href="<%=request.getContextPath()%>/user" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
-            </c:if>
-            <jsp:include page="cart.jsp"></jsp:include>
+            </div>
+          
+            <!-- User Info -->
+            <div class="info">
+                <a href="#" class="search-icon-mobile" id="mobile-search-trigger"><i class="fa-solid fa-magnifying-glass"></i></a>
+                <a onclick="openCart()"><i class="fa-solid fa-bag-shopping"></i></a>
+                <a><i class="fa-regular fa-heart"></i></a>
+                <c:if test="${empty sessionScope.loggedInUser}">
+                <a href="<%=request.getContextPath()%>/login" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+                </c:if>
+                <c:if test="${not empty sessionScope.loggedInUser}">
+                <a href="<%=request.getContextPath()%>/user" class="profile-icon"><i class="fa-regular fa-circle-user"></i></a>
+                </c:if>
+                <jsp:include page="cart.jsp"></jsp:include>
+            </div>
+        </nav>
+        
+        <!-- Mobile Dropdown Search Field -->
+        <div class="mobile-search-bar" id="mobile-search-bar">
+            <form action="<%=request.getContextPath()%>/result" method="POST" class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="search" placeholder="Search by name..." value="${searchedName}">
+                <button type="submit" style="display:none"></button>
+            </form>
         </div>
-
-    </nav>
+    </div>
+    
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <script>
     var hamburger = document.getElementById('hamburger');
     var Leftbar = document.getElementById('left-bar');
     var LeftBarClose = document.getElementById('close');
     var LeftBarOverlay = document.getElementById('left-bar-overlay');
+    
+    var mobileSearchTrigger = document.getElementById('mobile-search-trigger');
+    var mobileSearchBar = document.getElementById('mobile-search-bar');
 
     function openBar() {
         Leftbar.classList.add('open');
@@ -119,16 +121,10 @@
     LeftBarClose.addEventListener('click', closeBar);
     LeftBarOverlay.addEventListener('click', closeBar);
     
-    if ('${sessionScope.cartOpen}' === 'true') {
-        openCart();
-    }
+    mobileSearchTrigger.addEventListener('click', function(e) {
+        e.preventDefault();
+        mobileSearchBar.classList.toggle('active');
+    });
 </script>
-
-<c:remove var="cartOpen" scope="session"/>
-
 </body>
-
-
-
-
 </html>
