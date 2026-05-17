@@ -8,9 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
+import com.model.ProductModel;
 import com.model.UserModel;
-import com.services.CartService;
+
+import com.services.ProductService;
 import com.services.ReviewService;
 import com.services.UpdateProductService;
 import com.utils.SessionUtil;
@@ -42,9 +45,25 @@ public class GearDetailsController extends HttpServlet {
          UpdateProductService productService = new UpdateProductService();
          ReviewService reviewService = new ReviewService();
          UserModel loggedInUser = (UserModel) SessionUtil.getAttribute(request, "loggedInUser");
+         
+         ProductService generalProductService = new ProductService();
+         productService.loadProductIntoRequest(product_id, request);
+         
+         ProductModel currentProduct = (ProductModel) request.getAttribute("product");
+         
+         if (currentProduct != null) {
+             
+             List<ProductModel> recommendedList = generalProductService.getRecommendedProducts(
+                 currentProduct.getCategory(), 
+                 product_id
+             );
+           
+             request.setAttribute("products", recommendedList);
+         }
+         
  		int user_id = loggedInUser.getUser_id();
          
-         productService.loadProductIntoRequest(product_id, request);
+    
          reviewService.returnOverview(product_id, request);
          reviewService.returnLatestReviews(product_id, user_id, request);
          reviewService.retriveUserReview(product_id, user_id, request);

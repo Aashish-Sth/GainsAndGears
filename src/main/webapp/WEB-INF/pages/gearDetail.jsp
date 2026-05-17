@@ -214,47 +214,29 @@
       </div>
 
 
+    
+<!-- Recommended Products Section Header -->
+<div class="review-head"">
+    Recommended For You
+</div>
+ 
 
-    <div class="card">
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product1.jpg" alt="Product 1">
-            <p>Gymshark - Element Sleeve</p>
-            <div class="info">
-                <span class="price">Rs 3500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
+<div class="card">
+    <c:forEach var="p" items="${products}">
+        <a href="<%=request.getContextPath()%>/product/detail?id=${p.product_id}">
+            <div class="card-item">
+             
+                <img src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(p.product_image)}" alt="${p.product_name}">
+                <p>${p.product_name}</p>
+                <div class="info"><span class="price">Rs ${p.product_price}</span></div>
             </div>
-        </div>
+        </a>
+    </c:forEach>
 
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product2.jpg" alt="Product 2">
-            <p>Gymshark - Compression T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 3000.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.5</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <div class="product">
-                <img src="<%=request.getContextPath()%>/assets/product3.jpg" alt="Product 3">
-                <p>Gymshark - Graphic T-Shirt</p>
-            </div>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.2</span>
-            </div>
-        </div>
-
-        <div class="card-item">
-            <img src="<%=request.getContextPath()%>/assets/product4.jpg" alt="Product 4">
-            <p>Gymshark - Oversized T-Shirt</p>
-            <div class="info">
-                <span class="price">Rs 1500.00</span>
-                <span class="rating"><i class="fa-solid fa-star"></i>4.1</span>
-            </div>
-        </div>
-
-    </div>
+    <c:if test="${empty products}">
+        <p style="color: grey; padding: 20px;">No recommendations found for this category.</p>
+    </c:if>
+</div>
 
  
     <jsp:include page="footer.jsp" />
