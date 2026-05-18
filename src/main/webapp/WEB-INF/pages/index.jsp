@@ -37,29 +37,32 @@
         </div>
     </div>
 
-    <!-- Brand Logos scroll -->
-    <div class="brand-logos">
-        <div class="brand-track">
-            <!-- First set -->
-            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
-            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
-            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
-            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
-            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
-            <!-- Duplicate set for infinite loop -->
-            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
-            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
-            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
-            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
-            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
-            <!-- Duplicate set for infinite loop -->
-            <a href="https://www.gymshark.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
-            <a href="https://youngla.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
-            <a href="https://ghostlifestyle.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
-            <a href="https://feralsupps.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
-            <a href="https://www.muscleblaze.com" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
-        </div>
-    </div>
+    <!-- Brand Logos scroll -->    
+    <div class="logos">
+    	<div class="logos-slide">
+        	<a href="https://row.gymshark.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+        	<a href="https://www.youngla.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+        	<a href="https://www.ghostlifestyle.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+        	<a href="https://feralsupplements.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+        	<a href="https://www.muscleblaze.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+    	</div>
+    	<!-- Duplicate set for infinite loop -->
+    	<div class="logos-slide">
+        	<a href="https://row.gymshark.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+        	<a href="https://www.youngla.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+        	<a href="https://www.ghostlifestyle.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+        	<a href="https://feralsupplements.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+        	<a href="https://www.muscleblaze.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+    	</div>
+    	<!-- Duplicate set for infinite loop -->
+    	<div class="logos-slide">
+        	<a href="https://row.gymshark.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GymSharkHome.png" alt="Gymshark"></a>
+        	<a href="https://www.youngla.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/YoungLAHome.png" alt="YoungLA"></a>
+        	<a href="https://www.ghostlifestyle.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/GhostHome.png" alt="Ghost"></a>
+        	<a href="https://feralsupplements.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/FERALHome.png" alt="Feral Supps"></a>
+        	<a href="https://www.muscleblaze.com/" target="_blank"><img src="<%=request.getContextPath()%>/assets/MuscleBlazeHome.png" alt="MuscleBlaze"></a>
+    	</div>    	
+	</div>
 <ul class="pages">
     <li><a href="javascript:void(0)" id="men-link" class="active" onclick="showCategory('men')">FOR HIM</a></li>
     <li><a href="javascript:void(0)" id="women-link" onclick="showCategory('women')">FOR HER</a></li>

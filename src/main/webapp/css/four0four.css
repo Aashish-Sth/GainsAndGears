@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.pageWrapper {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #f2f2f2;
+  border-radius: 18px;
+  padding: 90px 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+}
+
+/* Left card */
+.cardLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.notFoundText {
+  font-size: 15px;
+  font-weight: 400;
+  color: #777;
+}
+
+.heading {
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 800;
+  color: #111;
+  line-height: 1.2;
+}
+
+.explain {
+  font-size: 15px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Button */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 14px 18px 14px 28px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    width: fit-content;
+    margin-top: 10px;
+    border: 1px solid black;
+    transition: all 0.5s ease-in-out;
+}
+
+.btnCircle {
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Icon */
+.btnCircle i {
+    color: black;
+    font-size: 16px;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn:hover .btnCircle {
+    background-color: black;
+    border: 1px solid black;
+}
+
+.btn:hover .btnCircle i {
+    color: white;
+}
+/* Right Card */
+.cardRight {
+  flex-shrink: 0;
+}
+
+.errorCode {
+  font-size: clamp(100px, 13vw, 190px);
+  font-weight: 800;
+  color: #555;
+  line-height: 1;
+  letter-spacing: -4px;
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+  body {
+    padding: 40px 24px;
+  }
+
+  .card {
+    flex-direction: column;
+    padding: 60px 40px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .cardRight {
+    order: -1;
+  }
+
+  .btn {
+    align-self: center;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 24px 16px;
+  }
+
+  .card {
+    padding: 48px 24px;
+  }
+
+  .notFoundLabel {
+    font-size: 13px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+}
