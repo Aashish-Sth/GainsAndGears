@@ -26,10 +26,13 @@
 
     <!-- Main Section -->
     <div class="main-container">
-        <video autoplay loop muted playsinline preload="metadata">
+        <video autoplay loop muted playsinline preload="auto">
             <source src="<%=request.getContextPath()%>/assets/IndexVideo.mp4" type="video/mp4">
         </video>
-        <div class="shop-now">Shop Now</div>
+     
+  <a href="<%=request.getContextPath()%>/male" class="shop-now-link">
+        <div class="shop-now">SHOP NOW</div>
+    </a>
     </div>
     <div class="scroll-arrow-wrap">
         <div class="scroll-arrow" id="scrollArrow">
@@ -99,13 +102,16 @@
 
 
     <!-- Supplements Section -->
-    <div class="main-container-2">
-        <img src="<%=request.getContextPath()%>/assets/homebg2.jpg" alt="Homepage">
-        <div class="text">
-            <p>Unlock Your <br> Body's Potential.</p>
-            <div class="shop-now-2">Shop Now</div>
-        </div>
+ <!-- Supplements Section -->
+<div class="main-container-2">
+    <img src="<%=request.getContextPath()%>/assets/homebg2.jpg" alt="Homepage">
+    <div class="text">
+        <p>Unlock Your <br> Body's Potential.</p>
+        
+        <!-- Changed from <div> to <a> -->
+        <a href="<%=request.getContextPath()%>/gains" class="shop-now-2">SHOP NOW</a>
     </div>
+</div>
 
     <div class="content-1">
         <h2>Recover Faster, Go Harder</h2>
@@ -127,7 +133,9 @@
 
 
 
+  <a href="<%=request.getContextPath()%>/gains" style="text-decoration: none;">
     <div class="all-btn">VIEW SUPPLEMENTS</div>
+</a>
 
 
     <!-- Limited Stock Section -->
@@ -135,7 +143,7 @@
         <img src="<%=request.getContextPath()%>/assets/homebg3.svg" alt="Homepage">
         <div class="text">
             <p>WAIT THERE'S <br>MORE…</p>
-            <div class="shop-now-3">Shop Now</div>
+          <a href="<%=request.getContextPath()%>/explore" class="shop-now-3">EXPLORE</a>
         </div>
     </div>
 
@@ -165,7 +173,10 @@
     </c:forEach>
 </div>
 
+
+  <a href="<%=request.getContextPath()%>/gears" style="text-decoration: none;">
     <div class="all-btn">SHOP NOW</div>
+</a>
 
     <script src="https://kit.fontawesome.com/7c15c07e01.js" crossorigin="anonymous"></script>
     <jsp:include page="footer.jsp" />
@@ -199,6 +210,7 @@
     </script>
     
     <script>
+    
 function showCategory(category) {
     const menSection = document.getElementById('men-section');
     const womenSection = document.getElementById('women-section');
