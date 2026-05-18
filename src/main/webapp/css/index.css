@@ -348,6 +348,96 @@ body {
     color: #000;
 }
  
+/* Brand Logos Infinite Scroll */
+@keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-100%); }
+}
+
+.logos {
+    overflow: hidden;
+    padding: 36px 0;
+    margin-top: 30px;
+    background: #fff;
+    white-space: nowrap;
+    position: relative;
+}
+
+.logos:before,
+.logos:after {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0), #fff);
+}
+
+.logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0), #fff);
+}
+
+.logos:hover .logos-slide {
+    animation-play-state: paused;
+}
+
+.logos-slide {
+    display: inline-block;
+    animation: slide 20s linear infinite;
+}
+
+.logos-slide a {
+    text-decoration: none;
+}
+
+.logos-slide img {
+    height: 44px;
+    margin: 0 100px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    opacity: 0.75;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.logos-slide a:hover img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .logos-slide img {
+        height: 38px;
+        margin: 0 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logos-slide img {
+        height: 32px;
+        margin: 0 50px;
+    }
+}
+
+@media (max-width: 600px) {
+    .logos-slide img {
+        height: 28px;
+        margin: 0 35px;
+    }
+}
+
+.logos {
+    font-size: 0; /* kills whitespace gap between inline-block divs */
+}
+
 .content-1 {
     display: flex;
     justify-content: center;
